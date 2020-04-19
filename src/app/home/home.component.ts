@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MatVideoModule } from 'mat-video';
 
 @Component({
   selector: 'app-home',
