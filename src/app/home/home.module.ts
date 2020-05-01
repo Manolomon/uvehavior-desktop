@@ -7,6 +7,8 @@ import { HomeComponent } from './home.component';
 import { SharedModule } from '../shared/shared.module';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { MatVideoModule } from 'mat-video';
 
 @NgModule({
@@ -15,7 +17,10 @@ import { MatVideoModule } from 'mat-video';
     SharedModule,
     HomeRoutingModule,
     BrowserAnimationsModule,
-    MatVideoModule
+    MatVideoModule,
+    NbThemeModule.forRoot({ name: 'default' }),
+    NbLayoutModule,
+    NbEvaIconsModule
   ]
 })
 export class HomeModule { }
