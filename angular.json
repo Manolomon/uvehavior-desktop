@@ -29,8 +29,8 @@
             ],
             "scripts": [],
             "customWebpackConfig": {
-              "path": "./angular.webpack.js"
-            }
+              "path": "./extra-webpack.config.js"
+           }
           },
           "configurations": {
             "dev": {
