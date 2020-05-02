@@ -15,10 +15,9 @@
   "main": "main.js",
   "private": true,
   "scripts": {
-    "postinstall": "electron-builder install-app-deps",
     "ng": "ng",
-    "start": "npm-run-all -p electron:serve ng:serve",
-    "build": "npm run electron:serve-tsc && ng build",
+    "start": "npm run postinstall:electron && npm-run-all -p ng:serve electron:serve",
+    "build": "npm run postinstall:electron && npm run electron:serve-tsc && ng build",
     "build:dev": "npm run build -- -c dev",
     "build:prod": "npm run build -- -c production",
     "ng:serve": "ng serve",
@@ -33,7 +32,9 @@
     "e2e": "npm run build:prod && cross-env TS_NODE_PROJECT='e2e/tsconfig.e2e.json' mocha --timeout 300000 --require ts-node/register e2e/**/*.e2e.ts",
     "version": "conventional-changelog -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md",
     "lint": "ng lint",
-    "rebuild": "electron-rebuild -f -w sqlite3"
+    "rebuild": "electron-rebuild -f -w sqlite3",
+    "postinstall": "npm run postinstall:electron && npx electron-builder install-app-deps",
+    "postinstall:electron": "node postinstall"
   },
   "devDependencies": {
     "@angular-builders/custom-webpack": "8.4.1",
