@@ -12,8 +12,8 @@ export class HomeComponent {
   experiments: Experiment[] = [];
 
   constructor(private databaseService: DatabaseService) {
-    this.getExperiments();
-    //this.addExperiment();
+    //this.getExperiments();
+    this.addExperiment();
   }
 
   getExperiments() {
