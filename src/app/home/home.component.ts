@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DatabaseService } from '../core/services/database/database.service'
-import { Experiment } from '../model/experiment.entity'
+import { Experiment } from '../models/experiment.entity'
 
 @Component({
   selector: 'app-home',
@@ -12,8 +12,8 @@ export class HomeComponent {
   experiments: Experiment[] = [];
 
   constructor(private databaseService: DatabaseService) {
-    //this.getExperiments();
-    this.addExperiment();
+    this.getExperiments();
+    //this.addExperiment();
   }
 
   getExperiments() {

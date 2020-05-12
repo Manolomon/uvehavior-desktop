@@ -1,7 +1,11 @@
 {
   "PAGES": {
-      "HOME": {
-          "TITLE": "UVEHAVIOR"
-      }
+    "HOME": {
+      "TITLE": "Home",
+      "SWITCH": "Switch Theme",
+      "EXPERIMENTS-TITLE": "Latest Experiments",
+      "EXPERIMENTS-FOOTER": "New Experiment",
+      "FOOTER": "Found a bug? Open an Issue on"
+    }
   }
 }

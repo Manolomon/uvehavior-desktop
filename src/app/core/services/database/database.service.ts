@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Connection, ConnectionOptions, createConnection} from 'typeorm';
 import {Settings} from './settings';
-import {Experiment} from '../../../model/experiment.entity';
+import {Experiment} from '../../../models/experiment.entity';
 
 @Injectable({
     providedIn: 'root'
