@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 
 import {
   NbThemeModule,
-  NbThemeService,
   NbLayoutModule,
   NbCardModule,
   NbListModule,
@@ -19,7 +18,6 @@ import {
   ],
   exports: [
     NbThemeModule,
-    NbThemeService,
     NbLayoutModule,
     NbCardModule,
     NbListModule,
