@@ -1,0 +1,15 @@
+@import '../../../../themes.scss';
+@import '~@nebular/theme/styles/global/breakpoints';
+//@import '~bootstrap/scss/mixins/breakpoints';
+
+@include nb-install-component() {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .repository {
+    vertical-align:middle;
+    font-size: 1.5rem;
+  }
+}

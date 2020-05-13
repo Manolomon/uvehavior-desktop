@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ElectronService } from './core/services';
 import { TranslateService } from '@ngx-translate/core';
 import { AppConfig } from '../environments/environment';
+import { NbIconLibraries } from '@nebular/theme';
 
 @Component({
   selector: 'app-root',
@@ -11,9 +12,12 @@ import { AppConfig } from '../environments/environment';
 export class AppComponent {
   constructor(
     public electronService: ElectronService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private iconLibraries: NbIconLibraries
   ) {
-    translate.setDefaultLang('en');
+    this.translate.setDefaultLang('en');
+    this.iconLibraries.registerFontPack('fas', { packClass: 'fa', iconClassPrefix: 'fa' });
+    this.iconLibraries.setDefaultPack('fas');
     console.log('AppConfig', AppConfig);
 
     if (electronService.isElectron) {
