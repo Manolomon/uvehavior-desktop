@@ -17,7 +17,7 @@ function createWindow(): BrowserWindow {
     y: 0,
     width: size.width,
     height: size.height,
-    minWidth: size.width*0.45,
+    minWidth: 512,
     minHeight: 350,
     webPreferences: {
       nodeIntegration: true,
@@ -48,6 +48,12 @@ function createWindow(): BrowserWindow {
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
     win = null;
+  });
+
+  // Open external links with the default system-browser
+  win.webContents.on('new-window', function(e, url) {
+    e.preventDefault();
+    require('electron').shell.openExternal(url);
   });
 
   return win;

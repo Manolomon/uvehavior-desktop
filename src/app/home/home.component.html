@@ -10,13 +10,15 @@
       </h1>
     </div>
     <nb-card>
-      <nb-card-header>{{ 'PAGES.HOME.EXPERIMENTS-TITLE' | translate }}</nb-card-header>
+      <nb-card-header>{{ 'EXPERIMENTS-TITLE' | translate }}</nb-card-header>
       <nb-list>
         <nb-list-item *ngFor="let experiment of experiments">
           {{ experiment.ExperimentName }}
         </nb-list-item>
       </nb-list>
-      <nb-card-footer>{{ 'PAGES.HOME.EXPERIMENTS-FOOTER' | translate }}</nb-card-footer>
+      <nb-card-footer>
+        <button nbButton status="primary">{{ 'EXPERIMENTS-FOOTER' | translate }}</button>
+      </nb-card-footer>
     </nb-card>
     <router-outlet></router-outlet>
 

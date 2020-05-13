@@ -8,7 +8,7 @@ import { NbThemeService } from '@nebular/theme';
 })
 export class HeaderComponent implements OnInit {
 
-  themeSwitch = true;
+  themeSwitch = false;
   currentTheme = 'default';
 
   constructor(private themeService: NbThemeService) {
@@ -19,11 +19,10 @@ export class HeaderComponent implements OnInit {
   }
 
   switchTheme(){
-    console.log(this.themeService.currentTheme);
     if(this.themeSwitch) {
-      this.themeService.changeTheme('dark');
-    } else {
       this.themeService.changeTheme('default');
+    } else {
+      this.themeService.changeTheme('dark');
     }
   }
 }

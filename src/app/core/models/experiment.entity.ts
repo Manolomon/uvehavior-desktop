@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, EntityRepository } from "typeorm";
 
 @Entity({name: 'experiment'})
 export class Experiment extends BaseEntity {
@@ -11,4 +11,7 @@ export class Experiment extends BaseEntity {
 
     @Column()
     Description: string;
+
+    @Column({type: "date"})
+    DateCreation: Date
 }
