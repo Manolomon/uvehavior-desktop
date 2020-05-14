@@ -9,7 +9,9 @@ import {
   NbToggleModule,
   NbButtonModule,
   NbToastrModule,
-  NbIconModule
+  NbIconModule,
+  NbDialogModule,
+  NbMenuModule
 } from '@nebular/theme';
 
 @NgModule({
@@ -17,7 +19,9 @@ import {
     NbThemeModule.forRoot({ name: 'default' }),
     NbLayoutModule,
     NbListModule,
-    NbToastrModule.forRoot()
+    NbToastrModule.forRoot(),
+    NbDialogModule.forRoot(),
+    NbMenuModule.forRoot()
   ],
   exports: [
     NbThemeModule,
@@ -28,7 +32,9 @@ import {
     NbToggleModule,
     NbButtonModule,
     NbToastrModule,
-    NbIconModule
+    NbIconModule,
+    NbDialogModule,
+    NbMenuModule
   ]
 })
 export class NebularModule { }

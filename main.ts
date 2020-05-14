@@ -13,10 +13,9 @@ function createWindow(): BrowserWindow {
 
   // Create the browser window.
   win = new BrowserWindow({
-    x: 0,
-    y: 0,
-    width: size.width,
-    height: size.height,
+    center: true,
+    width: size.width*.75,
+    height: size.height*0.80,
     minWidth: 512,
     minHeight: 350,
     webPreferences: {
@@ -38,9 +37,9 @@ function createWindow(): BrowserWindow {
     }));
   }
 
-  if (serve) {
-    win.webContents.openDevTools();
-  }
+  //if (serve) {
+  //  win.webContents.openDevTools();
+  //}
 
   // Emitted when the window is closed.
   win.on('closed', () => {

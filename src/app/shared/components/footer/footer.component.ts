@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'ngx-footer',
+  selector: 'app-footer',
   styleUrls: ['./footer.component.scss'],
   template: `
     <span>
       {{ 'FOOTER' | translate }}
       <b>
-        <a href="https://github.com/Manolomon/uvehavior" target="_blank">
+        <a href="https://github.com/Manolomon/uvehavior/issues" target="_blank">
           <i class="fab fa-github repository"></i>
         </a>
       </b>

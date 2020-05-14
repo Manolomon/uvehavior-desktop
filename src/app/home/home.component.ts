@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DatabaseService } from '../core/services/database/database.service';
 import { Experiment } from '../core/models/experiment.entity';
-import { NbToastrService, NbComponentStatus } from '@nebular/theme';
+import { NbToastrService, NbComponentStatus, NbMenuService, NbMenuItem } from '@nebular/theme';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -11,12 +11,13 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class HomeComponent {
 
-  experiments: Experiment[] = [];
+  experiments: NbMenuItem[] = [];
 
   constructor(
     private databaseService: DatabaseService,
     private toastrService: NbToastrService,
-    private translate: TranslateService) {
+    private translate: TranslateService,
+    private menuService: NbMenuService) {
     this.getExperiments();
     //this.addExperiment();
   }
@@ -28,7 +29,13 @@ export class HomeComponent {
   getExperiments() {
     this.databaseService.getLatestExperiments()
       .then(experiments => {
-        this.experiments = experiments;
+        console.log(experiments)
+        for (var experiment of experiments) {
+          this.menuService.addItems([{
+            title: experiment.ExperimentName,
+            icon: 'clipboard-list',
+          }], 'menu');
+        }
       }).catch((error) => {
         let title: string = this.translate.instant('ERROR')
         let message: string = this.translate.instant('DATABASE-ERROR')

@@ -1,6 +1,6 @@
 <nb-layout>
   <nb-layout-header fixed>
-    <ngx-header></ngx-header>
+    <app-header></app-header>
   </nb-layout-header>
   <nb-layout-column>
     <!--The content below is only a placeholder and can be replaced.-->
@@ -11,19 +11,15 @@
     </div>
     <nb-card>
       <nb-card-header>{{ 'EXPERIMENTS-TITLE' | translate }}</nb-card-header>
-      <nb-list>
-        <nb-list-item *ngFor="let experiment of experiments">
-          {{ experiment.ExperimentName }}
-        </nb-list-item>
-      </nb-list>
+      <nb-menu tag="menu" [items]="experiments"></nb-menu>
       <nb-card-footer>
-        <button nbButton status="primary">{{ 'EXPERIMENTS-FOOTER' | translate }}</button>
+        <button nbButton status="primary" class="experiment">{{ 'EXPERIMENTS-FOOTER' | translate }}</button>
       </nb-card-footer>
     </nb-card>
     <router-outlet></router-outlet>
 
   </nb-layout-column>
   <nb-layout-footer fixed>
-    <ngx-footer></ngx-footer>
+    <app-footer></app-footer>
   </nb-layout-footer>
 </nb-layout>
