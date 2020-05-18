@@ -5,5 +5,10 @@
   "EXPERIMENTS-FOOTER": "New Experiment",
   "FOOTER": "Found a bug? Open an Issue on",
   "ERROR": "Error",
-  "DATABASE-ERROR": "Couldn't connect to database"
+  "DATABASE-ERROR": "Couldn't connect to database",
+  "NEW-EXPERIMENT": "New Experiment",
+  "EXPERIMENT-NAME": "Experiment Name",
+  "EXPERIMENT-DESCRIPTION": "Experiment Description",
+  "CANCEL": "Cancel",
+  "SUBMIT": "Submit"
 }

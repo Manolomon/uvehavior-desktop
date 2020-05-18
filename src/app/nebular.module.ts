@@ -11,7 +11,8 @@ import {
   NbToastrModule,
   NbIconModule,
   NbDialogModule,
-  NbMenuModule
+  NbMenuModule,
+  NbInputModule
 } from '@nebular/theme';
 
 @NgModule({
@@ -34,7 +35,8 @@ import {
     NbToastrModule,
     NbIconModule,
     NbDialogModule,
-    NbMenuModule
+    NbMenuModule,
+    NbInputModule
   ]
 })
 export class NebularModule { }

@@ -13,7 +13,7 @@
       <nb-card-header>{{ 'EXPERIMENTS-TITLE' | translate }}</nb-card-header>
       <nb-menu tag="menu" [items]="experiments"></nb-menu>
       <nb-card-footer>
-        <button nbButton status="primary" class="experiment">{{ 'EXPERIMENTS-FOOTER' | translate }}</button>
+        <button nbButton status="primary" class="experiment" (click)="newExperiment()">{{ 'EXPERIMENTS-FOOTER' | translate }}</button>
       </nb-card-footer>
     </nb-card>
     <router-outlet></router-outlet>

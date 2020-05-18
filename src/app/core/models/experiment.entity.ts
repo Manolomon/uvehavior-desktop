@@ -14,4 +14,7 @@ export class Experiment extends BaseEntity {
 
     @Column({type: "date"})
     DateCreation: Date
+    
+    @Column({type: "datetime"})
+    DateLastModify: Date
 }

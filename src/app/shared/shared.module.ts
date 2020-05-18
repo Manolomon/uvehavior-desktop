@@ -5,20 +5,23 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { FooterComponent, HeaderComponent, PageNotFoundComponent } from './components/';
 import { WebviewDirective } from './directives/';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NebularModule } from '../nebular.module';
+import { AddExperimentComponent } from './components/dialogs/add-experiment/add-experiment.component';
 
 @NgModule({
   declarations: [
     PageNotFoundComponent, 
     WebviewDirective,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    AddExperimentComponent
   ],
   imports: [
     CommonModule,
     TranslateModule,
     FormsModule,
+    ReactiveFormsModule,
     NebularModule
   ],
   exports: [

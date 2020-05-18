@@ -3,6 +3,8 @@ import { DatabaseService } from '../core/services/database/database.service';
 import { Experiment } from '../core/models/experiment.entity';
 import { NbToastrService, NbComponentStatus, NbMenuService, NbMenuItem } from '@nebular/theme';
 import { TranslateService } from '@ngx-translate/core';
+import { NbDialogService } from '@nebular/theme';
+import { AddExperimentComponent } from '../shared/components/dialogs/add-experiment/add-experiment.component';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +19,8 @@ export class HomeComponent {
     private databaseService: DatabaseService,
     private toastrService: NbToastrService,
     private translate: TranslateService,
-    private menuService: NbMenuService) {
+    private menuService: NbMenuService,
+    private dialogService: NbDialogService) {
     this.getExperiments();
     //this.addExperiment();
   }
@@ -26,7 +29,14 @@ export class HomeComponent {
     this.toastrService.show(content, title, { status });
   }
 
+  newExperiment() {
+    this.dialogService.open(AddExperimentComponent)
+      .onClose.subscribe(newExperiment => newExperiment &&
+        this.saveExperiment(newExperiment.name, newExperiment.description));
+  }
+
   getExperiments() {
+    this.experiments = [];
     this.databaseService.getLatestExperiments()
       .then(experiments => {
         console.log(experiments)
@@ -48,13 +58,13 @@ export class HomeComponent {
       });
   }
 
-  addExperiment() {
+  saveExperiment(name, description) {
     const experiment = new Experiment();
 
-    experiment.ExperimentName = "Concentración Zarzamora (polifenoles)";
-    experiment.Description = `- Análisis estadístico ANOVA de una vía
-    - Prieba post hoc Student Newman Keuls`;
-    experiment.DateCreation = new Date()
+    experiment.ExperimentName = name;
+    experiment.Description = description;
+    experiment.DateCreation = new Date();
+    experiment.DateLastModify = new Date();
 
     this.databaseService
       .connection

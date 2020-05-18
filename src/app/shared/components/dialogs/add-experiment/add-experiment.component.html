@@ -1,0 +1,17 @@
+<div class="col-lg-6">
+  <nb-card>
+    <nb-card-header>{{'NEW-EXPERIMENT' | translate}}</nb-card-header>
+    <nb-card-body>
+      <form id="experimentForm" novalidate [formGroup]="experimentForm" (ngSubmit)="submitExperiment()">
+        <input formControlName="name" name="name" fullWidth nbInput required
+          placeholder="{{'EXPERIMENT-NAME' | translate}}"/>
+        <textarea formControlName="description" name="description" rows="5" nbInput fullWidth
+          placeholder="{{'EXPERIMENT-DESCRIPTION' | translate}}"></textarea>
+      </form>
+    </nb-card-body>
+    <nb-card-footer>
+      <button class="cancel" nbButton status="basic" (click)="cancel()">{{'CANCEL' | translate}}</button>
+      <button nbButton type="submit" form="experimentForm" status="primary" [disabled]="!experimentForm.valid">{{'SUBMIT' | translate}}</button>
+    </nb-card-footer>
+  </nb-card>
+</div>

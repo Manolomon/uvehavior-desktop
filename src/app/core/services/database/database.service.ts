@@ -26,7 +26,7 @@ export class DatabaseService {
   async getLatestExperiments() {
     return (await this.connection).getRepository(Experiment)
       .createQueryBuilder("experiment")
-      .orderBy("dateCreation")
+      .orderBy("dateLastModify", "DESC")
       .limit(3).getMany()
   }
 }
