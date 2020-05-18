@@ -1,0 +1,15 @@
+<nb-layout-column>
+  <!--The content below is only a placeholder and can be replaced.-->
+  <div style="text-align:center">
+    <h1>
+      UVehavior
+    </h1>
+  </div>
+  <nb-card>
+    <nb-card-header>
+      {{ 'EXPERIMENTS-TITLE' | translate }}
+      <button nbButton status="primary" class="experiment">{{ 'EXPERIMENTS-FOOTER' | translate }}</button>
+    </nb-card-header>
+    <nb-menu tag="menu" [items]="experiments"></nb-menu>
+  </nb-card>
+</nb-layout-column>

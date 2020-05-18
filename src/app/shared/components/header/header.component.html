@@ -1,6 +1,12 @@
 <div class="header-container">
-  <div class="logo-container">
+  <div *ngIf="currentPage === 'home'" class="logo-container">
     <a class="logo" href="#">{{ 'TITLE' | translate }}</a>
+  </div>
+  <div  *ngIf="currentPage !== 'home'" class="logo-container">
+    <a routerLink="/home" class="sidebar-toggle">
+      <nb-icon icon="arrow-left"></nb-icon>
+    </a>
+    <a routerLink="/home" class="logo">Experimento</a>
   </div>
 </div>
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NbThemeService } from '@nebular/theme';
 
 @Component({
@@ -8,14 +8,17 @@ import { NbThemeService } from '@nebular/theme';
 })
 export class HeaderComponent implements OnInit {
 
-  themeSwitch = false;
-  currentTheme = 'default';
+  @Input()
+  currentPage: string
+
+  themeSwitch: boolean;
 
   constructor(private themeService: NbThemeService) {
   }
 
   ngOnInit() {
-    this.currentTheme = this.themeService.currentTheme;
+    this.themeSwitch = (this.themeService.currentTheme === 'default ')
+    console.log(this.themeSwitch)
   }
 
   switchTheme(){

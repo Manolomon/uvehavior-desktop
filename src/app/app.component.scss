@@ -1,0 +1,14 @@
+@font-face {
+    font-family: Josefina;
+    src: url(assets/fonts/JosefinSans-SemiBold.ttf);
+}
+
+h1 {
+    font-family: Josefina;
+    font-size: 750%;
+    user-select: none;
+}
+
+.experiment {
+    float: right;
+}
