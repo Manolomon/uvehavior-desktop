@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Connection, ConnectionOptions, createConnection, Repository } from 'typeorm';
 import { Settings } from './settings';
 import { Experiment } from '../../models/experiment.entity';
+import { Test } from '../../models/test.entity';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class DatabaseService {
     this.options = {
       type: 'sqlite',
       database: Settings.dbPath,
-      entities: [Experiment],
+      entities: [Experiment, Test],
       synchronize: true,
       logging: 'all',
     };

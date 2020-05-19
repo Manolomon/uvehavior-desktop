@@ -1,0 +1,16 @@
+nb-card-body {
+    overflow: visible;
+    padding-top: 0;
+
+    >* {
+        margin-top: 1rem;
+    }
+}
+
+textarea {
+    resize: none;
+}
+
+.setting {
+    float: right;
+  }

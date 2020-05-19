@@ -1,1 +1,43 @@
-<p>experiment works! for the experiment number: {{ id }}</p>
+<div class="row">
+  <div class="col-md-6">
+    <nb-card>
+      <nb-card-header>
+        Experiment
+        <button nbButton ghost class="setting">
+          <nb-icon icon="ellipsis-v"></nb-icon>
+        </button>
+        <button nbButton ghost class="setting">
+          <nb-icon icon="table"></nb-icon>
+        </button>
+      </nb-card-header>
+      <nb-card-body>
+        <input name="name" fullWidth nbInput disabled value="Experimento 1" />
+        <textarea name="description" rows="5" nbInput fullWidth disabled>Descripción de experimento 1</textarea>
+      </nb-card-body>
+    </nb-card>
+    <nb-card>
+      <nb-card-header>
+        Tests
+        <button nbButton ghost class="setting">
+          <nb-icon icon="plus"></nb-icon>
+        </button>
+      </nb-card-header>
+      <nb-card-body>
+        <nb-menu [items]="items"></nb-menu>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-md-6">
+    <nb-card>
+      <nb-card-header>
+        Groups
+        <button nbButton ghost class="setting">
+          <nb-icon icon="plus"></nb-icon>
+        </button>
+      </nb-card-header>
+      <nb-card-body>
+        <nb-menu [items]="subjects"></nb-menu>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
