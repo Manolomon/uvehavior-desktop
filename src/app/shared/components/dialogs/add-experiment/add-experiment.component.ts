@@ -9,7 +9,7 @@ import { NbDialogRef } from '@nebular/theme';
 })
 export class AddExperimentComponent {
 
-  private experimentForm: FormGroup;
+  experimentForm: FormGroup;
 
   name: string;
   text: string;

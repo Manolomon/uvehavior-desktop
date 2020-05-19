@@ -11,7 +11,7 @@ import { AddExperimentComponent } from '../shared/components/dialogs/add-experim
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
   experiments: NbMenuItem[] = [];
 
@@ -21,9 +21,18 @@ export class HomeComponent {
     private translate: TranslateService,
     private menuService: NbMenuService,
     private dialogService: NbDialogService) {
-    this.getExperiments();
     //this.addExperiment();
   }
+
+  ngOnInit() {
+    this.getExperiments();
+  }
+  ngOnDestroy() {
+    delete(this.experiments)
+    delete(this.menuService)
+    console.log(this.experiments)
+  }
+
 
   showToast(status: NbComponentStatus, title, content) {
     this.toastrService.show(content, title, { status });
@@ -38,12 +47,13 @@ export class HomeComponent {
   getExperiments() {
     this.experiments = [];
     this.databaseService.getLatestExperiments()
-      .then(experiments => {
-        console.log(experiments)
-        for (var experiment of experiments) {
+      .then(exps => {
+        console.log(exps)
+        for (var experiment of exps) {
           this.menuService.addItems([{
             title: experiment.ExperimentName,
             icon: 'clipboard-list',
+            link: `../experiment/${experiment.Id}`
           }], 'menu');
         }
       }).catch((error) => {
