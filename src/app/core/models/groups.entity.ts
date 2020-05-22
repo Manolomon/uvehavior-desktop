@@ -1,12 +1,12 @@
 import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, PrimaryColumn, ManyToOne, JoinColumn, OneToMany } from "typeorm";
 import { Experiment } from './experiment.entity';
-import { Behavior } from './behavior.entity';
+import { Subject } from './subject.entity';
 
-@Entity({ name: 'test' })
-export class Test extends BaseEntity {
+@Entity({ name: 'groups' })
+export class Groups extends BaseEntity {
 
-  @PrimaryGeneratedColumn()
-  Id: number;
+  @PrimaryGeneratedColumn({ name: "idGroup" })
+  id: number;
 
   @PrimaryColumn()
   idExperiment: number;
@@ -17,16 +17,13 @@ export class Test extends BaseEntity {
   @Column()
   description: string;
 
-  @Column()
-  time: number;
-
-  @ManyToOne(() => Experiment, (experiment) => experiment.tests, {
+  @ManyToOne(() => Experiment, (experiment) => experiment.groups, {
     onDelete: "CASCADE",
   })
 
   @JoinColumn([{ name: "idExperiment", referencedColumnName: "idExperiment" }])
   idExperiment2: Experiment;
 
-  @OneToMany(() => Behavior, (behavior) => behavior.idTest2)
-  behaviors: Behavior[];
+  @OneToMany(() => Subject, (subject) => subject.idGroup2)
+  subjects: Subject[];
 }

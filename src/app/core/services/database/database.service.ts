@@ -3,6 +3,12 @@ import { Connection, ConnectionOptions, createConnection, Repository } from 'typ
 import { Settings } from './settings';
 import { Experiment } from '../../models/experiment.entity';
 import { Test } from '../../models/test.entity';
+import { BehaviorEvaluation } from '../../models/behavior_evaluation.entity';
+import { Annotation } from '../../models/annotation.entity';
+import { Behavior } from '../../models/behavior.entity';
+import { Evaluation } from '../../models/evaluation.entity';
+import { Groups } from '../../models/groups.entity';
+import { Subject } from '../../models/subject.entity';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +23,16 @@ export class DatabaseService {
     this.options = {
       type: 'sqlite',
       database: Settings.dbPath,
-      entities: [Experiment, Test],
+      entities: [
+        Annotation,
+        BehaviorEvaluation,
+        Behavior,
+        Evaluation,
+        Experiment,
+        Groups,
+        Subject,
+        Test
+      ],
       synchronize: true,
       logging: 'all',
     };
@@ -27,7 +42,7 @@ export class DatabaseService {
   async getLatestExperiments() {
     return (await this.connection).getRepository(Experiment)
       .createQueryBuilder("experiment")
-      .orderBy("dateLastModify", "DESC")
+      .orderBy("lastModifiedDate", "DESC")
       .limit(3).getMany()
   }
 }

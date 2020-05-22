@@ -1,20 +1,29 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, EntityRepository } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, OneToMany } from "typeorm";
+import { Test } from "./test.entity";
+import { Groups } from './groups.entity';
 
-@Entity({name: 'experiment'})
+
+@Entity({ name: 'experiment' })
 export class Experiment extends BaseEntity {
 
-    @PrimaryGeneratedColumn()
-    Id: number;
+  @PrimaryGeneratedColumn({ name: "idExperiment" })
+  id: number;
 
-    @Column()
-    ExperimentName: string;
+  @Column()
+  name: string;
 
-    @Column()
-    Description: string;
+  @Column()
+  description: string;
 
-    @Column({type: "date"})
-    DateCreation: Date
-    
-    @Column({type: "datetime"})
-    DateLastModify: Date
+  @Column({ type: "date", default: () => "date('now')", })
+  creationDate: Date
+
+  @Column({ type: "datetime" })
+  lastModifiedDate: Date
+
+  @OneToMany(() => Groups, (groups) => groups.idExperiment2)
+  groups: Groups[];
+
+  @OneToMany(() => Test, (test) => test.idExperiment2)
+  tests: Test[];
 }

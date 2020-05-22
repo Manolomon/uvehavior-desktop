@@ -27,12 +27,6 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.getExperiments();
   }
-  ngOnDestroy() {
-    delete(this.experiments)
-    delete(this.menuService)
-    console.log(this.experiments)
-  }
-
 
   showToast(status: NbComponentStatus, title, content) {
     this.toastrService.show(content, title, { status });
@@ -45,17 +39,16 @@ export class HomeComponent implements OnInit {
   }
 
   getExperiments() {
-    this.experiments = [];
     this.databaseService.getLatestExperiments()
       .then(exps => {
-        console.log(exps)
-        for (var experiment of exps) {
-          this.menuService.addItems([{
-            title: experiment.ExperimentName,
+        this.experiments = exps.map((element) => {
+          return {
+            title: element.name,
             icon: 'clipboard-list',
-            link: `../experiment/${experiment.Id}`
-          }], 'menu');
-        }
+            link: `../experiment/${element.id}`
+          }
+        });
+        this.menuService.addItems(this.experiments, 'menu');
       }).catch((error) => {
         let title: string = this.translate.instant('ERROR')
         let message: string = this.translate.instant('DATABASE-ERROR')
@@ -71,10 +64,10 @@ export class HomeComponent implements OnInit {
   saveExperiment(name, description) {
     const experiment = new Experiment();
 
-    experiment.ExperimentName = name;
-    experiment.Description = description;
-    experiment.DateCreation = new Date();
-    experiment.DateLastModify = new Date();
+    experiment.name = name;
+    experiment.description = description;
+    experiment.creationDate = new Date();
+    experiment.lastModifiedDate = new Date();
 
     this.databaseService
       .connection
@@ -83,8 +76,14 @@ export class HomeComponent implements OnInit {
         this.getExperiments();
       })
       .then(() => {
-        console.log("Se agregó")
+        let title: string = this.translate.instant('SUCCESS')
+        let message: string = this.translate.instant('EXPERIMENT-SAVED')
+
+        this.showToast(
+          'success',
+          title,
+          message
+        )
       })
   }
-
 }
