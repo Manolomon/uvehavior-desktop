@@ -1,5 +1,5 @@
 CREATE TABLE experiment (
-    idExperiment INTEGER PRIMARY KEY,
+    idExperiment INTEGER PRIMARY KEY NOT NULL,
     experimentName TEXT NOT NULL,
     experimentDescription TEXT,
     creationDate DATE DEFAULT (date('now')),
@@ -7,8 +7,8 @@ CREATE TABLE experiment (
 );
 
 CREATE TABLE groups (
-    idGroup INTEGER,
-    idExperiment INTEGER,
+    idGroup INTEGER NOT NULL,
+    idExperiment INTEGER NOT NULL,
     groupName TEXT NOT NULL,
     groupDescription TEXT,
     PRIMARY KEY (idGroup, idExperiment),
@@ -18,8 +18,8 @@ CREATE TABLE groups (
 );
 
 CREATE TABLE subject (
-    idSubject INTEGER,
-    idGroup INTEGER,
+    idSubject INTEGER NOT NULL,
+    idGroup INTEGER NOT NULL,
     name TEXT NOT NULL,
     PRIMARY KEY (idSubject, idGroup),
     FOREIGN KEY (idGroup)
@@ -28,8 +28,8 @@ CREATE TABLE subject (
 );
 
 CREATE TABLE test (
-    idTest INTEGER,
-    idExperiment INTEGER,
+    idTest INTEGER NOT NULL,
+    idExperiment INTEGER NOT NULL,
     testName TEXT NOT NULL,
     testDescription TEXT,
     testTime INTEGER NOT NULL,
@@ -40,10 +40,10 @@ CREATE TABLE test (
 );
 
 CREATE TABLE behavior (
-    idBehavior INTEGER,
-    idTest INTEGER,
+    idBehavior INTEGER NOT NULL,
+    idTest INTEGER NOT NULL,
     name TEXT NOT NULL,
-    associatedKey VARCHAR(1),
+    associatedKey VARCHAR(1) NOT NULL,
     PRIMARY KEY (idBehavior, idTest),
     FOREIGN KEY (idTest)
         REFERENCES test (idTest)
@@ -51,8 +51,8 @@ CREATE TABLE behavior (
 );
 
 CREATE TABLE evaluation (
-    idEvaluation INTEGER,
-    idSubject INTEGER,
+    idEvaluation INTEGER NOT NULL,
+    idSubject INTEGER NOT NULL,
     videoPath TEXT NOT NULL,
     evaluationDate DATE NOT NULL DEFAULT (date('now')),
     PRIMARY KEY (idEvaluation, idSubject),
@@ -62,9 +62,9 @@ CREATE TABLE evaluation (
 );
 
 CREATE TABLE behavior_evaluation (
-    idEvaluation INTEGER,
-    idBehavior INTEGER,
-    idBehaviorEvaluation INTEGER,
+    idEvaluation INTEGER NOT NULL,
+    idBehavior INTEGER NOT NULL,
+    idBehaviorEvaluation INTEGER NOT NULL,
     latency REAL,
     frequency INTEGER,
     totalTime REAL,
@@ -77,9 +77,9 @@ CREATE TABLE behavior_evaluation (
 );
 
 CREATE TABLE annotation (
-    idAnnotation INTEGER,
-    idBehaviorEvaluation INTEGER,
-    timeLog REAL,
+    idAnnotation INTEGER NOT NULL,
+    idBehaviorEvaluation INTEGER NOT NULL,
+    timeLog REAL NOT NULL,
     PRIMARY KEY (idAnnotation, idBehaviorEvaluation),
     FOREIGN KEY (idBehaviorEvaluation)
         REFERENCES behavior_evaluationv (idBehaviorEvaluation)

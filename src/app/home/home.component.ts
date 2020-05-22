@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DatabaseService } from '../core/services/database/database.service';
-import { Experiment } from '../core/models/experiment.entity';
+import { Experiment } from '../core/models/entities';
 import { NbToastrService, NbComponentStatus, NbMenuService, NbMenuItem } from '@nebular/theme';
 import { TranslateService } from '@ngx-translate/core';
 import { NbDialogService } from '@nebular/theme';
@@ -45,11 +45,13 @@ export class HomeComponent implements OnInit {
           return {
             title: element.name,
             icon: 'clipboard-list',
-            link: `../experiment/${element.id}`
+            link: `../experiment/${element.idExperiment}`
           }
         });
         this.menuService.addItems(this.experiments, 'menu');
       }).catch((error) => {
+
+        console.log(error)
         let title: string = this.translate.instant('ERROR')
         let message: string = this.translate.instant('DATABASE-ERROR')
 

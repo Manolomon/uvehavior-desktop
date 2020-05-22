@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Connection, ConnectionOptions, createConnection, Repository } from 'typeorm';
 import { Settings } from './settings';
-import { Experiment } from '../../models/experiment.entity';
-import { Test } from '../../models/test.entity';
-import { BehaviorEvaluation } from '../../models/behavior_evaluation.entity';
-import { Annotation } from '../../models/annotation.entity';
-import { Behavior } from '../../models/behavior.entity';
-import { Evaluation } from '../../models/evaluation.entity';
-import { Groups } from '../../models/groups.entity';
-import { Subject } from '../../models/subject.entity';
+import { Experiment,
+        Test,
+        Group,
+        Subject,
+        Evaluation,
+        Behavior,
+        BehaviorEvaluation,
+        Annotation } from '../../models/entities';
 
 @Injectable({
   providedIn: 'root'
@@ -24,14 +24,14 @@ export class DatabaseService {
       type: 'sqlite',
       database: Settings.dbPath,
       entities: [
-        Annotation,
-        BehaviorEvaluation,
-        Behavior,
-        Evaluation,
         Experiment,
-        Groups,
+        Test,
+        Group,
         Subject,
-        Test
+        Evaluation,
+        Behavior,
+        BehaviorEvaluation,
+        Annotation
       ],
       synchronize: true,
       logging: 'all',
