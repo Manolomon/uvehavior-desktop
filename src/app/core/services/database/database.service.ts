@@ -1,8 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Connection, ConnectionOptions, createConnection, Repository } from 'typeorm';
 import { Settings } from './settings';
-import { Experiment } from '../../models/experiment.entity';
-import { Test } from '../../models/test.entity';
+import { Experiment,
+        Test,
+        Group,
+        Subject,
+        Evaluation,
+        Behavior,
+        BehaviorEvaluation,
+        Annotation } from '../../models/entities';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +23,16 @@ export class DatabaseService {
     this.options = {
       type: 'sqlite',
       database: Settings.dbPath,
-      entities: [Experiment, Test],
+      entities: [
+        Experiment,
+        Test,
+        Group,
+        Subject,
+        Evaluation,
+        Behavior,
+        BehaviorEvaluation,
+        Annotation
+      ],
       synchronize: true,
       logging: 'all',
     };
@@ -27,7 +42,7 @@ export class DatabaseService {
   async getLatestExperiments() {
     return (await this.connection).getRepository(Experiment)
       .createQueryBuilder("experiment")
-      .orderBy("dateLastModify", "DESC")
+      .orderBy("lastModifiedDate", "DESC")
       .limit(3).getMany()
   }
 }

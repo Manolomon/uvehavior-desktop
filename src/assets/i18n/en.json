@@ -13,5 +13,7 @@
   "SUBMIT": "Submit",
   "EXPERIMENT": "Experiment",
   "TESTS" : "Tests",
-  "GROUPS" : "Groups"
+  "GROUPS" : "Groups",
+  "SUCCESS" : "Success",
+  "EXPERIMENT-SAVED" : "New experiment saved"
 }
