@@ -43,6 +43,16 @@ export class DatabaseService {
     return (await this.connection).getRepository(Experiment)
       .createQueryBuilder("experiment")
       .orderBy("lastModifiedDate", "DESC")
-      .limit(3).getMany()
+      .limit(3).getMany();
+  }
+
+  async getExperimentData(idExperiment) {
+    return (await this.connection).getRepository(Experiment)
+    .findOne({
+      relations: ['tests', 'groups', 'groups.subjects'],
+      where: { 
+        idExperiment: idExperiment}
+      },
+    );
   }
 }

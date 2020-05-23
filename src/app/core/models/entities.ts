@@ -7,10 +7,10 @@ export class Experiment extends BaseEntity {
     idExperiment: number;
 
     @Column()
-    name: string | null;
+    name: string;
 
     @Column()
-    description: string;
+    description: string | null;
 
     @Column("date", { name: "evaluationDate", default: () => "date('now')" })
     creationDate: Date
@@ -18,10 +18,10 @@ export class Experiment extends BaseEntity {
     @Column({ type: "datetime" })
     lastModifiedDate: Date
 
-    @OneToMany(() => Test, (test) => test.idExperiment)
+    @OneToMany(() => Test, (test) => test.experiment)
     tests: Test[];
 
-    @OneToMany(() => Group, (group) => group.idExperiment)
+    @OneToMany(() => Group, (group) => group.experiment)
     groups: Group[];
 }
 

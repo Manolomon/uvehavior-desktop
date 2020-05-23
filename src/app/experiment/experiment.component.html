@@ -11,8 +11,8 @@
         </button>
       </nb-card-header>
       <nb-card-body>
-        <input name="name" fullWidth nbInput disabled value="Experimento 1" />
-        <textarea name="description" rows="5" nbInput fullWidth disabled>Descripción de experimento 1</textarea>
+        <input name="name" fullWidth nbInput disabled value="{{this.name}}"/>
+        <textarea name="description" rows="5" nbInput fullWidth disabled>{{ this.description }}</textarea>
       </nb-card-body>
     </nb-card>
     <nb-card>
@@ -23,7 +23,7 @@
         </button>
       </nb-card-header>
       <nb-card-body>
-        <nb-menu [items]="items"></nb-menu>
+        <nb-menu [items]="tests"></nb-menu>
       </nb-card-body>
     </nb-card>
   </div>
