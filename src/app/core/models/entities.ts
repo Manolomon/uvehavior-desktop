@@ -32,7 +32,7 @@ export class Test extends BaseEntity {
     idTest: number;
 
     @Column()
-    idExperiment: string;
+    idExperiment: number;
 
     @Column()
     name: string;
@@ -41,7 +41,7 @@ export class Test extends BaseEntity {
     description: string | null;
 
     @Column()
-    time: number;
+    duration: number;
 
     @ManyToOne(() => Experiment, (experiment) => experiment.tests, {
         onDelete: "CASCADE",

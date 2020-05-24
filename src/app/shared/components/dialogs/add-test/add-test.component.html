@@ -1,0 +1,19 @@
+<nb-card>
+  <nb-card-header *ngIf="!editMode">{{'NEW-TEST' | translate}}</nb-card-header>
+  <nb-card-header *ngIf="editMode">{{'EDIT-TEST' | translate}}</nb-card-header>
+  <nb-card-body>
+    <form id="testForm" novalidate [formGroup]="testForm" (ngSubmit)="submitTest()">
+      <input formControlName="name" name="name" fullWidth nbInput required placeholder="{{'TEST-NAME' | translate}}"
+        [(ngModel)]="name" />
+      <textarea formControlName="description" name="description" rows="3" nbInput fullWidth
+        placeholder="{{'TEST-DESCRIPTION' | translate}}" [(ngModel)]="description"></textarea>
+      <input formControlName="duration" name="duration" required nbInput type="number" min="1" step="1"
+        placeholder="{{'TEST-DURATION' | translate}}" [(ngModel)]="duration" />
+    </form>
+  </nb-card-body>
+  <nb-card-footer>
+    <button class="cancel" nbButton status="basic" (click)="cancel()">{{'CANCEL' | translate}}</button>
+    <button nbButton type="submit" form="testForm" status="primary"
+      [disabled]="!testForm.valid">{{'SUBMIT' | translate}}</button>
+  </nb-card-footer>
+</nb-card>

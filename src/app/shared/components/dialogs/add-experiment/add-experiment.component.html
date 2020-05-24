@@ -1,11 +1,12 @@
 <nb-card>
-  <nb-card-header>{{'NEW-EXPERIMENT' | translate}}</nb-card-header>
+  <nb-card-header *ngIf="!editMode">{{'NEW-EXPERIMENT' | translate}}</nb-card-header>
+  <nb-card-header *ngIf="editMode">{{'EDIT-EXPERIMENT' | translate}}</nb-card-header>
   <nb-card-body>
     <form id="experimentForm" novalidate [formGroup]="experimentForm" (ngSubmit)="submitExperiment()">
       <input formControlName="name" name="name" fullWidth nbInput required
-        placeholder="{{'EXPERIMENT-NAME' | translate}}" />
+        placeholder="{{'EXPERIMENT-NAME' | translate}}" [(ngModel)]="name"/>
       <textarea formControlName="description" name="description" rows="5" nbInput fullWidth
-        placeholder="{{'EXPERIMENT-DESCRIPTION' | translate}}"></textarea>
+        placeholder="{{'EXPERIMENT-DESCRIPTION' | translate}}" [(ngModel)]="description"></textarea>
     </form>
   </nb-card-body>
   <nb-card-footer>

@@ -3,7 +3,7 @@
     <nb-card>
       <nb-card-header>
         Experiment
-        <button nbButton ghost class="setting">
+        <button nbButton ghost class="setting" [nbContextMenu]="items" nbContextMenuTrigger="click">
           <nb-icon icon="ellipsis-v"></nb-icon>
         </button>
         <button nbButton ghost class="setting">
@@ -11,19 +11,19 @@
         </button>
       </nb-card-header>
       <nb-card-body>
-        <input name="name" fullWidth nbInput disabled value="{{this.name}}"/>
-        <textarea name="description" rows="5" nbInput fullWidth disabled>{{ this.description }}</textarea>
+        <input formControlName="name" fullWidth nbInput disabled value="{{this.name}}"/>
+        <textarea formControlName="description" rows="3" nbInput fullWidth disabled>{{ this.description }}</textarea>
       </nb-card-body>
     </nb-card>
     <nb-card>
       <nb-card-header>
         Tests
-        <button nbButton ghost class="setting">
+        <button nbButton ghost class="setting" (click)="newTest()">
           <nb-icon icon="plus"></nb-icon>
         </button>
       </nb-card-header>
       <nb-card-body>
-        <nb-menu [items]="tests"></nb-menu>
+        <nb-menu tag="tests" [items]="tests"></nb-menu>
       </nb-card-body>
     </nb-card>
   </div>
@@ -36,7 +36,7 @@
         </button>
       </nb-card-header>
       <nb-card-body>
-        <nb-menu [items]="subjects"></nb-menu>
+        <nb-menu tag="subjects"[items]="subjects"></nb-menu>
       </nb-card-body>
     </nb-card>
   </div>

@@ -8,12 +8,18 @@
   "DATABASE-ERROR": "Couldn't connect to database",
   "NEW-EXPERIMENT": "New Experiment",
   "EXPERIMENT-NAME": "Experiment Name",
-  "EXPERIMENT-DESCRIPTION": "Experiment Description",
+  "EXPERIMENT-DESCRIPTION": "Experiment Description (optional)",
   "CANCEL": "Cancel",
   "SUBMIT": "Submit",
   "EXPERIMENT": "Experiment",
   "TESTS" : "Tests",
   "GROUPS" : "Groups",
   "SUCCESS" : "Success",
-  "EXPERIMENT-SAVED" : "New experiment saved"
+  "EXPERIMENT-SAVED" : "New experiment saved",
+  "EDIT-EXPERIMENT": "Edit Experiment",
+  "NEW-TEST": "New Test",
+  "TEST-NAME": "Test Name",
+  "TEST-DURATION": "Duration in seconds",
+  "EDIT-TEST": "Edit Test",
+  "TEST-DESCRIPTION": "Test Description (optional)"
 }

@@ -8,6 +8,7 @@ import { WebviewDirective } from './directives/';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NebularModule } from '../nebular.module';
 import { AddExperimentComponent } from './components/dialogs/add-experiment/add-experiment.component';
+import { AddTestComponent } from './components/dialogs/add-test/add-test.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { AddExperimentComponent } from './components/dialogs/add-experiment/add-
     WebviewDirective,
     FooterComponent,
     HeaderComponent,
-    AddExperimentComponent
+    AddExperimentComponent,
+    AddTestComponent
   ],
   imports: [
     CommonModule,

@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
   }
 
   newExperiment() {
-    this.dialogService.open(AddExperimentComponent)
+    this.dialogService.open(AddExperimentComponent, {context: {editMode: false}})
       .onClose.subscribe(newExperiment => newExperiment &&
         this.saveExperiment(newExperiment.name, newExperiment.description));
   }
