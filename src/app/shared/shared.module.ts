@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NebularModule } from '../nebular.module';
 import { AddExperimentComponent } from './components/dialogs/add-experiment/add-experiment.component';
 import { AddTestComponent } from './components/dialogs/add-test/add-test.component';
+import { AddGroupComponent } from './components/dialogs/add-group/add-group.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { AddTestComponent } from './components/dialogs/add-test/add-test.compone
     FooterComponent,
     HeaderComponent,
     AddExperimentComponent,
-    AddTestComponent
+    AddTestComponent,
+    AddGroupComponent
   ],
   imports: [
     CommonModule,

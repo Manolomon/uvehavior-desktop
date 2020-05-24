@@ -21,5 +21,9 @@
   "TEST-NAME": "Test Name",
   "TEST-DURATION": "Duration in seconds",
   "EDIT-TEST": "Edit Test",
-  "TEST-DESCRIPTION": "Test Description (optional)"
+  "TEST-DESCRIPTION": "Test Description (optional)",
+  "NEW-GROUP": "New Group",
+  "GROUP-NAME": "Group Name",
+  "EDIT-GROUP": "Edit Group",
+  "GROUP-DESCRIPTION": "Group Description (optional)"
 }

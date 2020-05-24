@@ -5,9 +5,9 @@ import { DatabaseService } from '../core/services/database/database.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Experiment, Test, Group, Subject } from '../core/models/entities';
 import { AddExperimentComponent } from '../shared/components/dialogs/add-experiment/add-experiment.component';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { timingSafeEqual } from 'crypto';
 import { AddTestComponent } from '../shared/components/dialogs/add-test/add-test.component';
+import { AddGroupComponent } from '../shared/components/dialogs/add-group/add-group.component';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-experiment',
@@ -24,11 +24,6 @@ export class ExperimentComponent implements OnInit {
 
   subjects: NbMenuItem[] = [];
 
-  items: NbMenuItem[] = [
-    { title: 'Edit Experiment', icon: 'edit' },
-    { title: 'Delete Experiment', icon: 'trash-alt' },
-  ];
-
   constructor(
     private route: ActivatedRoute,
     private databaseService: DatabaseService,
@@ -43,12 +38,6 @@ export class ExperimentComponent implements OnInit {
   ngOnInit(): void {
     this.idExperiment = this.route.snapshot.params['id'];
     this.getExperiment();
-
-    this.menuService.onItemClick().subscribe((event) => {
-      if (event.item.title === 'Edit Experiment') {
-        this.editExperiment();
-      }
-    });
   }
 
   getExperiment() {
@@ -81,8 +70,6 @@ export class ExperimentComponent implements OnInit {
         this.menuService.addItems(this.subjects, 'subjects');
       })
       .catch((error) => {
-
-        console.log(error)
         let title: string = this.translate.instant('ERROR')
         let message: string = this.translate.instant('DATABASE-ERROR')
 
@@ -102,8 +89,8 @@ export class ExperimentComponent implements OnInit {
     this.dialogService.open(AddExperimentComponent,
       {
         context: {
-          name: this.name,
-          description: this.description,
+          name: this.current.name,
+          description: this.current.description,
           editMode: true
         }
       })
@@ -163,4 +150,40 @@ export class ExperimentComponent implements OnInit {
       })
   }
 
+  addGroup() {
+    this.dialogService.open(AddGroupComponent, { context: { editMode: false } })
+      .onClose.subscribe(newGroup => newGroup &&
+        this.saveGroup(newGroup.name, newGroup.description));
+  }
+
+  addSubject() {
+    this.dialogService.open(AddGroupComponent, { context: { editMode: false } })
+      .onClose.subscribe(newGroup => newGroup &&
+        this.saveGroup(newGroup.name, newGroup.description));
+  }
+
+  saveGroup(name, description) {
+    const group = new Group();
+
+    group.idExperiment = this.idExperiment;
+    group.name = name;
+    group.description = description;
+
+    this.databaseService
+      .connection
+      .then(() => group.save())
+      .then(() => {
+        this.getExperiment();
+      })
+      .then(() => {
+        let title: string = this.translate.instant('SUCCESS')
+        let message: string = this.translate.instant('EXPERIMENT-SAVED')
+
+        this.showToast(
+          'success',
+          title,
+          message
+        )
+      })
+  }
 }

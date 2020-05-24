@@ -3,8 +3,11 @@
     <nb-card>
       <nb-card-header>
         Experiment
-        <button nbButton ghost class="setting" [nbContextMenu]="items" nbContextMenuTrigger="click">
-          <nb-icon icon="ellipsis-v"></nb-icon>
+        <button nbButton ghost class="setting">
+          <nb-icon icon="trash-alt"></nb-icon>
+        </button>
+        <button nbButton ghost class="setting" (click)="editExperiment()">
+          <nb-icon icon="pen"></nb-icon>
         </button>
         <button nbButton ghost class="setting">
           <nb-icon icon="table"></nb-icon>
@@ -32,6 +35,9 @@
       <nb-card-header>
         Groups
         <button nbButton ghost class="setting">
+          <nb-icon icon="user-plus"></nb-icon>
+        </button>
+        <button nbButton ghost class="setting" (click)="addGroup()">
           <nb-icon icon="plus"></nb-icon>
         </button>
       </nb-card-header>

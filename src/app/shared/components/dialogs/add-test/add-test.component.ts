@@ -24,12 +24,19 @@ export class AddTestComponent {
     })
   }
 
+  ngOnInit(){
+    if(this.editMode){
+      this.testForm.get('name').setValue(this.name)
+      this.testForm.get('description').setValue(this.description)
+      this.testForm.get('duration').setValue(this.duration)
+    }
+  }
+
   cancel() {
     this.ref.close();
   }
 
   submitTest() {
-    console.log("YUFJHDS")
     this.ref.close(this.testForm.value);
   }
 

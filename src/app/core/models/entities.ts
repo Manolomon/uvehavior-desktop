@@ -55,7 +55,7 @@ export class Test extends BaseEntity {
 
 
 @Entity("group")
-export class Group {
+export class Group extends BaseEntity {
   @PrimaryGeneratedColumn()
   idGroup: number;
 
@@ -79,7 +79,7 @@ export class Group {
 }
 
 @Entity("subject")
-export class Subject {
+export class Subject extends BaseEntity {
   @PrimaryGeneratedColumn()
   idSubject: number;
 
@@ -98,7 +98,7 @@ export class Subject {
 }
 
 @Entity("evaluation")
-export class Evaluation {
+export class Evaluation extends BaseEntity {
   @PrimaryGeneratedColumn()
   idEvaluation: number;
 
@@ -125,7 +125,7 @@ export class Evaluation {
 }
 
 @Entity("behavior_evaluation")
-export class BehaviorEvaluation {
+export class BehaviorEvaluation extends BaseEntity {
   @PrimaryGeneratedColumn()
   idEvaluation: number;
 
@@ -162,7 +162,7 @@ export class BehaviorEvaluation {
 }
 
 @Entity("behavior")
-export class Behavior {
+export class Behavior extends BaseEntity {
   @PrimaryGeneratedColumn()
   idBehavior: number;
 
@@ -187,7 +187,7 @@ export class Behavior {
 }
 
 @Entity("annotation")
-export class Annotation {
+export class Annotation extends BaseEntity {
   @PrimaryGeneratedColumn()
   idAnnotation: number;
 

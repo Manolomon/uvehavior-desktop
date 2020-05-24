@@ -4,9 +4,9 @@
   <nb-card-body>
     <form id="experimentForm" novalidate [formGroup]="experimentForm" (ngSubmit)="submitExperiment()">
       <input formControlName="name" name="name" fullWidth nbInput required
-        placeholder="{{'EXPERIMENT-NAME' | translate}}" [(ngModel)]="name"/>
-      <textarea formControlName="description" name="description" rows="5" nbInput fullWidth
-        placeholder="{{'EXPERIMENT-DESCRIPTION' | translate}}" [(ngModel)]="description"></textarea>
+        placeholder="{{'EXPERIMENT-NAME' | translate}}"/>
+      <textarea formControlName="description" name="description" rows="3" nbInput fullWidth
+        placeholder="{{'EXPERIMENT-DESCRIPTION' | translate}}"></textarea>
     </form>
   </nb-card-body>
   <nb-card-footer>

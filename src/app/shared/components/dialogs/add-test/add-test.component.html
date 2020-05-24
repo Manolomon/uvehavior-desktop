@@ -3,12 +3,11 @@
   <nb-card-header *ngIf="editMode">{{'EDIT-TEST' | translate}}</nb-card-header>
   <nb-card-body>
     <form id="testForm" novalidate [formGroup]="testForm" (ngSubmit)="submitTest()">
-      <input formControlName="name" name="name" fullWidth nbInput required placeholder="{{'TEST-NAME' | translate}}"
-        [(ngModel)]="name" />
+      <input formControlName="name" name="name" fullWidth nbInput required placeholder="{{'TEST-NAME' | translate}}" />
       <textarea formControlName="description" name="description" rows="3" nbInput fullWidth
-        placeholder="{{'TEST-DESCRIPTION' | translate}}" [(ngModel)]="description"></textarea>
+        placeholder="{{'TEST-DESCRIPTION' | translate}}"></textarea>
       <input formControlName="duration" name="duration" required nbInput type="number" min="1" step="1"
-        placeholder="{{'TEST-DURATION' | translate}}" [(ngModel)]="duration" />
+        placeholder="{{'TEST-DURATION' | translate}}" />
     </form>
   </nb-card-body>
   <nb-card-footer>

@@ -1,6 +1,9 @@
 <div class="header-container">
   <div class="logo-container">
-    <a class="logo" href="#">{{ 'TITLE' | translate }}</a>
+    <a href="#" *ngIf="router.url !== '/home'" class="sidebar-toggle">
+      <nb-icon icon="arrow-left"></nb-icon>
+    </a>
+    <a class="logo">{{ 'TITLE' | translate }}</a>
   </div>
 </div>
 
