@@ -10,6 +10,7 @@ import { NebularModule } from '../nebular.module';
 import { AddExperimentComponent } from './components/dialogs/add-experiment/add-experiment.component';
 import { AddTestComponent } from './components/dialogs/add-test/add-test.component';
 import { AddGroupComponent } from './components/dialogs/add-group/add-group.component';
+import { ConfirmationComponent } from './components/dialogs/confirmation/confirmation.component'
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { AddGroupComponent } from './components/dialogs/add-group/add-group.comp
     HeaderComponent,
     AddExperimentComponent,
     AddTestComponent,
-    AddGroupComponent
+    AddGroupComponent,
+    ConfirmationComponent
   ],
   imports: [
     CommonModule,

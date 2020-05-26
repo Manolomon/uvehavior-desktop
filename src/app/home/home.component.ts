@@ -66,8 +66,6 @@ export class HomeComponent implements OnInit {
 
     experiment.name = name;
     experiment.description = description;
-    experiment.creationDate = new Date();
-    experiment.lastModifiedDate = new Date();
 
     this.databaseService
       .connection

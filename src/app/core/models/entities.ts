@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, JoinColumn, OneToMany, ManyToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, JoinColumn, OneToMany, ManyToOne, UpdateDateColumn, CreateDateColumn, Timestamp } from "typeorm";
 
 @Entity({ name: 'experiment' })
 export class Experiment extends BaseEntity {
@@ -12,16 +12,20 @@ export class Experiment extends BaseEntity {
     @Column()
     description: string | null;
 
-    @Column("date", { name: "evaluationDate", default: () => "date('now')" })
-    creationDate: Date
+    @CreateDateColumn()
+    creationDate: Timestamp
 
-    @Column({ type: "datetime" })
-    lastModifiedDate: Date
+    @UpdateDateColumn()
+    lastModifiedDate: Timestamp
 
-    @OneToMany(() => Test, (test) => test.experiment)
+    @OneToMany(() => Test, (test) => test.experiment, {
+      cascade: true,
+    })
     tests: Test[];
 
-    @OneToMany(() => Group, (group) => group.experiment)
+    @OneToMany(() => Group, (group) => group.experiment, {
+      cascade: true,
+    })
     groups: Group[];
 }
 
@@ -32,9 +36,6 @@ export class Test extends BaseEntity {
     idTest: number;
 
     @Column()
-    idExperiment: number;
-
-    @Column()
     name: string;
 
     @Column()
@@ -43,13 +44,13 @@ export class Test extends BaseEntity {
     @Column()
     duration: number;
 
-    @ManyToOne(() => Experiment, (experiment) => experiment.tests, {
-        onDelete: "CASCADE",
-      })
-    @JoinColumn([{ name: "idExperiment" }])
+    @ManyToOne(() => Experiment, (experiment) => experiment.tests, {onDelete:'CASCADE'})
+    @JoinColumn()
     experiment: Experiment;
 
-    @OneToMany(() => Behavior, (behavior) => behavior.test)
+    @OneToMany(() => Behavior, (behavior) => behavior.test, {
+      cascade: true,
+    })
     behaviors: Behavior[];
 }
 
@@ -60,21 +61,16 @@ export class Group extends BaseEntity {
   idGroup: number;
 
   @Column()
-  idExperiment: number;
-
-  @Column()
   name: string;
 
   @Column()
   description: string | null;
 
-  @ManyToOne(() => Experiment, (experiment) => experiment.groups, {
-    onDelete: "CASCADE",
-  })
-  @JoinColumn([{ name: "idExperiment" }])
+  @ManyToOne(() => Experiment, (experiment) => experiment.groups, {onDelete:'CASCADE'})
+  @JoinColumn()
   experiment: Experiment;
 
-  @OneToMany(() => Subject, (subject) => subject.group)
+  @OneToMany(() => Subject, (subject) => subject.group, {cascade: ['insert', 'recover']} )
   subjects: Subject[];
 }
 
@@ -84,16 +80,15 @@ export class Subject extends BaseEntity {
   idSubject: number;
 
   @Column()
-  idGroup: number;
-
-  @Column()
   name: string;
 
-  @ManyToOne(() => Group, (group) => group.subjects, { onDelete: "CASCADE" })
-  @JoinColumn([{ name: "idGroup" }])
+  @ManyToOne(() => Group, (group) => group.subjects, {onDelete:'CASCADE'})
+  @JoinColumn()
   group: Group;
 
-  @OneToMany(() => Evaluation, (evaluation) => evaluation.subject)
+  @OneToMany(() => Evaluation, (evaluation) => evaluation.subject, {
+    cascade: true,
+  })
   evaluations: Evaluation[];
 }
 
@@ -103,23 +98,20 @@ export class Evaluation extends BaseEntity {
   idEvaluation: number;
 
   @Column()
-  idSubject: number;
-
-  @Column()
   videoPath: string;
 
-  @Column("date", { name: "evaluationDate", default: () => "date('now')" })
-  evaluationDate: string;
+  @CreateDateColumn()
+  evaluationDate: Timestamp;
 
-  @ManyToOne(() => Subject, (subject) => subject.evaluations, {
-    onDelete: "CASCADE",
-  })
-  @JoinColumn([{ name: "idSubject" }])
+  @ManyToOne(() => Subject, (subject) => subject.evaluations)
+  @JoinColumn()
   subject: Subject;
 
   @OneToMany(
     () => BehaviorEvaluation,
-    (behaviorEvaluation) => behaviorEvaluation.evaluation
+    (behaviorEvaluation) => behaviorEvaluation.evaluation, {
+      cascade: true,
+    }
   )
   behaviorEvaluations: BehaviorEvaluation[];
 }
@@ -127,12 +119,6 @@ export class Evaluation extends BaseEntity {
 @Entity("behavior_evaluation")
 export class BehaviorEvaluation extends BaseEntity {
   @PrimaryGeneratedColumn()
-  idEvaluation: number;
-
-  @Column()
-  idBehavior: number;
-
-  @Column()
   idBehaviorEvaluation: number;
 
   @Column()
@@ -144,19 +130,19 @@ export class BehaviorEvaluation extends BaseEntity {
   @Column()
   totalTime: number | null;
 
-  @ManyToOne(() => Behavior, (behavior) => behavior.behaviorEvaluations, {
-    onDelete: "CASCADE",
-  })
-  @JoinColumn([{ name: "idBehavior" }])
+  @ManyToOne(() => Behavior, (behavior) => behavior.behaviorEvaluations)
+  @JoinColumn()
   behavior: Behavior;
 
   @ManyToOne(() => Evaluation, (evaluation) => evaluation.behaviorEvaluations)
-  @JoinColumn([{ name: "idEvaluation" }])
+  @JoinColumn()
   evaluation: Evaluation;
 
   @OneToMany(
     () => Annotation,
-    (annotation) => annotation.behaviorEvaluation
+    (annotation) => annotation.behaviorEvaluation, {
+      cascade: true,
+    }
   )
   annotations: Annotation[];
 }
@@ -167,21 +153,20 @@ export class Behavior extends BaseEntity {
   idBehavior: number;
 
   @Column()
-  idTest: number;
-
-  @Column()
   name: string;
 
   @Column("varchar", { length: 1 })
   associatedKey: string;
 
-  @ManyToOne(() => Test, (test) => test.behaviors, { onDelete: "CASCADE" })
-  @JoinColumn([{ name: "idTest" }])
+  @ManyToOne(() => Test, (test) => test.behaviors)
+  @JoinColumn()
   test: Test;
 
   @OneToMany(
     () => BehaviorEvaluation,
-    (behaviorEvaluation) => behaviorEvaluation.behavior
+    (behaviorEvaluation) => behaviorEvaluation.behavior, {
+      cascade: true,
+    }
   )
   behaviorEvaluations: BehaviorEvaluation[];
 }
@@ -192,12 +177,9 @@ export class Annotation extends BaseEntity {
   idAnnotation: number;
 
   @Column()
-  idBehaviorEvaluation: number;
-
-  @Column()
   timeLog: number;
 
-  @ManyToOne(() => BehaviorEvaluation, (behaviorEvaluation) => behaviorEvaluation.annotations, { onDelete: "CASCADE" })
-  @JoinColumn([{ name: "idTest" }])
+  @ManyToOne(() => BehaviorEvaluation, (behaviorEvaluation) => behaviorEvaluation.annotations)
+  @JoinColumn()
   behaviorEvaluation: BehaviorEvaluation;
 }
