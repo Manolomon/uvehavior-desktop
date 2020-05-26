@@ -10,5 +10,8 @@ module.exports = {
         alias: {
             typeorm: path.resolve(__dirname, "../node_modules/typeorm/typeorm-model-shim")
         }
-    }
+    },
+    optimization: {
+        minimize: false
+      }
 };
