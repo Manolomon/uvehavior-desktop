@@ -7,7 +7,8 @@ import { Experiment, Test, Group, Subject } from '../core/models/entities';
 import { AddExperimentComponent } from '../shared/components/dialogs/add-experiment/add-experiment.component';
 import { AddTestComponent } from '../shared/components/dialogs/add-test/add-test.component';
 import { AddGroupComponent } from '../shared/components/dialogs/add-group/add-group.component';
-import { filter } from 'rxjs/operators';
+import { filter, elementAt } from 'rxjs/operators';
+import { ConfirmationComponent } from '../shared/components/dialogs/confirmation/confirmation.component';
 
 @Component({
   selector: 'app-experiment',
@@ -17,6 +18,7 @@ import { filter } from 'rxjs/operators';
 export class ExperimentComponent implements OnInit {
 
   current: Experiment;
+  idExperiment: number;
   name: string;
   description: string;
 
@@ -26,14 +28,21 @@ export class ExperimentComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private databaseService: DatabaseService,
-    private toastrService: NbToastrService,
-    private translate: TranslateService,
+    private toastrService: NbToastrService,private translate: TranslateService,
     private menuService: NbMenuService,
     private dialogService: NbDialogService
-  ) { }
+  ) {
+    this.menuService.onItemClick()
+      .pipe(
+        filter(({ tag }) => tag === 'subjects'),
+      )
+      .subscribe((event) => {
+        console.log(event.item.data.id)
+      });
 
-  idExperiment: number;
+  }
 
   ngOnInit(): void {
     this.idExperiment = this.route.snapshot.params['id'];
@@ -50,7 +59,10 @@ export class ExperimentComponent implements OnInit {
         this.tests = experiment.tests.map((element) => {
           return {
             title: element.name,
-            icon: 'flask'
+            icon: 'flask',
+            data: {
+              id: element.idTest
+            }
           }
         });
         this.menuService.addItems(this.tests, 'tests');
@@ -59,10 +71,14 @@ export class ExperimentComponent implements OnInit {
           return {
             title: element.name,
             icon: 'users',
+
             children: element.subjects.map((subject) => {
               return {
                 title: subject.name,
-                icon: 'user-circle'
+                icon: 'user-circle',
+                data: {
+                  id: subject.idSubject
+                }
               }
             })
           }
@@ -79,6 +95,41 @@ export class ExperimentComponent implements OnInit {
           message
         )
       });
+  }
+
+  clickDeleteExperiment(){
+    const title: string = this.translate.instant('DELETE-EXPERIMENT');
+    const body: string = this.translate.instant('DELETE-EXPERIMENT-CONFIRMATION');
+
+
+    this.dialogService.open(
+      ConfirmationComponent,
+      { 
+        context: { 
+          title: title,
+          body: body
+        } 
+      })
+      .onClose.subscribe(result => result &&
+        this.deleteExperiment());
+  }
+
+  deleteExperiment() {
+    this.databaseService.connection
+      .then(()=> this.current.remove())
+      .then(() => {
+        this.router.navigateByUrl('/home');
+      })
+      .then(() => {
+        let title: string = this.translate.instant('SUCCESS')
+        let message: string = this.translate.instant('EXPERIMENT-DELETED')
+
+        this.showToast(
+          'success',
+          title,
+          message
+        )
+      })
   }
 
   showToast(status: NbComponentStatus, title, content) {
@@ -127,7 +178,7 @@ export class ExperimentComponent implements OnInit {
   saveTest(name, description, duration) {
     const test = new Test();
 
-    test.idExperiment = this.idExperiment;
+    test.experiment = this.current;
     test.name = name;
     test.description = description;
     test.duration = duration;
@@ -151,27 +202,25 @@ export class ExperimentComponent implements OnInit {
   }
 
   addGroup() {
-    this.dialogService.open(AddGroupComponent, { context: { editMode: false } })
+    this.dialogService.open(AddGroupComponent, 
+      { context: {
+        editMode: false
+      }, 
+      closeOnBackdropClick: false})
       .onClose.subscribe(newGroup => newGroup &&
-        this.saveGroup(newGroup.name, newGroup.description));
+        this.saveGroup(newGroup));
   }
 
   addSubject() {
-    this.dialogService.open(AddGroupComponent, { context: { editMode: false } })
-      .onClose.subscribe(newGroup => newGroup &&
-        this.saveGroup(newGroup.name, newGroup.description));
+  
   }
 
-  saveGroup(name, description) {
-    const group = new Group();
+  saveGroup(newGroup: Group) {
 
-    group.idExperiment = this.idExperiment;
-    group.name = name;
-    group.description = description;
-
-    this.databaseService
-      .connection
-      .then(() => group.save())
+    newGroup.experiment = this.current;
+    console.log(newGroup)
+    this.databaseService.connection
+      .then(()=> newGroup.save())
       .then(() => {
         this.getExperiment();
       })

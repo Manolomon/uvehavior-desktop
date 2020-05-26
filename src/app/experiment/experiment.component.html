@@ -2,26 +2,29 @@
   <div class="col-md-6">
     <nb-card>
       <nb-card-header>
-        Experiment
-        <button nbButton ghost class="setting">
+        {{ 'EXPERIMENT' | translate }}
+        <button nbButton ghost class="setting" nbTooltip="{{ 'TOOLTIP.DELETE-EXPERIMENT' | translate }}"
+          (click)="clickDeleteExperiment()">
           <nb-icon icon="trash-alt"></nb-icon>
         </button>
-        <button nbButton ghost class="setting" (click)="editExperiment()">
+        <button nbButton ghost class="setting" (click)="editExperiment()"
+          nbTooltip="{{ 'TOOLTIP.EDIT' | translate }}">
           <nb-icon icon="pen"></nb-icon>
         </button>
-        <button nbButton ghost class="setting">
+        <button nbButton ghost class="setting" nbTooltip="{{ 'TOOLTIP.EXPORT-EXPERIMENT' | translate }}">
           <nb-icon icon="table"></nb-icon>
         </button>
       </nb-card-header>
       <nb-card-body>
-        <input formControlName="name" fullWidth nbInput disabled value="{{this.name}}"/>
-        <textarea formControlName="description" rows="3" nbInput fullWidth disabled>{{ this.description }}</textarea>
+        <input formControlName="name" fullWidth nbInput disabled value="{{this.name}}" />
+        <textarea *ngIf="this.description !== ''" formControlName="description" rows="3" nbInput fullWidth disabled>{{ this.description }}</textarea>
       </nb-card-body>
     </nb-card>
     <nb-card>
       <nb-card-header>
-        Tests
-        <button nbButton ghost class="setting" (click)="newTest()">
+        {{ 'TESTS' | translate }}
+        <button nbButton ghost class="setting" (click)="newTest()"
+          nbTooltip="{{ 'TOOLTIP.ADD-TEST' | translate }}">
           <nb-icon icon="plus"></nb-icon>
         </button>
       </nb-card-header>
@@ -33,16 +36,17 @@
   <div class="col-md-6">
     <nb-card>
       <nb-card-header>
-        Groups
-        <button nbButton ghost class="setting">
-          <nb-icon icon="user-plus"></nb-icon>
+        {{ 'GROUPS' | translate }}
+        <button nbButton ghost class="setting" nbTooltip="{{ 'TOOLTIP.EDIT-GROUPS' | translate}}">
+          <nb-icon icon="pen"></nb-icon>
         </button>
-        <button nbButton ghost class="setting" (click)="addGroup()">
+        <button nbButton ghost class="setting" (click)="addGroup()"
+          nbTooltip="{{ 'TOOLTIP.ADD-GROUP' | translate}}">
           <nb-icon icon="plus"></nb-icon>
         </button>
       </nb-card-header>
       <nb-card-body>
-        <nb-menu tag="subjects"[items]="subjects"></nb-menu>
+        <nb-menu tag="subjects" [items]="subjects"></nb-menu>
       </nb-card-body>
     </nb-card>
   </div>

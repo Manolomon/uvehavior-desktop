@@ -10,15 +10,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NebularModule } from '../nebular.module';
 
-import { MatVideoModule } from 'mat-video';
-
 @NgModule({
   declarations: [HomeComponent],
   imports: [CommonModule,
     SharedModule,
     HomeRoutingModule,
     BrowserAnimationsModule,
-    MatVideoModule,
     NebularModule
   ]
 })

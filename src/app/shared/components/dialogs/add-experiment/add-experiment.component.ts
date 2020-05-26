@@ -16,7 +16,6 @@ export class AddExperimentComponent {
   editMode: boolean;
 
   constructor(protected ref: NbDialogRef<AddExperimentComponent>) {
-    console.log(ref)
     this.experimentForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(2)]),
       description: new FormControl('', [Validators.maxLength(2500)]),

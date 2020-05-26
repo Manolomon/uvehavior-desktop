@@ -55,4 +55,17 @@ export class DatabaseService {
       },
     );
   }
+
+  /*
+  async saveGroup(group: Group, subjects: Subject[]) {
+    return (await this.connection).manager
+    .create(Group, group,).save().then(() => {
+      group.subjects.map((element: Subject) => {
+        element.idGroup = group.idGroup;
+        element.save();
+      })
+    });
+  }
+  */
+
 }

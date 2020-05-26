@@ -10,13 +10,17 @@
   "EXPERIMENT-NAME": "Experiment Name",
   "EXPERIMENT-DESCRIPTION": "Experiment Description (optional)",
   "CANCEL": "Cancel",
-  "SUBMIT": "Submit",
+  "SUBMIT": "Save",
   "EXPERIMENT": "Experiment",
   "TESTS" : "Tests",
   "GROUPS" : "Groups",
   "SUCCESS" : "Success",
   "EXPERIMENT-SAVED" : "New experiment saved",
   "EDIT-EXPERIMENT": "Edit Experiment",
+  "EXPERIMENT-DELETED": "Experiment deleted",
+  "DELETE-EXPERIMENT": "Delete Experiment",
+  "DELETE-EXPERIMENT-CONFIRMATION": "All the information associated to this experiment (including tests, subjects and evaluations) would be affected",
+  "CONFIRM": "Confirm",
   "NEW-TEST": "New Test",
   "TEST-NAME": "Test Name",
   "TEST-DURATION": "Duration in seconds",
@@ -25,5 +29,16 @@
   "NEW-GROUP": "New Group",
   "GROUP-NAME": "Group Name",
   "EDIT-GROUP": "Edit Group",
-  "GROUP-DESCRIPTION": "Group Description (optional)"
+  "GROUP-DESCRIPTION": "Group Description (optional)",
+  "GROUP-DATA": "Group Data",
+  "SUBJECTS": "Subjects",
+  "ADD-SUBJECTS": "Add Subjects",
+  "TOOLTIP": {
+    "EDIT" : "Edit",
+    "EXPORT-EXPERIMENT": "Export experiment's data",
+    "DELETE-EXPERIMENT": "Delete Experiment",
+    "ADD-TEST": "Add New Test",
+    "ADD-GROUP": "Add New Group",
+    "EDIT-GROUPS": "Edit Groups"
+  }
 }

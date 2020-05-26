@@ -50,8 +50,6 @@ export class HomeComponent implements OnInit {
         });
         this.menuService.addItems(this.experiments, 'menu');
       }).catch((error) => {
-
-        console.log(error)
         let title: string = this.translate.instant('ERROR')
         let message: string = this.translate.instant('DATABASE-ERROR')
 
@@ -68,8 +66,6 @@ export class HomeComponent implements OnInit {
 
     experiment.name = name;
     experiment.description = description;
-    experiment.creationDate = new Date();
-    experiment.lastModifiedDate = new Date();
 
     this.databaseService
       .connection

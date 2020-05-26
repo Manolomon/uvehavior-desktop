@@ -12,8 +12,12 @@ import {
   NbIconModule,
   NbDialogModule,
   NbMenuModule,
-  NbInputModule
+  NbInputModule,
+  NbTooltipModule,
+  NbStepperModule
 } from '@nebular/theme';
+
+import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 @NgModule({
   imports: [
@@ -37,7 +41,10 @@ import {
     NbIconModule,
     NbDialogModule,
     NbMenuModule,
-    NbInputModule
+    NbInputModule,
+    NbTooltipModule,
+    NbStepperModule,
+    Ng2SmartTableModule
   ]
 })
 export class NebularModule { }
