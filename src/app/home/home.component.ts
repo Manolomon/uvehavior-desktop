@@ -50,8 +50,6 @@ export class HomeComponent implements OnInit {
         });
         this.menuService.addItems(this.experiments, 'menu');
       }).catch((error) => {
-
-        console.log(error)
         let title: string = this.translate.instant('ERROR')
         let message: string = this.translate.instant('DATABASE-ERROR')
 

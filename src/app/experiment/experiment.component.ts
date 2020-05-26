@@ -31,7 +31,16 @@ export class ExperimentComponent implements OnInit {
     private translate: TranslateService,
     private menuService: NbMenuService,
     private dialogService: NbDialogService
-  ) { }
+  ) {
+    this.menuService.onItemClick()
+      .pipe(
+        filter(({ tag }) => tag === 'subjects'),
+      )
+      .subscribe((event) => {
+        console.log(event.item.data.id)
+      });
+
+  }
 
   idExperiment: number;
 
@@ -59,10 +68,14 @@ export class ExperimentComponent implements OnInit {
           return {
             title: element.name,
             icon: 'users',
+
             children: element.subjects.map((subject) => {
               return {
                 title: subject.name,
-                icon: 'user-circle'
+                icon: 'user-circle',
+                data: {
+                  id: subject.idSubject
+                }
               }
             })
           }
