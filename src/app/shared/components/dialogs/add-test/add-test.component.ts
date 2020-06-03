@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NbDialogRef } from '@nebular/theme';
+import { LocalDataSource } from 'ng2-smart-table';
 
 @Component({
   selector: 'app-add-test',
@@ -9,12 +10,49 @@ import { NbDialogRef } from '@nebular/theme';
 })
 export class AddTestComponent {
 
+  settings = {
+    add: {
+      addButtonContent: '<i class="fas fa-plus fa-xs"></i>',
+      createButtonContent: '<i class="fas fa-check fa-xs"></i>',
+      cancelButtonContent: '<i class="fas fa-times fa-xs"></i>',
+    },
+    edit: {
+      editButtonContent: '<i class="fas fa-edit fa-xs"></i>',
+      saveButtonContent: '<i class="fas fa-check fa-xs"></i>',
+      cancelButtonContent: '<i class="fas fa-times fa-xs"></i>',
+    },
+    delete: {
+      deleteButtonContent: '<i class="fas fa-trash fa-xs"></i>',
+      confirmDelete: true,
+    },
+    columns: {
+      subject_name: {
+        title: 'Behavior Name',
+        type: 'string',
+      },
+      code: {
+        title: 'Code Name',
+        type: 'string',
+      },
+      key: {
+        title: 'Key Binding',
+        type: 'string',
+      },
+    },
+    sortDirection: 'desc',
+    pager: {
+      perPage: 3
+    }
+  };
+
   testForm: FormGroup;
 
   name: string;
   description: string;
   duration: number;
   editMode: boolean;
+
+  source: LocalDataSource = new LocalDataSource();
 
   constructor(protected ref: NbDialogRef<AddTestComponent>) {
     this.testForm = new FormGroup({
@@ -39,5 +77,9 @@ export class AddTestComponent {
   submitTest() {
     this.ref.close(this.testForm.value);
   }
+
+  onDeleteConfirm(event): void {
+    event.confirm.resolve();
+}
 
 }

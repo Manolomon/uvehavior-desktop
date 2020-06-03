@@ -29,7 +29,7 @@ export class AddGroupComponent {
     columns: {
       subject_name: {
         title: 'Subjet Name',
-        type: 'number',
+        type: 'string',
       },
     },
     sortDirection: 'desc',

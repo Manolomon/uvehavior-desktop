@@ -32,7 +32,10 @@
   "GROUP-DESCRIPTION": "Group Description (optional)",
   "GROUP-DATA": "Group Data",
   "SUBJECTS": "Subjects",
+  "TEST-DATA": "Test Data",
   "ADD-SUBJECTS": "Add Subjects",
+  "ADD-BEHAVIORS": "Add Behaviors",
+  "BEHAVIORS": "Behaviors",
   "TOOLTIP": {
     "EDIT" : "Edit",
     "EXPORT-EXPERIMENT": "Export experiment's data",

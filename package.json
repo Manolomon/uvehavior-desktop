@@ -100,7 +100,7 @@
     "@nebular/theme": "5.0.0",
     "bootstrap": "4.5.0",
     "hammerjs": "2.0.8",
-    "mat-video": "2.7.2",
+    "mat-video": "2.8.1",
     "ng2-smart-table": "1.6.0",
     "sqlite3": "4.2.0",
     "typeorm": "0.2.24"
