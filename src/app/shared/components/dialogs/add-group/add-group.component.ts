@@ -16,11 +16,13 @@ export class AddGroupComponent {
       addButtonContent: '<i class="fas fa-plus fa-xs"></i>',
       createButtonContent: '<i class="fas fa-check fa-xs"></i>',
       cancelButtonContent: '<i class="fas fa-times fa-xs"></i>',
+      confirmCreate: true,
     },
     edit: {
       editButtonContent: '<i class="fas fa-edit fa-xs"></i>',
       saveButtonContent: '<i class="fas fa-check fa-xs"></i>',
       cancelButtonContent: '<i class="fas fa-times fa-xs"></i>',
+      confirmSave: true,
     },
     delete: {
       deleteButtonContent: '<i class="fas fa-trash fa-xs"></i>',
@@ -83,6 +85,24 @@ export class AddGroupComponent {
     console.log(newGroup)
 
     this.ref.close(newGroup);
+  }
+
+  onCreateConfirm(event): void {
+    console.log('Lololo')
+    if(event.newData['subject_name'].length > 0) {
+      event.confirm.resolve();
+    } else {
+      event.confirm.reject();
+    }
+  }
+
+  onSaveConfirm(event) {
+    console.log("Edit Event In Console")
+    if(event.newData['subject_name'].length > 0) {
+      event.confirm.resolve();
+    } else {
+      event.confirm.reject();
+    }
   }
 
   onDeleteConfirm(event): void {

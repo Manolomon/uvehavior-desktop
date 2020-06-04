@@ -49,7 +49,7 @@ export class DatabaseService {
   async getExperimentData(idExperiment) {
     return (await this.connection).getRepository(Experiment)
     .findOne({
-      relations: ['tests', 'groups', 'groups.subjects'],
+      relations: ['tests', 'groups', 'groups.subjects', 'tests.behaviors'],
       where: { 
         idExperiment: idExperiment}
       },

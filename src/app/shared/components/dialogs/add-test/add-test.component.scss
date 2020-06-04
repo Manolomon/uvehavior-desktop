@@ -13,6 +13,15 @@ textarea {
     resize: none;
 }
 
+.two-column {
+  display: flex;
+  margin: 0 -0.5rem;
+
+  > * {
+    margin: 0 1rem;
+  }
+}
+
 .cancel {
     margin-right: 1rem;
 }

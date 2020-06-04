@@ -38,7 +38,7 @@
   "BEHAVIORS": "Behaviors",
   "TOOLTIP": {
     "EDIT" : "Edit",
-    "EXPORT-EXPERIMENT": "Export experiment's data",
+    "EXPORT-EXPERIMENT": "Export data",
     "DELETE-EXPERIMENT": "Delete Experiment",
     "ADD-TEST": "Add New Test",
     "ADD-GROUP": "Add New Group",

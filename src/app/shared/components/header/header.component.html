@@ -3,7 +3,8 @@
     <a href="#" *ngIf="router.url !== '/home'" class="sidebar-toggle">
       <nb-icon icon="arrow-left"></nb-icon>
     </a>
-    <a class="logo">{{ 'TITLE' | translate }}</a>
+    <a *ngIf="router.url === '/home'" class="logo">{{ 'TITLE' | translate }}</a>
+    <a *ngIf="router.url !== '/home'" class="logo">UVehavior</a>
   </div>
 </div>
 

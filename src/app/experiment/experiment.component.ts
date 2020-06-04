@@ -30,13 +30,21 @@ export class ExperimentComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private databaseService: DatabaseService,
-    private toastrService: NbToastrService,private translate: TranslateService,
+    private toastrService: NbToastrService, private translate: TranslateService,
     private menuService: NbMenuService,
     private dialogService: NbDialogService
   ) {
     this.menuService.onItemClick()
       .pipe(
         filter(({ tag }) => tag === 'subjects'),
+      )
+      .subscribe((event) => {
+        console.log(event.item.data.id)
+      });
+
+    this.menuService.onItemClick()
+      .pipe(
+        filter(({ tag }) => tag === 'tests'),
       )
       .subscribe((event) => {
         console.log(event.item.data.id)
@@ -97,18 +105,18 @@ export class ExperimentComponent implements OnInit {
       });
   }
 
-  clickDeleteExperiment(){
+  clickDeleteExperiment() {
     const title: string = this.translate.instant('DELETE-EXPERIMENT');
     const body: string = this.translate.instant('DELETE-EXPERIMENT-CONFIRMATION');
 
 
     this.dialogService.open(
       ConfirmationComponent,
-      { 
-        context: { 
+      {
+        context: {
           title: title,
           body: body
-        } 
+        }
       })
       .onClose.subscribe(result => result &&
         this.deleteExperiment());
@@ -116,7 +124,7 @@ export class ExperimentComponent implements OnInit {
 
   deleteExperiment() {
     this.databaseService.connection
-      .then(()=> this.current.remove())
+      .then(() => this.current.remove())
       .then(() => {
         this.router.navigateByUrl('/home');
       })
@@ -202,17 +210,19 @@ export class ExperimentComponent implements OnInit {
   }
 
   addGroup() {
-    this.dialogService.open(AddGroupComponent, 
-      { context: {
-        editMode: false
-      }, 
-      closeOnBackdropClick: false})
+    this.dialogService.open(AddGroupComponent,
+      {
+        context: {
+          editMode: false
+        },
+        closeOnBackdropClick: false
+      })
       .onClose.subscribe(newGroup => newGroup &&
         this.saveGroup(newGroup));
   }
 
   addSubject() {
-  
+
   }
 
   saveGroup(newGroup: Group) {
@@ -220,7 +230,7 @@ export class ExperimentComponent implements OnInit {
     newGroup.experiment = this.current;
     console.log(newGroup)
     this.databaseService.connection
-      .then(()=> newGroup.save())
+      .then(() => newGroup.save())
       .then(() => {
         this.getExperiment();
       })
