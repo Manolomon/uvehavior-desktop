@@ -29,6 +29,38 @@ export class AddTestComponent {
       subject_name: {
         title: 'Behavior Name',
         type: 'string',
+        editable: false,
+      },
+      code: {
+        title: 'Code Name',
+        type: 'string',
+        editable: false,
+      },
+      key: {
+        title: 'Key Binding',
+        type: 'string',
+        editable: true,
+      },
+    },
+    sortDirection: 'desc',
+    pager: {
+      perPage: 3
+    }
+  };
+
+  settings2 = {
+    actions: {
+      columnTitle: '',
+      add: false,
+      edit: false,
+      delete: false,
+      custom: [],
+      position: 'left',
+    },
+    columns: {
+      subject_name: {
+        title: 'Behavior Name',
+        type: 'string',
       },
       code: {
         title: 'Code Name',
@@ -62,8 +94,8 @@ export class AddTestComponent {
     })
   }
 
-  ngOnInit(){
-    if(this.editMode){
+  ngOnInit() {
+    if (this.editMode) {
       this.testForm.get('name').setValue(this.name)
       this.testForm.get('description').setValue(this.description)
       this.testForm.get('duration').setValue(this.duration)
@@ -80,6 +112,6 @@ export class AddTestComponent {
 
   onDeleteConfirm(event): void {
     event.confirm.resolve();
-}
+  }
 
 }
