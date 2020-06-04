@@ -5,11 +5,11 @@ import { LocalDataSource } from 'ng2-smart-table';
 import { Subject, Group } from '../../../../core/models/entities';
 
 @Component({
-  selector: 'app-add-group',
-  templateUrl: './add-group.component.html',
-  styleUrls: ['./add-group.component.scss']
+  selector: 'app-group-dialog',
+  templateUrl: './group-dialog.component.html',
+  styleUrls: ['./group-dialog.component.scss']
 })
-export class AddGroupComponent {
+export class GroupDialogComponent {
 
   settings = {
     add: {
@@ -49,7 +49,7 @@ export class AddGroupComponent {
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(protected ref: NbDialogRef<AddGroupComponent>) {
+  constructor(protected ref: NbDialogRef<GroupDialogComponent>) {
     console.log(ref)
     this.groupForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(2)]),
@@ -88,7 +88,6 @@ export class AddGroupComponent {
   }
 
   onCreateConfirm(event): void {
-    console.log('Lololo')
     if(event.newData['subject_name'].length > 0) {
       event.confirm.resolve();
     } else {
@@ -97,7 +96,6 @@ export class AddGroupComponent {
   }
 
   onSaveConfirm(event) {
-    console.log("Edit Event In Console")
     if(event.newData['subject_name'].length > 0) {
       event.confirm.resolve();
     } else {

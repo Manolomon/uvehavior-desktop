@@ -2,13 +2,14 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NbDialogRef } from '@nebular/theme';
 import { LocalDataSource } from 'ng2-smart-table';
+import { Test } from '../../../../core/models/entities';
 
 @Component({
-  selector: 'app-add-test',
-  templateUrl: './add-test.component.html',
-  styleUrls: ['./add-test.component.scss']
+  selector: 'app-test-dialog',
+  templateUrl: './test-dialog.component.html',
+  styleUrls: ['./test-dialog.component.scss']
 })
-export class AddTestComponent {
+export class TestDialogComponent {
 
   settings = {
     add: {
@@ -31,11 +32,6 @@ export class AddTestComponent {
         type: 'string',
         editable: false,
       },
-      code: {
-        title: 'Code Name',
-        type: 'string',
-        editable: false,
-      },
       key: {
         title: 'Key Binding',
         type: 'string',
@@ -52,7 +48,11 @@ export class AddTestComponent {
     actions: {
       columnTitle: '',
       add: false,
-      edit: false,
+      edit: {
+        editButtonContent: '<i class="fas fa-edit fa-xs"></i>',
+        saveButtonContent: '<i class="fas fa-check fa-xs"></i>',
+        cancelButtonContent: '<i class="fas fa-times fa-xs"></i>',
+      },
       delete: false,
       custom: [],
       position: 'left',
@@ -86,7 +86,7 @@ export class AddTestComponent {
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(protected ref: NbDialogRef<AddTestComponent>) {
+  constructor(protected ref: NbDialogRef<TestDialogComponent>) {
     this.testForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(2)]),
       description: new FormControl('', [Validators.maxLength(2500)]),
@@ -107,7 +107,26 @@ export class AddTestComponent {
   }
 
   submitTest() {
-    this.ref.close(this.testForm.value);
+    const newTest = new Test();
+
+    newTest.name = this.testForm.get('name').value;
+    newTest.description = this.testForm.get('description').value;
+    newTest.duration = this.testForm.get('duration').value;
+    this.source.getAll()
+      .then((subjects) => {
+        newTest.behaviors = subjects.map((element) => {
+          return {
+            name: element.subject_name,
+            associatedKey: element.key
+          }
+        })
+      });
+
+    console.log(newTest)
+
+    this.ref.close(newTest);
+
+    //this.ref.close(this.testForm.value);
   }
 
   onDeleteConfirm(event): void {

@@ -4,11 +4,11 @@ import { NbMenuItem, NbToastrService, NbMenuService, NbDialogService, NbComponen
 import { DatabaseService } from '../core/services/database/database.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Experiment, Test, Group, Subject } from '../core/models/entities';
-import { AddExperimentComponent } from '../shared/components/dialogs/add-experiment/add-experiment.component';
-import { AddTestComponent } from '../shared/components/dialogs/add-test/add-test.component';
-import { AddGroupComponent } from '../shared/components/dialogs/add-group/add-group.component';
-import { filter, elementAt } from 'rxjs/operators';
-import { ConfirmationComponent } from '../shared/components/dialogs/confirmation/confirmation.component';
+import { ExperimentDialogComponent } from '../shared/components/dialogs/experiment-dialog/experiment-dialog.component';
+import { TestDialogComponent } from '../shared/components/dialogs/test-dialog/test-dialog.component';
+import { GroupDialogComponent } from '../shared/components/dialogs/group-dialog/group-dialog.component';
+import { filter } from 'rxjs/operators';
+import { ConfirmationDialogComponent } from '../shared/components/dialogs/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-experiment',
@@ -47,7 +47,8 @@ export class ExperimentComponent implements OnInit {
         filter(({ tag }) => tag === 'tests'),
       )
       .subscribe((event) => {
-        console.log(event.item.data.id)
+        let selectedTestId = event.item.data.id;
+        this.viewTest(this.current.tests.find(x => x.idTest === selectedTestId));
       });
 
   }
@@ -111,7 +112,7 @@ export class ExperimentComponent implements OnInit {
 
 
     this.dialogService.open(
-      ConfirmationComponent,
+      ConfirmationDialogComponent,
       {
         context: {
           title: title,
@@ -145,7 +146,7 @@ export class ExperimentComponent implements OnInit {
   }
 
   editExperiment() {
-    this.dialogService.open(AddExperimentComponent,
+    this.dialogService.open(ExperimentDialogComponent,
       {
         context: {
           name: this.current.name,
@@ -178,19 +179,14 @@ export class ExperimentComponent implements OnInit {
   }
 
   newTest() {
-    this.dialogService.open(AddTestComponent, { context: { editMode: false } })
+    this.dialogService.open(TestDialogComponent, { context: { editMode: false } })
       .onClose.subscribe(newTest => newTest &&
-        this.saveTest(newTest.name, newTest.description, newTest.duration));
+        this.saveTest(newTest));
   }
 
-  saveTest(name, description, duration) {
-    const test = new Test();
-
+  saveTest(test) {
+    
     test.experiment = this.current;
-    test.name = name;
-    test.description = description;
-    test.duration = duration;
-
     this.databaseService
       .connection
       .then(() => test.save())
@@ -210,7 +206,7 @@ export class ExperimentComponent implements OnInit {
   }
 
   addGroup() {
-    this.dialogService.open(AddGroupComponent,
+    this.dialogService.open(GroupDialogComponent,
       {
         context: {
           editMode: false
@@ -244,5 +240,9 @@ export class ExperimentComponent implements OnInit {
           message
         )
       })
+  }
+
+  viewTest(test) {
+    console.log(test)
   }
 }

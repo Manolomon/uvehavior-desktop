@@ -3,17 +3,17 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NbDialogRef } from '@nebular/theme';
 
 @Component({
-  selector: 'app-confirmation',
-  templateUrl: './confirmation.component.html',
-  styleUrls: ['./confirmation.component.scss']
+  selector: 'app-confirmation-dialog',
+  templateUrl: './confirmation-dialog.component.html',
+  styleUrls: ['./confirmation-dialog.component.scss']
 })
-export class ConfirmationComponent {
+export class ConfirmationDialogComponent {
 
 
   title: string;
   body: string;
 
-  constructor(protected ref: NbDialogRef<ConfirmationComponent>) {
+  constructor(protected ref: NbDialogRef<ConfirmationDialogComponent>) {
 
   }
 

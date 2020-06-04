@@ -3,11 +3,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NbDialogRef } from '@nebular/theme';
 
 @Component({
-  selector: 'app-add-experiment',
-  templateUrl: './add-experiment.component.html',
-  styleUrls: ['./add-experiment.component.scss']
+  selector: 'app-experiment-dialog',
+  templateUrl: './experiment-dialog.component.html',
+  styleUrls: ['./experiment-dialog.component.scss']
 })
-export class AddExperimentComponent {
+export class ExperimentDialogComponent {
 
   experimentForm: FormGroup;
 
@@ -15,7 +15,7 @@ export class AddExperimentComponent {
   description: string;
   editMode: boolean;
 
-  constructor(protected ref: NbDialogRef<AddExperimentComponent>) {
+  constructor(protected ref: NbDialogRef<ExperimentDialogComponent>) {
     this.experimentForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(2)]),
       description: new FormControl('', [Validators.maxLength(2500)]),
