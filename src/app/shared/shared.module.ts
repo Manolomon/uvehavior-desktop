@@ -11,6 +11,7 @@ import { ExperimentDialogComponent } from './components/dialogs/experiment-dialo
 import { TestDialogComponent } from './components/dialogs/test-dialog/test-dialog.component';
 import { GroupDialogComponent } from './components/dialogs/group-dialog/group-dialog.component';
 import { ConfirmationDialogComponent } from './components/dialogs/confirmation-dialog/confirmation-dialog.component'
+import { SmartTableKeyInputComponent } from './components/dialogs/test-dialog/smart-table-key-input.component'
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ConfirmationDialogComponent } from './components/dialogs/confirmation-d
     ExperimentDialogComponent,
     TestDialogComponent,
     GroupDialogComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    SmartTableKeyInputComponent
   ],
   imports: [
     CommonModule,

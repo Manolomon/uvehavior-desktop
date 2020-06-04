@@ -3,11 +3,15 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NbDialogRef } from '@nebular/theme';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Test } from '../../../../core/models/entities';
+import { SmartTableKeyInputComponent } from './smart-table-key-input.component'
 
 @Component({
   selector: 'app-test-dialog',
   templateUrl: './test-dialog.component.html',
-  styleUrls: ['./test-dialog.component.scss']
+  styleUrls: ['./test-dialog.component.scss'],
+  entryComponents: [
+    SmartTableKeyInputComponent,
+]
 })
 export class TestDialogComponent {
 
@@ -30,12 +34,14 @@ export class TestDialogComponent {
       subject_name: {
         title: 'Behavior Name',
         type: 'string',
-        editable: false,
+        editable: true,
       },
       key: {
         title: 'Key Binding',
-        type: 'string',
+        type: 'html',
+        editor: {type: 'custom', component: SmartTableKeyInputComponent },
         editable: true,
+        width: '10%'
       },
     },
     sortDirection: 'desc',
