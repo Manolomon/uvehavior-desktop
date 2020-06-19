@@ -4,7 +4,7 @@ import { Experiment } from '../core/models/entities';
 import { NbToastrService, NbComponentStatus, NbMenuService, NbMenuItem } from '@nebular/theme';
 import { TranslateService } from '@ngx-translate/core';
 import { NbDialogService } from '@nebular/theme';
-import { AddExperimentComponent } from '../shared/components/dialogs/add-experiment/add-experiment.component';
+import { ExperimentDialogComponent } from '../shared/components/dialogs/experiment-dialog/experiment-dialog.component';
 
 @Component({
   selector: 'app-home',
@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
   }
 
   newExperiment() {
-    this.dialogService.open(AddExperimentComponent, {context: {editMode: false}})
+    this.dialogService.open(ExperimentDialogComponent, {context: {editMode: false}})
       .onClose.subscribe(newExperiment => newExperiment &&
         this.saveExperiment(newExperiment.name, newExperiment.description));
   }

@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './shared/components';
 import { HomeRoutingModule } from './home/home-routing.module';
 import { ExperimentRoutingModule } from './experiment/experiment-routing.module';
+import { AnnotateRoutingModule } from './annotate/annotate-routing.module';
 
 const routes: Routes = [
   {
@@ -20,7 +21,8 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes, { useHash: true }),
     HomeRoutingModule,
-    ExperimentRoutingModule
+    ExperimentRoutingModule,
+    AnnotateRoutingModule
   ],
   exports: [RouterModule]
 })

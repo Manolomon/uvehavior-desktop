@@ -1,0 +1,34 @@
+<nb-card>
+  <nb-card-header *ngIf="!editMode">{{'NEW-TEST' | translate}}</nb-card-header>
+  <nb-card-header *ngIf="editMode">{{'EDIT-TEST' | translate}}</nb-card-header>
+  <nb-card-body>
+
+    <nb-stepper #stepper linear>
+
+      <nb-step [stepControl]="testForm" label="{{'TEST-DATA' | translate}}">
+        <form id="testForm" novalidate [formGroup]="testForm">
+          <input formControlName="name" name="name" fullWidth nbInput required
+            placeholder="{{'TEST-NAME' | translate}}" />
+          <textarea formControlName="description" name="description" rows="3" nbInput fullWidth
+            placeholder="{{'TEST-DESCRIPTION' | translate}}"></textarea>
+          <div class="two-column">
+            <input formControlName="duration" name="duration" required nbInput type="number" min="1" step="1"
+              placeholder="{{'TEST-DURATION' | translate}}" />
+            <button nbButton nbStepperNext>{{'ADD-BEHAVIORS' | translate}}</button>
+          </div>
+        </form>
+      </nb-step>
+
+      <nb-step label="{{'BEHAVIORS' | translate}}">
+        <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)"
+          (createConfirm)="onCreateConfirm($event)" (editConfirm)="onSaveConfirm($event)">
+        </ng2-smart-table>
+      </nb-step>
+    </nb-stepper>
+  </nb-card-body>
+  <nb-card-footer>
+    <button class="cancel" nbButton status="basic" (click)="cancel()">{{'CANCEL' | translate}}</button>
+    <button nbButton form="testForm" status="primary" (click)="submitTest()"
+      [disabled]="!testForm.valid || source.count() === 0">{{'SUBMIT' | translate}}</button>
+  </nb-card-footer>
+</nb-card>

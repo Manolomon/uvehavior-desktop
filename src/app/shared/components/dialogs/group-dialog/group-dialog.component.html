@@ -1,0 +1,30 @@
+<nb-card>
+  <nb-card-header *ngIf="!editMode">{{'NEW-GROUP' | translate}}</nb-card-header>
+  <nb-card-header *ngIf="editMode">{{'EDIT-GROUP' | translate}}</nb-card-header>
+  <nb-card-body>
+    <nb-stepper #stepper linear>
+
+      <nb-step [stepControl]="groupForm" label="{{'GROUP-DATA' | translate}}">
+        <form id="groupForm" novalidate [formGroup]="groupForm">
+          <input formControlName="name" name="name" fullWidth nbInput required
+            placeholder="{{'GROUP-NAME' | translate}}" />
+          <textarea formControlName="description" name="description" rows="3" nbInput fullWidth
+            placeholder="{{'GROUP-DESCRIPTION' | translate}}"></textarea>
+          <button nbButton nbStepperNext>{{'ADD-SUBJECTS' | translate}}</button>
+        </form>
+      </nb-step>
+
+      <nb-step label="{{'SUBJECTS' | translate}}">
+        <ng2-smart-table [settings]="settings" [source]="source" 
+        (createConfirm)="onCreateConfirm($event)"
+        (deleteConfirm)="onDeleteConfirm($event)"
+        (editConfirm)="onSaveConfirm($event)"></ng2-smart-table>
+      </nb-step>
+    </nb-stepper>
+  </nb-card-body>
+  <nb-card-footer>
+    <button class="cancel" nbButton status="basic" (click)="cancel()">{{'CANCEL' | translate}}</button>
+    <button nbButton (click)="submitGroup()" status="primary"
+      [disabled]="!groupForm.valid || source.count() === 0">{{'SUBMIT' | translate}}</button>
+  </nb-card-footer>
+</nb-card>

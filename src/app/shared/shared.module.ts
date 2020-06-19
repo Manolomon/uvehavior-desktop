@@ -7,10 +7,12 @@ import { FooterComponent, HeaderComponent, PageNotFoundComponent } from './compo
 import { WebviewDirective } from './directives/';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NebularModule } from '../nebular.module';
-import { AddExperimentComponent } from './components/dialogs/add-experiment/add-experiment.component';
-import { AddTestComponent } from './components/dialogs/add-test/add-test.component';
-import { AddGroupComponent } from './components/dialogs/add-group/add-group.component';
-import { ConfirmationComponent } from './components/dialogs/confirmation/confirmation.component'
+import { ExperimentDialogComponent } from './components/dialogs/experiment-dialog/experiment-dialog.component';
+import { TestDialogComponent } from './components/dialogs/test-dialog/test-dialog.component';
+import { GroupDialogComponent } from './components/dialogs/group-dialog/group-dialog.component';
+import { SubjectDialogComponent } from './components/dialogs/subject-dialog/subject-dialog.component';
+import { ConfirmationDialogComponent } from './components/dialogs/confirmation-dialog/confirmation-dialog.component'
+import { SmartTableKeyInputComponent } from './components/dialogs/test-dialog/smart-table-key-input.component'
 
 @NgModule({
   declarations: [
@@ -18,10 +20,12 @@ import { ConfirmationComponent } from './components/dialogs/confirmation/confirm
     WebviewDirective,
     FooterComponent,
     HeaderComponent,
-    AddExperimentComponent,
-    AddTestComponent,
-    AddGroupComponent,
-    ConfirmationComponent
+    ExperimentDialogComponent,
+    TestDialogComponent,
+    GroupDialogComponent,
+    SubjectDialogComponent,
+    ConfirmationDialogComponent,
+    SmartTableKeyInputComponent
   ],
   imports: [
     CommonModule,

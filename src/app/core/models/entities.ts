@@ -103,7 +103,9 @@ export class Evaluation extends BaseEntity {
   @CreateDateColumn()
   evaluationDate: Timestamp;
 
-  @ManyToOne(() => Subject, (subject) => subject.evaluations)
+  @ManyToOne(() => Subject, (subject) => subject.evaluations,{
+    onDelete:'CASCADE'
+  })
   @JoinColumn()
   subject: Subject;
 
@@ -130,11 +132,15 @@ export class BehaviorEvaluation extends BaseEntity {
   @Column()
   totalTime: number | null;
 
-  @ManyToOne(() => Behavior, (behavior) => behavior.behaviorEvaluations)
+  @ManyToOne(() => Behavior, (behavior) => behavior.behaviorEvaluations, {
+    onDelete:'CASCADE'
+  })
   @JoinColumn()
   behavior: Behavior;
 
-  @ManyToOne(() => Evaluation, (evaluation) => evaluation.behaviorEvaluations)
+  @ManyToOne(() => Evaluation, (evaluation) => evaluation.behaviorEvaluations, {
+    onDelete:'CASCADE'
+  })
   @JoinColumn()
   evaluation: Evaluation;
 
@@ -158,7 +164,9 @@ export class Behavior extends BaseEntity {
   @Column("varchar", { length: 1 })
   associatedKey: string;
 
-  @ManyToOne(() => Test, (test) => test.behaviors)
+  @ManyToOne(() => Test, (test) => test.behaviors, {
+    onDelete:'CASCADE'
+  })
   @JoinColumn()
   test: Test;
 
@@ -179,7 +187,9 @@ export class Annotation extends BaseEntity {
   @Column()
   timeLog: number;
 
-  @ManyToOne(() => BehaviorEvaluation, (behaviorEvaluation) => behaviorEvaluation.annotations)
+  @ManyToOne(() => BehaviorEvaluation, (behaviorEvaluation) => behaviorEvaluation.annotations, {
+    onDelete:'CASCADE'
+  })
   @JoinColumn()
   behaviorEvaluation: BehaviorEvaluation;
 }

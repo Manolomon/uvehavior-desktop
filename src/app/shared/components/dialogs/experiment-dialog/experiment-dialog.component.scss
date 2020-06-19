@@ -1,0 +1,18 @@
+nb-card-body {
+    overflow: visible;
+    padding-top: 0;
+
+    form {
+        >* {
+            margin-top: 1rem;
+        }
+    }
+}
+
+textarea {
+    resize: none;
+}
+
+.cancel {
+    margin-right: 1rem;
+}
