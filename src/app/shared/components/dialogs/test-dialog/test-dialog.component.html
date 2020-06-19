@@ -20,7 +20,8 @@
       </nb-step>
 
       <nb-step label="{{'BEHAVIORS' | translate}}">
-        <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)">
+        <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)"
+          (createConfirm)="onCreateConfirm($event)" (editConfirm)="onSaveConfirm($event)">
         </ng2-smart-table>
       </nb-step>
     </nb-stepper>

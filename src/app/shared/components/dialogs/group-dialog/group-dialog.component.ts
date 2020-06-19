@@ -88,7 +88,7 @@ export class GroupDialogComponent {
   }
 
   onCreateConfirm(event): void {
-    if(event.newData['subject_name'].length > 0) {
+    if(event.newData['subject_name'].trim().length > 0) {
       event.confirm.resolve();
     } else {
       event.confirm.reject();
@@ -96,7 +96,7 @@ export class GroupDialogComponent {
   }
 
   onSaveConfirm(event) {
-    if(event.newData['subject_name'].length > 0) {
+    if(event.newData['subject_name'].trim().length > 0) {
       event.confirm.resolve();
     } else {
       event.confirm.reject();

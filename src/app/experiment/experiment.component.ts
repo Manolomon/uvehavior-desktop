@@ -9,6 +9,7 @@ import { TestDialogComponent } from '../shared/components/dialogs/test-dialog/te
 import { GroupDialogComponent } from '../shared/components/dialogs/group-dialog/group-dialog.component';
 import { filter } from 'rxjs/operators';
 import { ConfirmationDialogComponent } from '../shared/components/dialogs/confirmation-dialog/confirmation-dialog.component';
+import { SubjectDialogComponent } from '../shared/components/dialogs/subject-dialog/subject-dialog.component';
 
 @Component({
   selector: 'app-experiment',
@@ -39,7 +40,13 @@ export class ExperimentComponent implements OnInit {
         filter(({ tag }) => tag === 'subjects'),
       )
       .subscribe((event) => {
-        console.log(event.item.data.id)
+        let selectedSubjectId = event.item.data.id;
+        console.log(selectedSubjectId)
+        this.showSubject(
+          this.current.groups.find(
+            group => group).subjects.find(
+              subject => subject.idSubject === selectedSubjectId
+            ));
       });
 
     this.menuService.onItemClick()
@@ -48,7 +55,7 @@ export class ExperimentComponent implements OnInit {
       )
       .subscribe((event) => {
         let selectedTestId = event.item.data.id;
-        this.viewTest(this.current.tests.find(x => x.idTest === selectedTestId));
+        this.editTest(this.current.tests.find(x => x.idTest === selectedTestId));
       });
 
   }
@@ -185,7 +192,7 @@ export class ExperimentComponent implements OnInit {
   }
 
   saveTest(test) {
-    
+
     test.experiment = this.current;
     this.databaseService
       .connection
@@ -242,7 +249,39 @@ export class ExperimentComponent implements OnInit {
       })
   }
 
-  viewTest(test) {
-    console.log(test)
+  editTest(test) {
+    this.dialogService.open(TestDialogComponent, {
+      context: {
+        editMode: true,
+        currentTest: test
+      }
+    })
+      .onClose.subscribe(editedTest => editedTest &&
+        this.databaseService
+          .connection
+          .then(() => editedTest.save())
+          .then(() => {
+            this.getExperiment();
+          })
+          .then(() => {
+            let title: string = this.translate.instant('SUCCESS')
+            let message: string = this.translate.instant('EXPERIMENT-SAVED')
+
+            this.showToast(
+              'success',
+              title,
+              message
+            )
+          })
+
+      );
+  }
+
+  showSubject(subject) {
+    this.dialogService.open(SubjectDialogComponent, {
+      context: {
+        currentSubject: subject
+      }
+    })
   }
 }

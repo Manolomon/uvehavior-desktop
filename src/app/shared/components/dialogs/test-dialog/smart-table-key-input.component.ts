@@ -22,7 +22,7 @@ export class SmartTableKeyInputComponent extends DefaultEditor implements AfterV
     keyPress(event: KeyboardEvent) {
         const pattern = /[a-zA-Z0-9]/;
         const inputChar = String.fromCharCode(event.charCode);
-        if (!pattern.test(inputChar)) {    
+        if (!pattern.test(inputChar)) {
             // invalid character, prevent input
             event.preventDefault();
         }

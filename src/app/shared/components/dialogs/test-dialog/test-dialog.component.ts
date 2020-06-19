@@ -20,18 +20,20 @@ export class TestDialogComponent {
       addButtonContent: '<i class="fas fa-plus fa-xs"></i>',
       createButtonContent: '<i class="fas fa-check fa-xs"></i>',
       cancelButtonContent: '<i class="fas fa-times fa-xs"></i>',
+      confirmCreate: true,
     },
     edit: {
       editButtonContent: '<i class="fas fa-edit fa-xs"></i>',
       saveButtonContent: '<i class="fas fa-check fa-xs"></i>',
       cancelButtonContent: '<i class="fas fa-times fa-xs"></i>',
+      confirmSave: true,
     },
     delete: {
       deleteButtonContent: '<i class="fas fa-trash fa-xs"></i>',
       confirmDelete: true,
     },
     columns: {
-      subject_name: {
+      behavior_name: {
         title: 'Behavior Name',
         type: 'string',
         editable: true,
@@ -50,44 +52,9 @@ export class TestDialogComponent {
     }
   };
 
-  settings2 = {
-    actions: {
-      columnTitle: '',
-      add: false,
-      edit: {
-        editButtonContent: '<i class="fas fa-edit fa-xs"></i>',
-        saveButtonContent: '<i class="fas fa-check fa-xs"></i>',
-        cancelButtonContent: '<i class="fas fa-times fa-xs"></i>',
-      },
-      delete: false,
-      custom: [],
-      position: 'left',
-    },
-    columns: {
-      subject_name: {
-        title: 'Behavior Name',
-        type: 'string',
-      },
-      code: {
-        title: 'Code Name',
-        type: 'string',
-      },
-      key: {
-        title: 'Key Binding',
-        type: 'string',
-      },
-    },
-    sortDirection: 'desc',
-    pager: {
-      perPage: 3
-    }
-  };
-
   testForm: FormGroup;
 
-  name: string;
-  description: string;
-  duration: number;
+  currentTest: Test
   editMode: boolean;
 
   source: LocalDataSource = new LocalDataSource();
@@ -102,9 +69,18 @@ export class TestDialogComponent {
 
   ngOnInit() {
     if (this.editMode) {
-      this.testForm.get('name').setValue(this.name)
-      this.testForm.get('description').setValue(this.description)
-      this.testForm.get('duration').setValue(this.duration)
+      this.testForm.get('name').setValue(this.currentTest.name)
+      this.testForm.get('description').setValue(this.currentTest.description)
+      this.testForm.get('duration').setValue(this.currentTest.duration)
+      this.currentTest.behaviors.map((element) => {
+        this.source.add(
+          {
+            id: element.idBehavior,
+            behavior_name: element.name,
+            key: element.associatedKey,
+          }
+        )
+      });
     }
   }
 
@@ -113,30 +89,46 @@ export class TestDialogComponent {
   }
 
   submitTest() {
-    const newTest = new Test();
+    if (!this.editMode) {
+      this.currentTest = new Test();
+    }
 
-    newTest.name = this.testForm.get('name').value;
-    newTest.description = this.testForm.get('description').value;
-    newTest.duration = this.testForm.get('duration').value;
+    this.currentTest.name = this.testForm.get('name').value;
+    this.currentTest.description = this.testForm.get('description').value;
+    this.currentTest.duration = this.testForm.get('duration').value;
     this.source.getAll()
       .then((subjects) => {
-        newTest.behaviors = subjects.map((element) => {
+        this.currentTest.behaviors = subjects.map((element) => {
           return {
-            name: element.subject_name,
-            associatedKey: element.key
+            idBehavior: element.id,
+            name: element.behavior_name,
+            associatedKey: element.key,
+            idTestId: this.currentTest.idTest
           }
         })
       });
 
-    console.log(newTest)
-
-    this.ref.close(newTest);
-
-    //this.ref.close(this.testForm.value);
+    this.ref.close(this.currentTest, );
   }
 
   onDeleteConfirm(event): void {
     event.confirm.resolve();
+  }
+
+  onCreateConfirm(event): void {
+    if((event.newData['behavior_name'].trim().length > 0) && (event.newData['key'].length > 0)) {
+      event.confirm.resolve();
+    } else {
+      event.confirm.reject();
+    }
+  }
+
+  onSaveConfirm(event): void {
+    if((event.newData['behavior_name'].trim().length > 0) && (event.newData['key'].length > 0)) {
+      event.confirm.resolve();
+    } else {
+      event.confirm.reject();
+    }
   }
 
 }

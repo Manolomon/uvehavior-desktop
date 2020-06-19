@@ -36,6 +36,7 @@
   "ADD-SUBJECTS": "Add Subjects",
   "ADD-BEHAVIORS": "Add Behaviors",
   "BEHAVIORS": "Behaviors",
+  "SUBJECT-DETAILS": "Subject Details",
   "TOOLTIP": {
     "EDIT" : "Edit",
     "EXPORT-EXPERIMENT": "Export data",

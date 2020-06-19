@@ -10,6 +10,7 @@ import { NebularModule } from '../nebular.module';
 import { ExperimentDialogComponent } from './components/dialogs/experiment-dialog/experiment-dialog.component';
 import { TestDialogComponent } from './components/dialogs/test-dialog/test-dialog.component';
 import { GroupDialogComponent } from './components/dialogs/group-dialog/group-dialog.component';
+import { SubjectDialogComponent } from './components/dialogs/subject-dialog/subject-dialog.component';
 import { ConfirmationDialogComponent } from './components/dialogs/confirmation-dialog/confirmation-dialog.component'
 import { SmartTableKeyInputComponent } from './components/dialogs/test-dialog/smart-table-key-input.component'
 
@@ -22,6 +23,7 @@ import { SmartTableKeyInputComponent } from './components/dialogs/test-dialog/sm
     ExperimentDialogComponent,
     TestDialogComponent,
     GroupDialogComponent,
+    SubjectDialogComponent,
     ConfirmationDialogComponent,
     SmartTableKeyInputComponent
   ],
