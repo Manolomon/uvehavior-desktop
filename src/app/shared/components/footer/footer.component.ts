@@ -14,5 +14,4 @@ import { Component } from '@angular/core';
     </span>
   `,
 })
-export class FooterComponent {
-}
+export class FooterComponent {}

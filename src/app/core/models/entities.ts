@@ -1,61 +1,69 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, JoinColumn, OneToMany, ManyToOne, UpdateDateColumn, CreateDateColumn, Timestamp } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  BaseEntity,
+  JoinColumn,
+  OneToMany,
+  ManyToOne,
+  UpdateDateColumn,
+  CreateDateColumn,
+  Timestamp,
+} from 'typeorm';
 
 @Entity({ name: 'experiment' })
 export class Experiment extends BaseEntity {
+  @PrimaryGeneratedColumn()
+  idExperiment: number;
 
-    @PrimaryGeneratedColumn()
-    idExperiment: number;
+  @Column()
+  name: string;
 
-    @Column()
-    name: string;
+  @Column()
+  description: string | null;
 
-    @Column()
-    description: string | null;
+  @CreateDateColumn()
+  creationDate: Timestamp;
 
-    @CreateDateColumn()
-    creationDate: Timestamp
+  @UpdateDateColumn()
+  lastModifiedDate: Timestamp;
 
-    @UpdateDateColumn()
-    lastModifiedDate: Timestamp
+  @OneToMany(() => Test, (test) => test.experiment, {
+    cascade: true,
+  })
+  tests: Test[];
 
-    @OneToMany(() => Test, (test) => test.experiment, {
-      cascade: true,
-    })
-    tests: Test[];
-
-    @OneToMany(() => Group, (group) => group.experiment, {
-      cascade: true,
-    })
-    groups: Group[];
+  @OneToMany(() => Group, (group) => group.experiment, {
+    cascade: true,
+  })
+  groups: Group[];
 }
 
 @Entity({ name: 'test' })
 export class Test extends BaseEntity {
+  @PrimaryGeneratedColumn()
+  idTest: number;
 
-    @PrimaryGeneratedColumn()
-    idTest: number;
+  @Column()
+  name: string;
 
-    @Column()
-    name: string;
+  @Column()
+  description: string | null;
 
-    @Column()
-    description: string | null;
+  @Column()
+  duration: number;
 
-    @Column()
-    duration: number;
+  @ManyToOne(() => Experiment, (experiment) => experiment.tests, { onDelete: 'CASCADE' })
+  @JoinColumn()
+  experiment: Experiment;
 
-    @ManyToOne(() => Experiment, (experiment) => experiment.tests, {onDelete:'CASCADE'})
-    @JoinColumn()
-    experiment: Experiment;
-
-    @OneToMany(() => Behavior, (behavior) => behavior.test, {
-      cascade: true,
-    })
-    behaviors: Behavior[];
+  @OneToMany(() => Behavior, (behavior) => behavior.test, {
+    cascade: true,
+  })
+  behaviors: Behavior[];
 }
 
-
-@Entity("group")
+@Entity('group')
 export class Group extends BaseEntity {
   @PrimaryGeneratedColumn()
   idGroup: number;
@@ -66,15 +74,15 @@ export class Group extends BaseEntity {
   @Column()
   description: string | null;
 
-  @ManyToOne(() => Experiment, (experiment) => experiment.groups, {onDelete:'CASCADE'})
+  @ManyToOne(() => Experiment, (experiment) => experiment.groups, { onDelete: 'CASCADE' })
   @JoinColumn()
   experiment: Experiment;
 
-  @OneToMany(() => Subject, (subject) => subject.group, {cascade: ['insert', 'recover']} )
+  @OneToMany(() => Subject, (subject) => subject.group, { cascade: ['insert', 'recover'] })
   subjects: Subject[];
 }
 
-@Entity("subject")
+@Entity('subject')
 export class Subject extends BaseEntity {
   @PrimaryGeneratedColumn()
   idSubject: number;
@@ -82,7 +90,7 @@ export class Subject extends BaseEntity {
   @Column()
   name: string;
 
-  @ManyToOne(() => Group, (group) => group.subjects, {onDelete:'CASCADE'})
+  @ManyToOne(() => Group, (group) => group.subjects, { onDelete: 'CASCADE' })
   @JoinColumn()
   group: Group;
 
@@ -92,7 +100,7 @@ export class Subject extends BaseEntity {
   evaluations: Evaluation[];
 }
 
-@Entity("evaluation")
+@Entity('evaluation')
 export class Evaluation extends BaseEntity {
   @PrimaryGeneratedColumn()
   idEvaluation: number;
@@ -103,22 +111,19 @@ export class Evaluation extends BaseEntity {
   @CreateDateColumn()
   evaluationDate: Timestamp;
 
-  @ManyToOne(() => Subject, (subject) => subject.evaluations,{
-    onDelete:'CASCADE'
+  @ManyToOne(() => Subject, (subject) => subject.evaluations, {
+    onDelete: 'CASCADE',
   })
   @JoinColumn()
   subject: Subject;
 
-  @OneToMany(
-    () => BehaviorEvaluation,
-    (behaviorEvaluation) => behaviorEvaluation.evaluation, {
-      cascade: true,
-    }
-  )
+  @OneToMany(() => BehaviorEvaluation, (behaviorEvaluation) => behaviorEvaluation.evaluation, {
+    cascade: true,
+  })
   behaviorEvaluations: BehaviorEvaluation[];
 }
 
-@Entity("behavior_evaluation")
+@Entity('behavior_evaluation')
 export class BehaviorEvaluation extends BaseEntity {
   @PrimaryGeneratedColumn()
   idBehaviorEvaluation: number;
@@ -133,27 +138,24 @@ export class BehaviorEvaluation extends BaseEntity {
   totalTime: number | null;
 
   @ManyToOne(() => Behavior, (behavior) => behavior.behaviorEvaluations, {
-    onDelete:'CASCADE'
+    onDelete: 'CASCADE',
   })
   @JoinColumn()
   behavior: Behavior;
 
   @ManyToOne(() => Evaluation, (evaluation) => evaluation.behaviorEvaluations, {
-    onDelete:'CASCADE'
+    onDelete: 'CASCADE',
   })
   @JoinColumn()
   evaluation: Evaluation;
 
-  @OneToMany(
-    () => Annotation,
-    (annotation) => annotation.behaviorEvaluation, {
-      cascade: true,
-    }
-  )
+  @OneToMany(() => Annotation, (annotation) => annotation.behaviorEvaluation, {
+    cascade: true,
+  })
   annotations: Annotation[];
 }
 
-@Entity("behavior")
+@Entity('behavior')
 export class Behavior extends BaseEntity {
   @PrimaryGeneratedColumn()
   idBehavior: number;
@@ -161,25 +163,22 @@ export class Behavior extends BaseEntity {
   @Column()
   name: string;
 
-  @Column("varchar", { length: 1 })
+  @Column('varchar', { length: 1 })
   associatedKey: string;
 
   @ManyToOne(() => Test, (test) => test.behaviors, {
-    onDelete:'CASCADE'
+    onDelete: 'CASCADE',
   })
   @JoinColumn()
   test: Test;
 
-  @OneToMany(
-    () => BehaviorEvaluation,
-    (behaviorEvaluation) => behaviorEvaluation.behavior, {
-      cascade: true,
-    }
-  )
+  @OneToMany(() => BehaviorEvaluation, (behaviorEvaluation) => behaviorEvaluation.behavior, {
+    cascade: true,
+  })
   behaviorEvaluations: BehaviorEvaluation[];
 }
 
-@Entity("annotation")
+@Entity('annotation')
 export class Annotation extends BaseEntity {
   @PrimaryGeneratedColumn()
   idAnnotation: number;
@@ -188,7 +187,7 @@ export class Annotation extends BaseEntity {
   timeLog: number;
 
   @ManyToOne(() => BehaviorEvaluation, (behaviorEvaluation) => behaviorEvaluation.annotations, {
-    onDelete:'CASCADE'
+    onDelete: 'CASCADE',
   })
   @JoinColumn()
   behaviorEvaluation: BehaviorEvaluation;

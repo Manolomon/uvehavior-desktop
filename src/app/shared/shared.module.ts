@@ -11,12 +11,12 @@ import { ExperimentDialogComponent } from './components/dialogs/experiment-dialo
 import { TestDialogComponent } from './components/dialogs/test-dialog/test-dialog.component';
 import { GroupDialogComponent } from './components/dialogs/group-dialog/group-dialog.component';
 import { SubjectDialogComponent } from './components/dialogs/subject-dialog/subject-dialog.component';
-import { ConfirmationDialogComponent } from './components/dialogs/confirmation-dialog/confirmation-dialog.component'
-import { SmartTableKeyInputComponent } from './components/dialogs/test-dialog/smart-table-key-input.component'
+import { ConfirmationDialogComponent } from './components/dialogs/confirmation-dialog/confirmation-dialog.component';
+import { SmartTableKeyInputComponent } from './components/dialogs/test-dialog/smart-table-key-input.component';
 
 @NgModule({
   declarations: [
-    PageNotFoundComponent, 
+    PageNotFoundComponent,
     WebviewDirective,
     FooterComponent,
     HeaderComponent,
@@ -25,21 +25,9 @@ import { SmartTableKeyInputComponent } from './components/dialogs/test-dialog/sm
     GroupDialogComponent,
     SubjectDialogComponent,
     ConfirmationDialogComponent,
-    SmartTableKeyInputComponent
+    SmartTableKeyInputComponent,
   ],
-  imports: [
-    CommonModule,
-    TranslateModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NebularModule
-  ],
-  exports: [
-    TranslateModule,
-    WebviewDirective,
-    FormsModule,
-    FooterComponent,
-    HeaderComponent
-  ]
+  imports: [CommonModule, TranslateModule, FormsModule, ReactiveFormsModule, NebularModule],
+  exports: [TranslateModule, WebviewDirective, FormsModule, FooterComponent, HeaderComponent],
 })
 export class SharedModule {}

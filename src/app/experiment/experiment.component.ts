@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { NbMenuItem, NbToastrService, NbMenuService, NbDialogService, NbComponentStatus } from '@nebular/theme';
 import { DatabaseService } from '../core/services/database/database.service';
 import { TranslateService } from '@ngx-translate/core';
-import { Experiment, Test, Group, Subject } from '../core/models/entities';
+import { Experiment, Group } from '../core/models/entities';
 import { ExperimentDialogComponent } from '../shared/components/dialogs/experiment-dialog/experiment-dialog.component';
 import { TestDialogComponent } from '../shared/components/dialogs/test-dialog/test-dialog.component';
 import { GroupDialogComponent } from '../shared/components/dialogs/group-dialog/group-dialog.component';
@@ -14,10 +14,9 @@ import { SubjectDialogComponent } from '../shared/components/dialogs/subject-dia
 @Component({
   selector: 'app-experiment',
   templateUrl: './experiment.component.html',
-  styleUrls: ['./experiment.component.scss']
+  styleUrls: ['./experiment.component.scss'],
 })
 export class ExperimentComponent implements OnInit {
-
   current: Experiment;
   idExperiment: number;
   name: string;
@@ -31,33 +30,29 @@ export class ExperimentComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private databaseService: DatabaseService,
-    private toastrService: NbToastrService, private translate: TranslateService,
+    private toastrService: NbToastrService,
+    private translate: TranslateService,
     private menuService: NbMenuService,
     private dialogService: NbDialogService
   ) {
-    this.menuService.onItemClick()
-      .pipe(
-        filter(({ tag }) => tag === 'subjects'),
-      )
+    this.menuService
+      .onItemClick()
+      .pipe(filter(({ tag }) => tag === 'subjects'))
       .subscribe((event) => {
-        let selectedSubjectId = event.item.data.id;
-        console.log(selectedSubjectId)
+        const selectedSubjectId = event.item.data.id;
+        console.log(selectedSubjectId);
         this.showSubject(
-          this.current.groups.find(
-            group => group).subjects.find(
-              subject => subject.idSubject === selectedSubjectId
-            ));
+          this.current.groups.find((group) => group).subjects.find((subject) => subject.idSubject === selectedSubjectId)
+        );
       });
 
-    this.menuService.onItemClick()
-      .pipe(
-        filter(({ tag }) => tag === 'tests'),
-      )
+    this.menuService
+      .onItemClick()
+      .pipe(filter(({ tag }) => tag === 'tests'))
       .subscribe((event) => {
-        let selectedTestId = event.item.data.id;
-        this.editTest(this.current.tests.find(x => x.idTest === selectedTestId));
+        const selectedTestId = event.item.data.id;
+        this.editTest(this.current.tests.find((x) => x.idTest === selectedTestId));
       });
-
   }
 
   ngOnInit(): void {
@@ -66,20 +61,21 @@ export class ExperimentComponent implements OnInit {
   }
 
   getExperiment() {
-    this.databaseService.getExperimentData(this.idExperiment)
-      .then(experiment => {
-        this.current = experiment
+    this.databaseService
+      .getExperimentData(this.idExperiment)
+      .then((experiment) => {
+        this.current = experiment;
         this.name = this.current.name;
-        this.description = this.current.description
+        this.description = this.current.description;
 
         this.tests = experiment.tests.map((element) => {
           return {
             title: element.name,
             icon: 'flask',
             data: {
-              id: element.idTest
-            }
-          }
+              id: element.idTest,
+            },
+          };
         });
         this.menuService.addItems(this.tests, 'tests');
 
@@ -93,23 +89,19 @@ export class ExperimentComponent implements OnInit {
                 title: subject.name,
                 icon: 'user-circle',
                 data: {
-                  id: subject.idSubject
-                }
-              }
-            })
-          }
+                  id: subject.idSubject,
+                },
+              };
+            }),
+          };
         });
         this.menuService.addItems(this.subjects, 'subjects');
       })
       .catch((error) => {
-        let title: string = this.translate.instant('ERROR')
-        let message: string = this.translate.instant('DATABASE-ERROR')
+        const title: string = this.translate.instant('ERROR');
+        const message: string = this.translate.instant('DATABASE-ERROR');
 
-        this.showToast(
-          'danger',
-          title,
-          message
-        )
+        this.showToast('danger', title, message);
       });
   }
 
@@ -117,17 +109,14 @@ export class ExperimentComponent implements OnInit {
     const title: string = this.translate.instant('DELETE-EXPERIMENT');
     const body: string = this.translate.instant('DELETE-EXPERIMENT-CONFIRMATION');
 
-
-    this.dialogService.open(
-      ConfirmationDialogComponent,
-      {
+    this.dialogService
+      .open(ConfirmationDialogComponent, {
         context: {
           title: title,
-          body: body
-        }
+          body: body,
+        },
       })
-      .onClose.subscribe(result => result &&
-        this.deleteExperiment());
+      .onClose.subscribe((result) => result && this.deleteExperiment());
   }
 
   deleteExperiment() {
@@ -137,15 +126,11 @@ export class ExperimentComponent implements OnInit {
         this.router.navigateByUrl('/home');
       })
       .then(() => {
-        let title: string = this.translate.instant('SUCCESS')
-        let message: string = this.translate.instant('EXPERIMENT-DELETED')
+        const title: string = this.translate.instant('SUCCESS');
+        const message: string = this.translate.instant('EXPERIMENT-DELETED');
 
-        this.showToast(
-          'success',
-          title,
-          message
-        )
-      })
+        this.showToast('success', title, message);
+      });
   }
 
   showToast(status: NbComponentStatus, title, content) {
@@ -153,135 +138,115 @@ export class ExperimentComponent implements OnInit {
   }
 
   editExperiment() {
-    this.dialogService.open(ExperimentDialogComponent,
-      {
+    this.dialogService
+      .open(ExperimentDialogComponent, {
         context: {
           name: this.current.name,
           description: this.current.description,
-          editMode: true
-        }
+          editMode: true,
+        },
       })
-      .onClose.subscribe(newExperiment => newExperiment &&
-        this.databaseService
-          .connection
-          .then(() =>
-            this.current.name = newExperiment.name,
-            this.current.description = newExperiment.description
-          )
-          .then(() =>
-            this.current.save())
-          .then(() => {
-            let title: string = this.translate.instant('SUCCESS')
-            let message: string = this.translate.instant('EXPERIMENT-SAVED')
-
-            this.showToast(
-              'success',
-              title,
-              message
+      .onClose.subscribe(
+        (newExperiment) =>
+          newExperiment &&
+          this.databaseService.connection
+            .then(
+              () => (this.current.name = newExperiment.name),
+              (this.current.description = newExperiment.description)
             )
-          }).then(() => {
-            this.getExperiment()
-          })
+            .then(() => this.current.save())
+            .then(() => {
+              const title: string = this.translate.instant('SUCCESS');
+              const message: string = this.translate.instant('EXPERIMENT-SAVED');
+
+              this.showToast('success', title, message);
+            })
+            .then(() => {
+              this.getExperiment();
+            })
       );
   }
 
   newTest() {
-    this.dialogService.open(TestDialogComponent, { context: { editMode: false } })
-      .onClose.subscribe(newTest => newTest &&
-        this.saveTest(newTest));
+    this.dialogService
+      .open(TestDialogComponent, { context: { editMode: false } })
+      .onClose.subscribe((newTest) => newTest && this.saveTest(newTest));
   }
 
   saveTest(test) {
-
     test.experiment = this.current;
-    this.databaseService
-      .connection
+    this.databaseService.connection
       .then(() => test.save())
       .then(() => {
         this.getExperiment();
       })
       .then(() => {
-        let title: string = this.translate.instant('SUCCESS')
-        let message: string = this.translate.instant('EXPERIMENT-SAVED')
+        const title: string = this.translate.instant('SUCCESS');
+        const message: string = this.translate.instant('EXPERIMENT-SAVED');
 
-        this.showToast(
-          'success',
-          title,
-          message
-        )
-      })
+        this.showToast('success', title, message);
+      });
   }
 
   addGroup() {
-    this.dialogService.open(GroupDialogComponent,
-      {
+    this.dialogService
+      .open(GroupDialogComponent, {
         context: {
-          editMode: false
+          editMode: false,
         },
-        closeOnBackdropClick: false
+        closeOnBackdropClick: false,
       })
-      .onClose.subscribe(newGroup => newGroup &&
-        this.saveGroup(newGroup));
+      .onClose.subscribe((newGroup) => newGroup && this.saveGroup(newGroup));
   }
 
-  addSubject() {
-
-  }
+  addSubject() {}
 
   saveGroup(newGroup: Group) {
-
     newGroup.experiment = this.current;
-    console.log(newGroup)
+    console.log(newGroup);
     this.databaseService.connection
       .then(() => newGroup.save())
       .then(() => {
         this.getExperiment();
       })
       .then(() => {
-        let title: string = this.translate.instant('SUCCESS')
-        let message: string = this.translate.instant('EXPERIMENT-SAVED')
+        const title: string = this.translate.instant('SUCCESS');
+        const message: string = this.translate.instant('EXPERIMENT-SAVED');
 
-        this.showToast(
-          'success',
-          title,
-          message
-        )
-      })
+        this.showToast('success', title, message);
+      });
   }
 
   editTest(test) {
-    this.dialogService.open(TestDialogComponent, {
-      context: {
-        editMode: true,
-        currentTest: test
-      }
-    })
-      .onClose.subscribe(editedTest => editedTest &&
-        this.databaseService
-          .connection
-          .then(() => editedTest.save())
-          .then(() => {
-            this.getExperiment();
-          })
-          .then(() => {
-            let title: string = this.translate.instant('SUCCESS')
-            let message: string = this.translate.instant('EXPERIMENT-SAVED')
+    this.dialogService
+      .open(TestDialogComponent, {
+        context: {
+          editMode: true,
+          currentTest: test,
+        },
+      })
+      .onClose.subscribe(
+        (editedTest) =>
+          editedTest &&
+          this.databaseService.connection
+            .then(() => editedTest.save())
+            .then(() => {
+              this.getExperiment();
+            })
+            .then(() => {
+              const title: string = this.translate.instant('SUCCESS');
+              const message: string = this.translate.instant('EXPERIMENT-SAVED');
 
-            this.showToast(
-              'success',
-              title,
-              message
-            )
-          })
-
+              this.showToast('success', title, message);
+            })
       );
   }
 
   showSubject(subject) {
     this.dialogService.open(SubjectDialogComponent, {
       context: {
-        currentSubject: subject
-      }
-    })
+        currentSubject: subject,
+      },
+    });
   }
 }

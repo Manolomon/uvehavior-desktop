@@ -1,20 +1,21 @@
 import { Injectable } from '@angular/core';
-import { Connection, ConnectionOptions, createConnection, Repository } from 'typeorm';
+import { Connection, ConnectionOptions, createConnection } from 'typeorm';
 import { Settings } from './settings';
-import { Experiment,
-        Test,
-        Group,
-        Subject,
-        Evaluation,
-        Behavior,
-        BehaviorEvaluation,
-        Annotation } from '../../models/entities';
+import {
+  Experiment,
+  Test,
+  Group,
+  Subject,
+  Evaluation,
+  Behavior,
+  BehaviorEvaluation,
+  Annotation,
+} from '../../models/entities';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DatabaseService {
-
   public connection: Promise<Connection>;
   private readonly options: ConnectionOptions;
 
@@ -23,16 +24,7 @@ export class DatabaseService {
     this.options = {
       type: 'sqlite',
       database: Settings.dbPath,
-      entities: [
-        Experiment,
-        Test,
-        Group,
-        Subject,
-        Evaluation,
-        Behavior,
-        BehaviorEvaluation,
-        Annotation
-      ],
+      entities: [Experiment, Test, Group, Subject, Evaluation, Behavior, BehaviorEvaluation, Annotation],
       synchronize: true,
       logging: 'all',
     };
@@ -40,20 +32,20 @@ export class DatabaseService {
   }
 
   async getLatestExperiments() {
-    return (await this.connection).getRepository(Experiment)
-      .createQueryBuilder("experiment")
-      .orderBy("lastModifiedDate", "DESC")
+    return (await this.connection)
+      .getRepository(Experiment)
+      .createQueryBuilder('experiment')
+      .orderBy('lastModifiedDate', 'DESC')
       .getMany();
   }
 
   async getExperimentData(idExperiment) {
-    return (await this.connection).getRepository(Experiment)
-    .findOne({
+    return (await this.connection).getRepository(Experiment).findOne({
       relations: ['tests', 'groups', 'groups.subjects', 'tests.behaviors'],
-      where: { 
-        idExperiment: idExperiment}
+      where: {
+        idExperiment: idExperiment,
       },
-    );
+    });
   }
 
   /*
@@ -67,5 +59,4 @@ export class DatabaseService {
     });
   }
   */
-
 }

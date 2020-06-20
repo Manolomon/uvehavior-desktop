@@ -4,13 +4,8 @@ import { ExperimentComponent } from './experiment.component';
 import { NebularModule } from '../nebular.module';
 import { TranslateModule } from '@ngx-translate/core';
 
-
 @NgModule({
   declarations: [ExperimentComponent],
-  imports: [
-    CommonModule,
-    NebularModule,
-    TranslateModule
-  ]
+  imports: [CommonModule, NebularModule, TranslateModule],
 })
-export class ExperimentModule { }
+export class ExperimentModule {}

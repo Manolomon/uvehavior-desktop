@@ -3,7 +3,6 @@
 @import '~@nebular/theme/styles/globals';
 
 @include nb-install-component() {
-
   ::ng-deep {
     ng2-smart-table {
       .form-control {
