@@ -4,7 +4,7 @@
   <br><br>
 </h1>
 
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FManolomon%2Fuvehavior.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FManolomon%2Fuvehavior?ref=badge_shield)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FManolomon%2Fuvehavior.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FManolomon%2Fuvehavior?ref=badge_shield) <img alt="Snyk Vulnerabilities for GitHub Repo" src="https://img.shields.io/snyk/vulnerabilities/github/Manolomon/uvehavior?color=4c45a9&logo=snyk"> <img alt="LGTM Grade" src="https://img.shields.io/lgtm/grade/javascript/github/Manolomon/uvehavior?logo=lgtm"> <img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/Manolomon/uvehavior?logo=github">
 
 ## License
 
