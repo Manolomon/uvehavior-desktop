@@ -14,7 +14,7 @@ import {
   NbMenuModule,
   NbInputModule,
   NbTooltipModule,
-  NbStepperModule
+  NbStepperModule,
 } from '@nebular/theme';
 
 import { Ng2SmartTableModule } from 'ng2-smart-table';
@@ -27,7 +27,7 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
     NbToastrModule.forRoot(),
     NbDialogModule.forRoot(),
     NbMenuModule.forRoot(),
-    NbMenuModule.forRoot()
+    NbMenuModule.forRoot(),
   ],
   exports: [
     NbThemeModule,
@@ -44,7 +44,7 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
     NbInputModule,
     NbTooltipModule,
     NbStepperModule,
-    Ng2SmartTableModule
-  ]
+    Ng2SmartTableModule,
+  ],
 })
-export class NebularModule { }
+export class NebularModule {}

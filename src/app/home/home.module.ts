@@ -12,11 +12,6 @@ import { NebularModule } from '../nebular.module';
 
 @NgModule({
   declarations: [HomeComponent],
-  imports: [CommonModule,
-    SharedModule,
-    HomeRoutingModule,
-    BrowserAnimationsModule,
-    NebularModule
-  ]
+  imports: [CommonModule, SharedModule, HomeRoutingModule, BrowserAnimationsModule, NebularModule],
 })
-export class HomeModule { }
+export class HomeModule {}

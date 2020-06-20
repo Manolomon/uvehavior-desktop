@@ -1,5 +1,5 @@
 <nb-layout-column>
-  <div style="text-align:center">
+  <div style="text-align: center;">
     <h1>
       UVehavior
     </h1>
@@ -7,8 +7,9 @@
   <nb-card>
     <nb-card-header>
       {{ 'EXPERIMENTS-TITLE' | translate }}
-      <button nbButton status="primary" class="experiment"
-        (click)="newExperiment()">{{ 'EXPERIMENTS-FOOTER' | translate }}</button>
+      <button nbButton status="primary" class="experiment" (click)="newExperiment()">
+        {{ 'EXPERIMENTS-FOOTER' | translate }}
+      </button>
     </nb-card-header>
     <nb-menu tag="menu" [items]="experiments"></nb-menu>
   </nb-card>

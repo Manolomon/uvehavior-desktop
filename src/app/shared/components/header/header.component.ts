@@ -8,20 +8,15 @@ import { Router } from '@angular/router';
   templateUrl: './header.component.html',
 })
 export class HeaderComponent implements OnInit {
-
   themeSwitch: boolean;
   currentTheme: string;
 
-  constructor(
-    private themeService: NbThemeService,
-    public router: Router
-    ) {
-    this.currentTheme = this.themeService.currentTheme
-    this.themeSwitch = (this.currentTheme === 'dark')
+  constructor(private themeService: NbThemeService, public router: Router) {
+    this.currentTheme = this.themeService.currentTheme;
+    this.themeSwitch = this.currentTheme === 'dark';
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   switchTheme() {
     if (this.themeSwitch) {

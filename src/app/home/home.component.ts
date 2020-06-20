@@ -9,10 +9,9 @@ import { ExperimentDialogComponent } from '../shared/components/dialogs/experime
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-
   experiments: NbMenuItem[] = [];
 
   constructor(
@@ -20,7 +19,8 @@ export class HomeComponent implements OnInit {
     private toastrService: NbToastrService,
     private translate: TranslateService,
     private menuService: NbMenuService,
-    private dialogService: NbDialogService) {
+    private dialogService: NbDialogService
+  ) {
     //this.addExperiment();
   }
 
@@ -33,31 +33,31 @@ export class HomeComponent implements OnInit {
   }
 
   newExperiment() {
-    this.dialogService.open(ExperimentDialogComponent, {context: {editMode: false}})
-      .onClose.subscribe(newExperiment => newExperiment &&
-        this.saveExperiment(newExperiment.name, newExperiment.description));
+    this.dialogService
+      .open(ExperimentDialogComponent, { context: { editMode: false } })
+      .onClose.subscribe(
+        (newExperiment) => newExperiment && this.saveExperiment(newExperiment.name, newExperiment.description)
+      );
   }
 
   getExperiments() {
-    this.databaseService.getLatestExperiments()
-      .then(exps => {
+    this.databaseService
+      .getLatestExperiments()
+      .then((exps) => {
         this.experiments = exps.map((element) => {
           return {
             title: element.name,
             icon: 'clipboard-list',
-            link: `../experiment/${element.idExperiment}`
-          }
+            link: `../experiment/${element.idExperiment}`,
+          };
         });
         this.menuService.addItems(this.experiments, 'menu');
-      }).catch((error) => {
-        let title: string = this.translate.instant('ERROR')
-        let message: string = this.translate.instant('DATABASE-ERROR')
+      })
+      .catch((error) => {
+        let title: string = this.translate.instant('ERROR');
+        let message: string = this.translate.instant('DATABASE-ERROR');
 
-        this.showToast(
-          'danger',
-          title,
-          message
-        )
+        this.showToast('danger', title, message);
       });
   }
 
@@ -67,21 +67,16 @@ export class HomeComponent implements OnInit {
     experiment.name = name;
     experiment.description = description;
 
-    this.databaseService
-      .connection
+    this.databaseService.connection
       .then(() => experiment.save())
       .then(() => {
         this.getExperiments();
       })
       .then(() => {
-        let title: string = this.translate.instant('SUCCESS')
-        let message: string = this.translate.instant('EXPERIMENT-SAVED')
+        let title: string = this.translate.instant('SUCCESS');
+        let message: string = this.translate.instant('EXPERIMENT-SAVED');
 
-        this.showToast(
-          'success',
-          title,
-          message
-        )
-      })
+        this.showToast('success', title, message);
+      });
   }
 }

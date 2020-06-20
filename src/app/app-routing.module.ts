@@ -9,12 +9,12 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'home',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: '**',
-    component: PageNotFoundComponent
-  }
+    component: PageNotFoundComponent,
+  },
 ];
 
 @NgModule({
@@ -22,8 +22,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes, { useHash: true }),
     HomeRoutingModule,
     ExperimentRoutingModule,
-    AnnotateRoutingModule
+    AnnotateRoutingModule,
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}

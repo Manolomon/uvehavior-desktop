@@ -6,13 +6,13 @@ import { ExperimentComponent } from './experiment.component';
 const routes: Routes = [
   {
     path: 'experiment/:id',
-    component: ExperimentComponent
-  }
+    component: ExperimentComponent,
+  },
 ];
 
 @NgModule({
   declarations: [],
   imports: [CommonModule, RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class ExperimentRoutingModule {}

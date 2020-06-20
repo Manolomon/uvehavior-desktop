@@ -31,10 +31,12 @@
     "test": "ng test",
     "e2e": "npm run build:prod && cross-env TS_NODE_PROJECT='e2e/tsconfig.e2e.json' mocha --timeout 300000 --require ts-node/register e2e/**/*.e2e.ts",
     "version": "conventional-changelog -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md",
-    "lint": "ng lint",
     "rebuild": "electron-rebuild -f -w sqlite3",
     "postinstall": "ngcc && npm run postinstall:electron && npx electron-builder install-app-deps",
-    "postinstall:electron": "node postinstall"
+    "postinstall:electron": "node postinstall",
+    "format:fix": "pretty-quick --staged",
+    "precommit": "run-s format:fix lint",
+    "lint": "ng lint"
   },
   "devDependencies": {
     "@angular-builders/custom-webpack": "9.1.0",
@@ -69,6 +71,7 @@
     "electron-reload": "1.5.0",
     "eslint": "6.8.0",
     "eslint-plugin-import": "2.20.1",
+    "husky": "4.2.5",
     "jasmine-core": "3.5.0",
     "jasmine-spec-reporter": "5.0.2",
     "karma": "5.0.4",
@@ -78,6 +81,8 @@
     "karma-jasmine-html-reporter": "1.5.3",
     "mocha": "7.1.2",
     "npm-run-all": "4.1.5",
+    "prettier": "2.0.5",
+    "pretty-quick": "2.0.1",
     "rxjs": "6.5.5",
     "spectron": "10.0.1",
     "ts-node": "8.9.1",

@@ -7,10 +7,9 @@ import { Subject, Group } from '../../../../core/models/entities';
 @Component({
   selector: 'app-group-dialog',
   templateUrl: './group-dialog.component.html',
-  styleUrls: ['./group-dialog.component.scss']
+  styleUrls: ['./group-dialog.component.scss'],
 })
 export class GroupDialogComponent {
-
   settings = {
     add: {
       addButtonContent: '<i class="fas fa-plus fa-xs"></i>',
@@ -36,8 +35,8 @@ export class GroupDialogComponent {
     },
     sortDirection: 'desc',
     pager: {
-      perPage: 3
-    }
+      perPage: 3,
+    },
   };
 
   groupForm: FormGroup;
@@ -50,17 +49,17 @@ export class GroupDialogComponent {
   source: LocalDataSource = new LocalDataSource();
 
   constructor(protected ref: NbDialogRef<GroupDialogComponent>) {
-    console.log(ref)
+    console.log(ref);
     this.groupForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(2)]),
       description: new FormControl('', [Validators.maxLength(2500)]),
     });
   }
 
-  ngOnInit(){
-    if(this.editMode){
-      this.groupForm.get('name').setValue(this.name)
-      this.groupForm.get('description').setValue(this.description)
+  ngOnInit() {
+    if (this.editMode) {
+      this.groupForm.get('name').setValue(this.name);
+      this.groupForm.get('description').setValue(this.description);
     }
   }
 
@@ -73,22 +72,21 @@ export class GroupDialogComponent {
 
     newGroup.name = this.groupForm.get('name').value;
     newGroup.description = this.groupForm.get('description').value;
-    this.source.getAll()
-      .then((subjects) => {
-        newGroup.subjects = subjects.map((element) => {
-          return {
-            name: element.subject_name
-          }
-        })
+    this.source.getAll().then((subjects) => {
+      newGroup.subjects = subjects.map((element) => {
+        return {
+          name: element.subject_name,
+        };
       });
+    });
 
-    console.log(newGroup)
+    console.log(newGroup);
 
     this.ref.close(newGroup);
   }
 
   onCreateConfirm(event): void {
-    if(event.newData['subject_name'].trim().length > 0) {
+    if (event.newData['subject_name'].trim().length > 0) {
       event.confirm.resolve();
     } else {
       event.confirm.reject();
@@ -96,7 +94,7 @@ export class GroupDialogComponent {
   }
 
   onSaveConfirm(event) {
-    if(event.newData['subject_name'].trim().length > 0) {
+    if (event.newData['subject_name'].trim().length > 0) {
       event.confirm.resolve();
     } else {
       event.confirm.reject();
@@ -104,7 +102,6 @@ export class GroupDialogComponent {
   }
 
   onDeleteConfirm(event): void {
-      event.confirm.resolve();
+    event.confirm.resolve();
   }
-
 }

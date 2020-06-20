@@ -6,13 +6,13 @@ import { AnnotateComponent } from './annotate.component';
 const routes: Routes = [
   {
     path: 'annotate',
-    component: AnnotateComponent
-  }
+    component: AnnotateComponent,
+  },
 ];
 
 @NgModule({
   declarations: [],
   imports: [CommonModule, RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AnnotateRoutingModule {}
