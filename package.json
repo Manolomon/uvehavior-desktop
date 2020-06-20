@@ -35,8 +35,12 @@
     "postinstall": "ngcc && npm run postinstall:electron && npx electron-builder install-app-deps",
     "postinstall:electron": "node postinstall",
     "format:fix": "pretty-quick --staged",
-    "precommit": "run-s format:fix lint",
     "lint": "ng lint"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "run-s format:fix"
+    }
   },
   "devDependencies": {
     "@angular-builders/custom-webpack": "9.1.0",

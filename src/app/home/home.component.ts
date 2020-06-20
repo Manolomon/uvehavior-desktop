@@ -54,8 +54,8 @@ export class HomeComponent implements OnInit {
         this.menuService.addItems(this.experiments, 'menu');
       })
       .catch((error) => {
-        let title: string = this.translate.instant('ERROR');
-        let message: string = this.translate.instant('DATABASE-ERROR');
+        const title: string = this.translate.instant('ERROR');
+        const message: string = this.translate.instant('DATABASE-ERROR');
 
         this.showToast('danger', title, message);
       });
@@ -73,8 +73,8 @@ export class HomeComponent implements OnInit {
         this.getExperiments();
       })
       .then(() => {
-        let title: string = this.translate.instant('SUCCESS');
-        let message: string = this.translate.instant('EXPERIMENT-SAVED');
+        const title: string = this.translate.instant('SUCCESS');
+        const message: string = this.translate.instant('EXPERIMENT-SAVED');
 
         this.showToast('success', title, message);
       });

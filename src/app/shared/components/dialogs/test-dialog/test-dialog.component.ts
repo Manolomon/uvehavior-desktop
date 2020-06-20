@@ -30,7 +30,7 @@ export class TestDialogComponent {
       confirmDelete: true,
     },
     columns: {
-      behavior_name: {
+      behaviorName: {
         title: 'Behavior Name',
         type: 'string',
         editable: true,
@@ -72,7 +72,7 @@ export class TestDialogComponent {
       this.currentTest.behaviors.map((element) => {
         this.source.add({
           id: element.idBehavior,
-          behavior_name: element.name,
+          behaviorName: element.name,
           key: element.associatedKey,
         });
       });
@@ -95,7 +95,7 @@ export class TestDialogComponent {
       this.currentTest.behaviors = subjects.map((element) => {
         return {
           idBehavior: element.id,
-          name: element.behavior_name,
+          name: element.behaviorName,
           associatedKey: element.key,
           idTestId: this.currentTest.idTest,
         };
@@ -110,7 +110,7 @@ export class TestDialogComponent {
   }
 
   onCreateConfirm(event): void {
-    if (event.newData['behavior_name'].trim().length > 0 && event.newData['key'].length > 0) {
+    if (event.newData['behaviorName'].trim().length > 0 && event.newData['key'].length > 0) {
       event.confirm.resolve();
     } else {
       event.confirm.reject();
@@ -118,7 +118,7 @@ export class TestDialogComponent {
   }
 
   onSaveConfirm(event): void {
-    if (event.newData['behavior_name'].trim().length > 0 && event.newData['key'].length > 0) {
+    if (event.newData['behaviorName'].trim().length > 0 && event.newData['key'].length > 0) {
       event.confirm.resolve();
     } else {
       event.confirm.reject();

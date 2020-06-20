@@ -28,7 +28,7 @@ export class GroupDialogComponent {
       confirmDelete: true,
     },
     columns: {
-      subject_name: {
+      subjectName: {
         title: 'Subjet Name',
         type: 'string',
       },
@@ -75,7 +75,7 @@ export class GroupDialogComponent {
     this.source.getAll().then((subjects) => {
       newGroup.subjects = subjects.map((element) => {
         return {
-          name: element.subject_name,
+          name: element.subjectName,
         };
       });
     });
@@ -86,7 +86,7 @@ export class GroupDialogComponent {
   }
 
   onCreateConfirm(event): void {
-    if (event.newData['subject_name'].trim().length > 0) {
+    if (event.newData['subjectName'].trim().length > 0) {
       event.confirm.resolve();
     } else {
       event.confirm.reject();
@@ -94,7 +94,7 @@ export class GroupDialogComponent {
   }
 
   onSaveConfirm(event) {
-    if (event.newData['subject_name'].trim().length > 0) {
+    if (event.newData['subjectName'].trim().length > 0) {
       event.confirm.resolve();
     } else {
       event.confirm.reject();

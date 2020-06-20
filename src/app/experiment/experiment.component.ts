@@ -39,7 +39,7 @@ export class ExperimentComponent implements OnInit {
       .onItemClick()
       .pipe(filter(({ tag }) => tag === 'subjects'))
       .subscribe((event) => {
-        let selectedSubjectId = event.item.data.id;
+        const selectedSubjectId = event.item.data.id;
         console.log(selectedSubjectId);
         this.showSubject(
           this.current.groups.find((group) => group).subjects.find((subject) => subject.idSubject === selectedSubjectId)
@@ -50,7 +50,7 @@ export class ExperimentComponent implements OnInit {
       .onItemClick()
       .pipe(filter(({ tag }) => tag === 'tests'))
       .subscribe((event) => {
-        let selectedTestId = event.item.data.id;
+        const selectedTestId = event.item.data.id;
         this.editTest(this.current.tests.find((x) => x.idTest === selectedTestId));
       });
   }
@@ -98,8 +98,8 @@ export class ExperimentComponent implements OnInit {
         this.menuService.addItems(this.subjects, 'subjects');
       })
       .catch((error) => {
-        let title: string = this.translate.instant('ERROR');
-        let message: string = this.translate.instant('DATABASE-ERROR');
+        const title: string = this.translate.instant('ERROR');
+        const message: string = this.translate.instant('DATABASE-ERROR');
 
         this.showToast('danger', title, message);
       });
@@ -126,8 +126,8 @@ export class ExperimentComponent implements OnInit {
         this.router.navigateByUrl('/home');
       })
       .then(() => {
-        let title: string = this.translate.instant('SUCCESS');
-        let message: string = this.translate.instant('EXPERIMENT-DELETED');
+        const title: string = this.translate.instant('SUCCESS');
+        const message: string = this.translate.instant('EXPERIMENT-DELETED');
 
         this.showToast('success', title, message);
       });
@@ -156,8 +156,8 @@ export class ExperimentComponent implements OnInit {
             )
             .then(() => this.current.save())
             .then(() => {
-              let title: string = this.translate.instant('SUCCESS');
-              let message: string = this.translate.instant('EXPERIMENT-SAVED');
+              const title: string = this.translate.instant('SUCCESS');
+              const message: string = this.translate.instant('EXPERIMENT-SAVED');
 
               this.showToast('success', title, message);
             })
@@ -181,8 +181,8 @@ export class ExperimentComponent implements OnInit {
         this.getExperiment();
       })
       .then(() => {
-        let title: string = this.translate.instant('SUCCESS');
-        let message: string = this.translate.instant('EXPERIMENT-SAVED');
+        const title: string = this.translate.instant('SUCCESS');
+        const message: string = this.translate.instant('EXPERIMENT-SAVED');
 
         this.showToast('success', title, message);
       });
@@ -210,8 +210,8 @@ export class ExperimentComponent implements OnInit {
         this.getExperiment();
       })
       .then(() => {
-        let title: string = this.translate.instant('SUCCESS');
-        let message: string = this.translate.instant('EXPERIMENT-SAVED');
+        const title: string = this.translate.instant('SUCCESS');
+        const message: string = this.translate.instant('EXPERIMENT-SAVED');
 
         this.showToast('success', title, message);
       });
@@ -234,8 +234,8 @@ export class ExperimentComponent implements OnInit {
               this.getExperiment();
             })
             .then(() => {
-              let title: string = this.translate.instant('SUCCESS');
-              let message: string = this.translate.instant('EXPERIMENT-SAVED');
+              const title: string = this.translate.instant('SUCCESS');
+              const message: string = this.translate.instant('EXPERIMENT-SAVED');
 
               this.showToast('success', title, message);
             })
