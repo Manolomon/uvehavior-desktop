@@ -14,6 +14,10 @@
   ],
   "main": "main.js",
   "private": true,
+  "snyk": true,
+  "engines": {
+    "node": ">=10.13.0"
+  },
   "scripts": {
     "ng": "ng",
     "start": "npm run postinstall:electron && npm-run-all -p ng:serve electron:serve",
@@ -35,7 +39,9 @@
     "postinstall": "ngcc && npm run postinstall:electron && npx electron-builder install-app-deps",
     "postinstall:electron": "node postinstall",
     "format:fix": "pretty-quick --staged",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "husky": {
     "hooks": {
@@ -89,15 +95,13 @@
     "pretty-quick": "2.0.1",
     "rxjs": "6.5.5",
     "spectron": "10.0.1",
+    "snyk": "^1.346.0",
     "ts-node": "8.9.1",
     "tslib": "1.11.1",
     "typescript": "3.8.3",
     "wait-on": "4.0.2",
     "webdriver-manager": "12.1.7",
     "zone.js": "0.10.3"
-  },
-  "engines": {
-    "node": ">=10.13.0"
   },
   "dependencies": {
     "@akveo/ng2-completer": "9.0.1",
