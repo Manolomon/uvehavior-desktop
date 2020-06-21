@@ -35,7 +35,9 @@
     "postinstall": "ngcc && npm run postinstall:electron && npx electron-builder install-app-deps",
     "postinstall:electron": "node postinstall",
     "format:fix": "pretty-quick --staged",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "husky": {
     "hooks": {
@@ -112,6 +114,8 @@
     "mat-video": "2.8.1",
     "ng2-smart-table": "1.6.0",
     "sqlite3": "4.2.0",
-    "typeorm": "0.2.25"
-  }
+    "typeorm": "0.2.25",
+    "snyk": "^1.346.0"
+  },
+  "snyk": true
 }
