@@ -49,7 +49,6 @@ export class GroupDialogComponent {
   source: LocalDataSource = new LocalDataSource();
 
   constructor(protected ref: NbDialogRef<GroupDialogComponent>) {
-    console.log(ref);
     this.groupForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(2)]),
       description: new FormControl('', [Validators.maxLength(2500)]),
@@ -79,8 +78,6 @@ export class GroupDialogComponent {
         };
       });
     });
-
-    console.log(newGroup);
 
     this.ref.close(newGroup);
   }

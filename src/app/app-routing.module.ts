@@ -4,6 +4,7 @@ import { PageNotFoundComponent } from './shared/components';
 import { HomeRoutingModule } from './home/home-routing.module';
 import { ExperimentRoutingModule } from './experiment/experiment-routing.module';
 import { AnnotateRoutingModule } from './annotate/annotate-routing.module';
+import { EvaluationsRoutingModule } from './evaluations/evaluations-routing.module';
 
 const routes: Routes = [
   {
@@ -23,6 +24,7 @@ const routes: Routes = [
     HomeRoutingModule,
     ExperimentRoutingModule,
     AnnotateRoutingModule,
+    EvaluationsRoutingModule,
   ],
   exports: [RouterModule],
 })

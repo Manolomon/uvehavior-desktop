@@ -17,6 +17,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HomeModule } from './home/home.module';
 import { ExperimentModule } from './experiment/experiment.module';
 import { AnnotateModule } from './annotate/annotate.module';
+import { EvaluationsModule } from './evaluations/evaluations.module';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NebularModule } from './nebular.module';
@@ -40,6 +41,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     HomeModule,
     ExperimentModule,
     AnnotateModule,
+    EvaluationsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     NebularModule,

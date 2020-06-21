@@ -39,10 +39,11 @@ export class ExperimentComponent implements OnInit {
       .onItemClick()
       .pipe(filter(({ tag }) => tag === 'subjects'))
       .subscribe((event) => {
-        const selectedSubjectId = event.item.data.id;
-        console.log(selectedSubjectId);
+        const selectedSubjectId = event.item.data;
         this.showSubject(
-          this.current.groups.find((group) => group).subjects.find((subject) => subject.idSubject === selectedSubjectId)
+          this.current.groups
+            .find((group) => group.idGroup === selectedSubjectId.groupId)
+            .subjects.find((subject) => subject.idSubject === selectedSubjectId.id)
         );
       });
 
@@ -90,6 +91,7 @@ export class ExperimentComponent implements OnInit {
                 icon: 'user-circle',
                 data: {
                   id: subject.idSubject,
+                  groupId: element.idGroup,
                 },
               };
             }),
@@ -203,7 +205,6 @@ export class ExperimentComponent implements OnInit {
 
   saveGroup(newGroup: Group) {
     newGroup.experiment = this.current;
-    console.log(newGroup);
     this.databaseService.connection
       .then(() => newGroup.save())
       .then(() => {

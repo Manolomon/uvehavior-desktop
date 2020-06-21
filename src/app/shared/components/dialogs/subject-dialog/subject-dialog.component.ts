@@ -12,9 +12,7 @@ export class SubjectDialogComponent {
 
   constructor(protected ref: NbDialogRef<SubjectDialogComponent>) {}
 
-  ngOnInit() {
-    console.log(this.currentSubject);
-  }
+  ngOnInit() {}
 
   cancel() {
     this.ref.close();
