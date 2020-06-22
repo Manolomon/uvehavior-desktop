@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Renderer2, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-annotate',
