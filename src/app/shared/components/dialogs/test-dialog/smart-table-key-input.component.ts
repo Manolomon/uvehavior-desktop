@@ -9,6 +9,7 @@ import { DefaultEditor } from 'ng2-smart-table';
       [ngClass]="inputClass"
       type="text"
       maxlength="1"
+      oninput="this.value = this.value.toUpperCase()"
       placeholder="Key"
       class="form-control"
       [(ngModel)]="cell.newValue"
