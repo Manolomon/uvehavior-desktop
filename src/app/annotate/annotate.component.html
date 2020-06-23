@@ -1,8 +1,8 @@
 <div class="row">
-  <div class="col-md-8 mat-video">
+  <div class="col-md-7 mat-video">
     <mat-video #video [quality]="false" [keyboard]="false" [(time)]="currentTime" src="/assets/video.mp4"></mat-video>
   </div>
-  <div class="col-md-4">
+  <div class="col-md-5">
     <nb-card>
       <nb-card-header>Nebula</nb-card-header>
       <nb-card-body>
@@ -13,8 +13,7 @@
     <nb-card>
       <nb-card-header>Nebula</nb-card-header>
       <nb-card-body>
-        A nebula is an interstellar cloud of dust, hydrogen, helium and other ionized gases. Originally, nebula was a
-        name for any diffuse astronomical object, including galaxies beyond the Milky Way.
+        <ng2-smart-table [settings]="settings" [source]="log"></ng2-smart-table>
       </nb-card-body>
       <nb-card-footer>By Wikipedia</nb-card-footer>
     </nb-card>

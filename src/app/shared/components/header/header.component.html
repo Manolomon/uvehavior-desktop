@@ -1,10 +1,14 @@
 <div class="header-container">
   <div class="logo-container">
-    <a href="#" *ngIf="router.url !== '/home'" class="sidebar-toggle">
+    <a href="#" *ngIf="router.url !== '/home' && router.url.split('/')[1] !== 'annotate'" class="sidebar-toggle">
       <nb-icon icon="arrow-left"></nb-icon>
     </a>
+    <a href="#" *ngIf="router.url.split('/')[1] === 'annotate'" class="sidebar-toggle">
+      <nb-icon icon="times"></nb-icon>
+    </a>
     <a *ngIf="router.url === '/home'" class="logo">{{ 'TITLE' | translate }}</a>
-    <a *ngIf="router.url !== '/home'" class="logo">UVehavior</a>
+    <a *ngIf="router.url.split('/')[1] === 'experiment'" class="logo">{{ 'EXPERIMENT' | translate }}</a>
+    <a *ngIf="router.url.split('/')[1] === 'annotate'" class="logo">{{ 'ANALYSIS' | translate }}</a>
   </div>
 </div>
 

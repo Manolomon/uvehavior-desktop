@@ -27,7 +27,6 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
     NbToastrModule.forRoot(),
     NbDialogModule.forRoot(),
     NbMenuModule.forRoot(),
-    NbMenuModule.forRoot(),
   ],
   exports: [
     NbThemeModule,
