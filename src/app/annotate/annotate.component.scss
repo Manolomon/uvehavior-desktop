@@ -1,5 +1,49 @@
+$md-chip-height: 32px;
+$md-chip-color: #e0e0e0;
+
+.md-chip {
+  display: inline-block;
+  background: $md-chip-color;
+  padding: 0 12px;
+  border-radius: 32px;
+  font-size: 13px;
+
+  &.md-chip-hover:hover {
+    background: #ccc;
+  }
+}
+
 .mat-video {
   margin-bottom: 1rem;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  > * {
+    flex: 1;
+  }
+
+  &:first-child {
+    border-top: none;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  > * {
+    flex: 1;
+    font-weight: bold;
+  }
+
+  &:first-child {
+    border-top: none;
+  }
 }
 
 ::ng-deep .progress,

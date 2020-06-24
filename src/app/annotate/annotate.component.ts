@@ -15,46 +15,10 @@ export class AnnotateComponent implements OnInit {
   running: boolean = false;
   analysisStartTime: number;
 
-  log = [{ behaviorName: 'Swiming', key: '1', latency: 13.8, frequency: 4, totalTime: 13.12 }];
-
-  settings = {
-    hideSubHeader: true,
-    actions: {
-      columnTitle: '',
-      add: false,
-      edit: false,
-      delete: false,
-      custom: [],
-      position: 'left',
-    },
-    columns: {
-      behaviorName: {
-        title: 'Behavior',
-        type: 'string',
-        width: '10%',
-      },
-      key: {
-        title: 'Key',
-        type: 'string',
-        width: '10%',
-      },
-      latency: {
-        title: 'Latency',
-        type: 'number',
-        width: '10%',
-      },
-      frequency: {
-        title: 'Frequency',
-        type: 'number',
-        width: '10%',
-      },
-      totalTime: {
-        title: 'Time',
-        type: 'number',
-        width: '1rem',
-      },
-    },
-  };
+  log = [
+    { behaviorName: 'Swiming', key: '1', latency: 13.8, frequency: 4, totalTime: 13.12 },
+    { behaviorName: 'Resting', key: '2', latency: 20.8, frequency: 8, totalTime: 56.12 },
+  ];
 
   behaviors = [
     { name: 'no c', key: 'N' },

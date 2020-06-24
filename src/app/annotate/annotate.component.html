@@ -1,8 +1,8 @@
 <div class="row">
-  <div class="col-md-7 mat-video">
+  <div class="col-lg-8 col-md-12 mat-video">
     <mat-video #video [quality]="false" [keyboard]="false" [(time)]="currentTime" src="/assets/video.mp4"></mat-video>
   </div>
-  <div class="col-md-5">
+  <div class="col-lg-4">
     <nb-card>
       <nb-card-header>Nebula</nb-card-header>
       <nb-card-body>
@@ -11,11 +11,29 @@
       <nb-card-footer>{{ currentTime }}</nb-card-footer>
     </nb-card>
     <nb-card>
-      <nb-card-header>Nebula</nb-card-header>
+      <nb-card-header>{{ 'LOG' | translate }}</nb-card-header>
       <nb-card-body>
-        <ng2-smart-table [settings]="settings" [source]="log"></ng2-smart-table>
+        <nb-list>
+          <nb-list-item class="header">
+            <span>Behavior</span>
+            <span>Key</span>
+            <span>Latency</span>
+            <span>Freq</span>
+            <span>Time</span>
+          </nb-list-item>
+          <nb-list-item class="item" *ngFor="let item of log">
+            <span>{{ item.behaviorName }}</span>
+            <span>
+              <div class="md-chip">
+                {{ item.key }}
+              </div>
+            </span>
+            <span>{{ item.latency }}</span>
+            <span>{{ item.frequency }}</span>
+            <span>{{ item.totalTime }}</span>
+          </nb-list-item>
+        </nb-list>
       </nb-card-body>
-      <nb-card-footer>By Wikipedia</nb-card-footer>
     </nb-card>
   </div>
 </div>

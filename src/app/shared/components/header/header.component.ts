@@ -25,4 +25,8 @@ export class HeaderComponent implements OnInit {
       this.themeService.changeTheme('dark');
     }
   }
+
+  cancelClick() {
+    console.log('Rip');
+  }
 }

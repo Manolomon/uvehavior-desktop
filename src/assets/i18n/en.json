@@ -38,6 +38,9 @@
   "BEHAVIORS": "Behaviors",
   "SUBJECT-DETAILS": "Subject Details",
   "ANALYSIS": "Analysis",
+  "EVALUATE": "Evaluate",
+  "SEE-EVALUATIONS": "See Evaluations",
+  "LOG": "Log",
   "TOOLTIP": {
     "EDIT": "Edit",
     "EXPORT-EXPERIMENT": "Export data",
