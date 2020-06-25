@@ -1,4 +1,5 @@
 import { Component, OnInit, HostListener, ViewChild, Renderer2 } from '@angular/core';
+import { HeaderService } from '../core/services/header.service';
 
 @Component({
   selector: 'app-annotate',
@@ -11,43 +12,43 @@ import { Component, OnInit, HostListener, ViewChild, Renderer2 } from '@angular/
 export class AnnotateComponent implements OnInit {
   @ViewChild('video', { static: false }) matVideo: any;
   video: HTMLVideoElement;
-  currentTime: number;
+  analysisTime: number = 0;
   running: boolean = false;
-  analysisStartTime: number;
-
-  log = [
-    { behaviorName: 'Swiming', key: '1', latency: 13.8, frequency: 4, totalTime: 13.12 },
-    { behaviorName: 'Resting', key: '2', latency: 20.8, frequency: 8, totalTime: 56.12 },
-  ];
+  analysisStartTime: number = 0;
+  testDuration: number = 13;
 
   behaviors = [
-    { name: 'no c', key: 'N' },
-    { name: 'si c', key: 'S' },
+    { id: 1, behaviorName: 'Swimming', key: '1', latency: 13.8637, frequency: 4, totalTime: 13.1286235 },
+    { id: 2, behaviorName: 'Resting', key: '2', latency: 20.86237, frequency: 8, totalTime: 56.1298743 },
   ];
 
-  constructor(private renderer: Renderer2) {}
+  log = [];
 
-  ngOnInit() {}
+  constructor(private renderer: Renderer2, public headerService: HeaderService) {}
+
+  ngOnInit() {
+    this.headerService.headerEvent.subscribe(() => {
+      console.log('Rip');
+    });
+  }
 
   ngAfterViewInit(): void {
     this.video = this.matVideo.getVideoTag();
-    this.renderer.listen(this.video, 'ended', () => (this.running = false));
+    this.renderer.listen(this.video, 'ended', () => this.videoEnd());
     this.renderer.listen(this.video, 'timeupdate', () => this.updateTime());
+    this.renderer.listen(this.video, 'paused', () => this.toggleVideoPlayback());
   }
 
   @HostListener('document:keypress', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
-    if (this.running) {
+    if (this.analysisStartTime && this.running && this.analysisTime <= this.testDuration) {
       const pressedKey = event.key.toUpperCase();
-      const runningTime = this.video.currentTime - this.analysisStartTime;
-      console.log('1: ' + this.currentTime);
-      this.behaviors.some((item) => item.key === pressedKey && console.log(item.name + ': ' + runningTime));
+      this.behaviors.some((item) => item.key === pressedKey && this.logBehavior(item.id));
     }
   }
 
-  @HostListener('document:keyup.space', ['$event'])
+  @HostListener('document:keydown.space', ['$event'])
   pauseEvent(event: KeyboardEvent) {
-    console.log('Espacio');
     this.toggleVideoPlayback();
     event.preventDefault();
   }
@@ -56,6 +57,7 @@ export class AnnotateComponent implements OnInit {
     if (!this.video.paused) {
       this.running = true;
       this.analysisStartTime = this.video.currentTime;
+      console.log('Analysis started');
     }
   }
 
@@ -70,6 +72,20 @@ export class AnnotateComponent implements OnInit {
   }
 
   updateTime() {
-    this.currentTime = this.video.currentTime;
+    this.analysisTime = this.video.currentTime - this.analysisStartTime;
+  }
+
+  videoEnd() {
+    this.running = false;
+  }
+
+  logBehavior(behaviorId) {
+    var actual = this.behaviors.find((item) => item.id === behaviorId);
+    actual.latency = this.analysisTime;
+    this.log.push({
+      behaviorId: behaviorId,
+      time: this.analysisTime,
+    });
+    console.log(this.log);
   }
 }

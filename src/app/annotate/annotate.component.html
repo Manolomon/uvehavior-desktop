@@ -1,36 +1,61 @@
 <div class="row">
   <div class="col-lg-8 col-md-12 mat-video">
-    <mat-video #video [quality]="false" [keyboard]="false" [(time)]="currentTime" src="/assets/video.mp4"></mat-video>
+    <mat-video #video [quality]="false" [keyboard]="false" src="/assets/video.mp4"></mat-video>
   </div>
   <div class="col-lg-4">
     <nb-card>
-      <nb-card-header>Nebula</nb-card-header>
+      <nb-card-header>
+        {{ 'ANALYSIS' | translate }}
+        <button
+          nbButton
+          status="primary"
+          class="setting"
+          (click)="clickButton()"
+          [disabled]="analysisStartTime !== 0 && analysisTime > 0"
+        >
+          {{ 'START' | translate }}
+        </button>
+      </nb-card-header>
       <nb-card-body>
-        <button nbButton status="primary" (click)="clickButton()">Test</button>
+        <div class="analysis-info">
+          <b>{{ 'TESTS' | translate }}:</b> Test
+          <br />
+          <b>{{ 'TEST-DURATION' | translate }}:</b> Test
+          <br />
+          <b>{{ 'SUBJECTS' | translate }}:</b> Test
+          <br />
+          <b>{{ 'GROUP' | translate }}:</b> Test
+          <br />
+          <b>{{ 'VIDEO' | translate }}:</b> Test
+          <div class="analysis-progress">
+            <b>Progress: </b>
+            <nb-progress-bar
+              [value]="analysisStartTime !== 0 ? (analysisTime * 100) / testDuration : 0"
+              status="primary"
+            ></nb-progress-bar>
+          </div>
+        </div>
       </nb-card-body>
-      <nb-card-footer>{{ currentTime }}</nb-card-footer>
     </nb-card>
     <nb-card>
       <nb-card-header>{{ 'LOG' | translate }}</nb-card-header>
       <nb-card-body>
         <nb-list>
           <nb-list-item class="header">
-            <span>Behavior</span>
             <span>Key</span>
             <span>Latency</span>
             <span>Freq</span>
             <span>Time</span>
           </nb-list-item>
-          <nb-list-item class="item" *ngFor="let item of log">
-            <span>{{ item.behaviorName }}</span>
+          <nb-list-item class="item" *ngFor="let item of behaviors">
             <span>
               <div class="md-chip">
                 {{ item.key }}
               </div>
             </span>
-            <span>{{ item.latency }}</span>
-            <span>{{ item.frequency }}</span>
-            <span>{{ item.totalTime }}</span>
+            <span>{{ item.latency | number: '1.2-2' }}</span>
+            <span>{{ item.frequency | number: '1.2-2' }}</span>
+            <span>{{ item.totalTime | number: '1.2-2' }}</span>
           </nb-list-item>
         </nb-list>
       </nb-card-body>

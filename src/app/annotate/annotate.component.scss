@@ -1,34 +1,53 @@
-$md-chip-height: 32px;
-$md-chip-color: #e0e0e0;
+@import '../../themes.scss';
 
-.md-chip {
-  display: inline-block;
-  background: $md-chip-color;
-  padding: 0 12px;
-  border-radius: 32px;
-  font-size: 13px;
+@include nb-install-component {
+  overflow: auto;
 
-  &.md-chip-hover:hover {
-    background: #ccc;
+  .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    > * {
+      flex: 1;
+    }
+
+    &:first-child {
+      border-top: none;
+    }
   }
+
+  .md-chip {
+    display: inline-block;
+    background: nb-theme(color-primary-500);
+    padding: 0 12px;
+    border-radius: 32px;
+    font-size: 13px;
+
+    color: white;
+  }
+}
+
+.setting {
+  float: right;
+}
+
+.analysis-info {
+  line-height: 1.5rem;
+}
+
+.analysis-progress {
+  display: flex;
+  align-items: center;
+}
+
+nb-progress-bar {
+  flex: 1;
+  margin-left: 1rem;
 }
 
 .mat-video {
   margin-bottom: 1rem;
-}
-
-.item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  > * {
-    flex: 1;
-  }
-
-  &:first-child {
-    border-top: none;
-  }
 }
 
 .header {
