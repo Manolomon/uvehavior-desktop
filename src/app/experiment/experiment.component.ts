@@ -244,10 +244,20 @@ export class ExperimentComponent implements OnInit {
   }
 
   showSubject(subject) {
-    this.dialogService.open(SubjectDialogComponent, {
-      context: {
-        currentSubject: subject,
-      },
-    });
+    this.dialogService
+      .open(SubjectDialogComponent, {
+        context: {
+          currentSubject: subject,
+        },
+      })
+      .onClose.subscribe((evaluations) => {
+        if (!evaluations.cancel) {
+          if (evaluations.evaluations) {
+            this.router.navigate(['/evaluations']);
+          } else {
+            this.router.navigate(['/annotate']);
+          }
+        }
+      });
   }
 }

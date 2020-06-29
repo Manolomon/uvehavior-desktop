@@ -15,8 +15,10 @@ export class SubjectDialogComponent {
   ngOnInit() {}
 
   cancel() {
-    this.ref.close();
+    this.ref.close({ cancel: true });
   }
 
-  submitTest() {}
+  goToEvaluations(evaluations) {
+    this.ref.close({ cancel: false, evaluations: evaluations });
+  }
 }

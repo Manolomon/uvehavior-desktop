@@ -2,10 +2,10 @@
   <nb-card-header>{{ 'SUBJECT-DETAILS' | translate }}</nb-card-header>
   <nb-card-body>
     <p>{{ currentSubject.name }}</p>
-    <button nbButton status="basic" (click)="goToEvaluations(true)">{{ 'SEE-EVALUATIONS' | translate }}</button>
+    <button nbButton status="basic" (click)="cancel()">{{ 'SEE-EVALUATIONS' | translate }}</button>
   </nb-card-body>
   <nb-card-footer>
     <button class="cancel" nbButton status="basic" (click)="cancel()">{{ 'CANCEL' | translate }}</button>
-    <button nbButton status="primary" (click)="goToEvaluations(false)">{{ 'EVALUATE' | translate }}</button>
+    <button nbButton status="primary" (click)="cancel()">{{ 'EVALUATE' | translate }}</button>
   </nb-card-footer>
 </nb-card>

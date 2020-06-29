@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-lg-8 col-md-12 mat-video">
-    <mat-video #video [quality]="false" [keyboard]="false" src="/assets/video.mp4"></mat-video>
+    <mat-video #video [quality]="false" [keyboard]="false" src="/assets/Media1-3.MP4"></mat-video>
   </div>
   <div class="col-lg-4">
     <nb-card>
@@ -8,25 +8,35 @@
         {{ 'ANALYSIS' | translate }}
         <button
           nbButton
+          ghost
+          status="danger"
+          class="setting"
+          (click)="clickButton()"
+          [disabled]="analysisTime < testDuration"
+        >
+          <nb-icon icon="stopwatch"></nb-icon>
+        </button>
+        <button
+          nbButton
           status="primary"
           class="setting"
           (click)="clickButton()"
-          [disabled]="analysisStartTime !== 0 && analysisTime > 0"
+          [disabled]="analysisTime > 0 && analysisStartTime !== 0"
         >
-          {{ 'START' | translate }}
+          <nb-icon icon="clipboard-check"></nb-icon>
         </button>
       </nb-card-header>
       <nb-card-body>
         <div class="analysis-info">
-          <b>{{ 'TESTS' | translate }}:</b> Test
+          <b>{{ 'TESTS' | translate }}:</b> Forced Swimming Test
           <br />
-          <b>{{ 'TEST-DURATION' | translate }}:</b> Test
+          <b>{{ 'TEST-DURATION' | translate }}:</b> 300
           <br />
-          <b>{{ 'SUBJECTS' | translate }}:</b> Test
+          <b>{{ 'SUBJECT' | translate }}:</b> Subject 1
           <br />
-          <b>{{ 'GROUP' | translate }}:</b> Test
+          <b>{{ 'GROUP' | translate }}:</b> DZP
           <br />
-          <b>{{ 'VIDEO' | translate }}:</b> Test
+          <b>{{ 'VIDEO' | translate }}:</b> dzp_1.mp4
           <div class="analysis-progress">
             <b>Progress: </b>
             <nb-progress-bar
@@ -43,7 +53,7 @@
         <nb-list>
           <nb-list-item class="header">
             <span>Key</span>
-            <span>Latency</span>
+            <span>Lat</span>
             <span>Freq</span>
             <span>Time</span>
           </nb-list-item>

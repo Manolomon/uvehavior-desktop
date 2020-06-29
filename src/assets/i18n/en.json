@@ -42,6 +42,9 @@
   "SEE-EVALUATIONS": "See Evaluations",
   "START": "Start",
   "LOG": "Log",
+  "GROUP": "Group",
+  "VIDEO": "Video",
+  "SUBJECT": "Subject",
   "TOOLTIP": {
     "EDIT": "Edit",
     "EXPORT-EXPERIMENT": "Export data",

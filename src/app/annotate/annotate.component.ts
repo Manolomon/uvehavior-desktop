@@ -1,5 +1,9 @@
 import { Component, OnInit, HostListener, ViewChild, Renderer2 } from '@angular/core';
 import { HeaderService } from '../core/services/header.service';
+import { TranslateService } from '@ngx-translate/core';
+import { NbDialogService } from '@nebular/theme';
+import { ConfirmationDialogComponent } from '../shared/components/dialogs/confirmation-dialog/confirmation-dialog.component';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-annotate',
@@ -12,10 +16,10 @@ import { HeaderService } from '../core/services/header.service';
 export class AnnotateComponent implements OnInit {
   @ViewChild('video', { static: false }) matVideo: any;
   video: HTMLVideoElement;
-  analysisTime: number = 0;
-  running: boolean = false;
-  analysisStartTime: number = 0;
-  testDuration: number = 13;
+  analysisTime = 0;
+  running = false;
+  analysisStartTime = 0;
+  testDuration = 300;
 
   behaviors = [
     { id: 1, behaviorName: 'Swimming', key: '1', latency: 13.8637, frequency: 4, totalTime: 13.1286235 },
@@ -24,11 +28,17 @@ export class AnnotateComponent implements OnInit {
 
   log = [];
 
-  constructor(private renderer: Renderer2, public headerService: HeaderService) {}
+  constructor(
+    private renderer: Renderer2,
+    public headerService: HeaderService,
+    private translate: TranslateService,
+    private dialogService: NbDialogService,
+    private location: Location
+  ) {}
 
   ngOnInit() {
     this.headerService.headerEvent.subscribe(() => {
-      console.log('Rip');
+      this.exitEvaluation();
     });
   }
 
@@ -87,5 +97,23 @@ export class AnnotateComponent implements OnInit {
       time: this.analysisTime,
     });
     console.log(this.log);
+  }
+
+  exitEvaluation() {
+    const title: string = this.translate.instant('DELETE-EXPERIMENT');
+    const body: string = this.translate.instant('DELETE-EXPERIMENT-CONFIRMATION');
+
+    this.dialogService
+      .open(ConfirmationDialogComponent, {
+        context: {
+          title: title,
+          body: body,
+        },
+      })
+      .onClose.subscribe((result) => {
+        if (result) {
+          this.location.back();
+        }
+      });
   }
 }

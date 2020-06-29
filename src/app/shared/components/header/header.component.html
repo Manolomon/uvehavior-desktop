@@ -1,7 +1,7 @@
 <div class="header-container">
   <div class="logo-container">
-    <a href="#" *ngIf="router.url !== '/home' && router.url.split('/')[1] !== 'annotate'" class="sidebar-toggle">
-      <nb-icon icon="arrow-left"></nb-icon>
+    <a ghost *ngIf="router.url !== '/home' && router.url.split('/')[1] !== 'annotate'" class="btn sidebar-toggle">
+      <nb-icon icon="arrow-left" (click)="back()"></nb-icon>
     </a>
     <a ghost *ngIf="router.url.split('/')[1] === 'annotate'" class="btn sidebar-toggle">
       <nb-icon icon="times" (click)="cancelClick()"></nb-icon>
