@@ -1,11 +1,61 @@
 <nb-card>
-  <nb-card-header>{{ 'SUBJECT-DETAILS' | translate }}</nb-card-header>
+  <nb-card-header>{{ 'ANALYSIS' | translate }}</nb-card-header>
   <nb-card-body>
-    <p>{{ currentSubject.name }}</p>
-    <button nbButton status="basic" (click)="cancel()">{{ 'SEE-EVALUATIONS' | translate }}</button>
+    <nb-stepper #stepper linear>
+      <nb-step [stepControl]="analysisForm" label="{{ 'SETUP-ANALYSIS' | translate }}">
+        <form id="analysisForm" novalidate [formGroup]="analysisForm">
+          <nb-select placeholder="Subject" formControlName="subject" fullWidth>
+            <nb-option-group *ngFor="let group of currentExperiment.groups" title="{{ group.name }}">
+              <nb-option *ngFor="let subject of group.subjects" [value]="subject">{{ subject.name }}</nb-option>
+            </nb-option-group>
+          </nb-select>
+
+          <nb-select placeholder="Test" formControlName="test" fullWidth>
+            <nb-option *ngFor="let test of currentExperiment.tests" [value]="test">{{ test.name }}</nb-option>
+          </nb-select>
+
+          <button nbButton nbStepperNext>{{ 'NEXT' | translate }}</button>
+        </form>
+      </nb-step>
+      <nb-step label="{{ 'SETUP-BEHAVIORS' | translate }}">
+        <form id="behaviorsForm" novalidate [formGroup]="behaviorsForm">
+          <nb-select multiple placeholder="Behaviors" formControlName="behaviors" fullWidth>
+            <nb-option
+              *ngFor="let behavior of this.analysisForm.get('test').value.behaviors"
+              [value]="behavior"
+              [disabled]="overrideBehavior(behavior)"
+              >{{ behavior.name }}</nb-option
+            >
+          </nb-select>
+          <div class="two-column">
+            <button nbButton (click)="fileInput.click()">{{ 'SELECT-VIDEO' | translate }}</button>
+            <p>{{ filename }}</p>
+            <input
+              formControlName="videoFile"
+              hidden
+              name="videoFile"
+              #fileInput
+              nbInput
+              type="file"
+              accept=".mp4"
+              (change)="fileSelected($event)"
+              placeholder="{{ 'TEST-DURATION' | translate }}"
+            />
+          </div>
+        </form>
+      </nb-step>
+    </nb-stepper>
   </nb-card-body>
   <nb-card-footer>
-    <button class="cancel" nbButton status="basic" (click)="cancel()">{{ 'CANCEL' | translate }}</button>
-    <button nbButton status="primary" (click)="cancel()">{{ 'EVALUATE' | translate }}</button>
+    <button type="button" class="cancel" nbButton status="basic" (click)="cancel()">{{ 'CANCEL' | translate }}</button>
+    <button
+      nbButton
+      type="button"
+      (click)="startAnnotation()"
+      status="primary"
+      [disabled]="!analysisForm.valid || !behaviorsForm.valid"
+    >
+      {{ 'SUBMIT' | translate }}
+    </button>
   </nb-card-footer>
 </nb-card>

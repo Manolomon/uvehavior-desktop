@@ -45,6 +45,11 @@
   "GROUP": "Group",
   "VIDEO": "Video",
   "SUBJECT": "Subject",
+  "NEXT": "Next",
+  "TEST": "Test",
+  "SETUP-ANALYSIS": "Setup Analysis",
+  "SETUP-BEHAVIORS": "Setup Behavior",
+  "SELECT-VIDEO": "Select Video",
   "TOOLTIP": {
     "EDIT": "Edit",
     "EXPORT-EXPERIMENT": "Export data",

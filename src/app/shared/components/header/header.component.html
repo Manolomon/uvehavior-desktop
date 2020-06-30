@@ -1,11 +1,23 @@
 <div class="header-container">
   <div class="logo-container">
-    <a ghost *ngIf="router.url !== '/home' && router.url.split('/')[1] !== 'annotate'" class="btn sidebar-toggle">
-      <nb-icon icon="arrow-left" (click)="back()"></nb-icon>
-    </a>
-    <a ghost *ngIf="router.url.split('/')[1] === 'annotate'" class="btn sidebar-toggle">
-      <nb-icon icon="times" (click)="cancelClick()"></nb-icon>
-    </a>
+    <button
+      nbButton
+      ghost
+      (click)="back()"
+      *ngIf="router.url !== '/home' && router.url.split('/')[1] !== 'annotate'"
+      class="sidebar-toggle"
+    >
+      <nb-icon icon="arrow-left"></nb-icon>
+    </button>
+    <button
+      nbButton
+      ghost
+      *ngIf="router.url.split('/')[1] === 'annotate'"
+      class="sidebar-toggle"
+      (click)="cancelClick()"
+    >
+      <nb-icon icon="times"></nb-icon>
+    </button>
     <a *ngIf="router.url === '/home'" class="logo">{{ 'TITLE' | translate }}</a>
     <a *ngIf="router.url.split('/')[1] === 'experiment'" class="logo">{{ 'EXPERIMENT' | translate }}</a>
     <a *ngIf="router.url.split('/')[1] === 'annotate'" class="logo">{{ 'ANALYSIS' | translate }}</a>

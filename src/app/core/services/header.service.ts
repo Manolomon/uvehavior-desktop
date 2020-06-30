@@ -7,8 +7,6 @@ import { Subject } from 'rxjs';
 export class HeaderService {
   headerEvent: Subject<Event> = new Subject<Event>();
 
-  currentBack = '#';
-
   emitHeaderBind() {
     this.headerEvent.next();
   }

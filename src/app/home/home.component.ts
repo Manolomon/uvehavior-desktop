@@ -5,6 +5,7 @@ import { NbToastrService, NbComponentStatus, NbMenuService, NbMenuItem } from '@
 import { TranslateService } from '@ngx-translate/core';
 import { NbDialogService } from '@nebular/theme';
 import { ExperimentDialogComponent } from '../shared/components/dialogs/experiment-dialog/experiment-dialog.component';
+import { ExperimentService } from '../core/services/experiment.service';
 
 @Component({
   selector: 'app-home',
@@ -19,13 +20,15 @@ export class HomeComponent implements OnInit {
     private toastrService: NbToastrService,
     private translate: TranslateService,
     private menuService: NbMenuService,
-    private dialogService: NbDialogService
+    private dialogService: NbDialogService,
+    private experimentService: ExperimentService
   ) {
     //this.addExperiment();
   }
 
   ngOnInit() {
     this.getExperiments();
+    this.experimentService.currentExperiment = null;
   }
 
   showToast(status: NbComponentStatus, title, content) {

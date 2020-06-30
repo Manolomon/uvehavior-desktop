@@ -10,6 +10,7 @@ import { GroupDialogComponent } from '../shared/components/dialogs/group-dialog/
 import { filter } from 'rxjs/operators';
 import { ConfirmationDialogComponent } from '../shared/components/dialogs/confirmation-dialog/confirmation-dialog.component';
 import { SubjectDialogComponent } from '../shared/components/dialogs/subject-dialog/subject-dialog.component';
+import { ExperimentService } from '../core/services/experiment.service';
 
 @Component({
   selector: 'app-experiment',
@@ -33,7 +34,8 @@ export class ExperimentComponent implements OnInit {
     private toastrService: NbToastrService,
     private translate: TranslateService,
     private menuService: NbMenuService,
-    private dialogService: NbDialogService
+    private dialogService: NbDialogService,
+    private experimentService: ExperimentService
   ) {
     this.menuService
       .onItemClick()
@@ -66,6 +68,7 @@ export class ExperimentComponent implements OnInit {
       .getExperimentData(this.idExperiment)
       .then((experiment) => {
         this.current = experiment;
+        this.experimentService.currentExperiment = this.current;
         this.name = this.current.name;
         this.description = this.current.description;
 

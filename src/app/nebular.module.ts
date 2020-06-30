@@ -16,6 +16,7 @@ import {
   NbTooltipModule,
   NbStepperModule,
   NbProgressBarModule,
+  NbSelectModule,
 } from '@nebular/theme';
 
 import { Ng2SmartTableModule } from 'ng2-smart-table';
@@ -46,6 +47,7 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
     NbStepperModule,
     Ng2SmartTableModule,
     NbProgressBarModule,
+    NbSelectModule,
   ],
 })
 export class NebularModule {}

@@ -20,6 +20,7 @@ function createWindow(): BrowserWindow {
     webPreferences: {
       nodeIntegration: true,
       allowRunningInsecureContent: false,
+      webSecurity: false,
     },
   });
 

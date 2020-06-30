@@ -4,6 +4,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { NbDialogService } from '@nebular/theme';
 import { ConfirmationDialogComponent } from '../shared/components/dialogs/confirmation-dialog/confirmation-dialog.component';
 import { Location } from '@angular/common';
+import { AnnotateDialogComponent } from '../shared/components/dialogs/annotate-dialog/annotate-dialog.component';
+import { Subject, Test, Behavior } from '../core/models/entities';
+import * as path from 'path';
 
 @Component({
   selector: 'app-annotate',
@@ -16,12 +19,19 @@ import { Location } from '@angular/common';
 export class AnnotateComponent implements OnInit {
   @ViewChild('video', { static: false }) matVideo: any;
   video: HTMLVideoElement;
+
+  subject: Subject;
+  test: Test;
+  duration = 0;
+  behaviors: Behavior[];
+  videoPath: string;
+  videoName: string;
+
   analysisTime = 0;
   running = false;
   analysisStartTime = 0;
-  testDuration = 300;
 
-  behaviors = [
+  behaviorsEvaluation = [
     { id: 1, behaviorName: 'Swimming', key: '1', latency: 13.8637, frequency: 4, totalTime: 13.1286235 },
     { id: 2, behaviorName: 'Resting', key: '2', latency: 20.86237, frequency: 8, totalTime: 56.1298743 },
   ];
@@ -43,6 +53,21 @@ export class AnnotateComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
+    this.dialogService
+      .open(AnnotateDialogComponent, { closeOnBackdropClick: false, closeOnEsc: false })
+      .onClose.subscribe((result) => {
+        console.log(result);
+        this.subject = result.subject;
+        this.test = result.test;
+        this.behaviors = result.behaviors;
+        this.videoPath = 'https://s3.amazonaws.com/swarm-website-uploads/SWARM+MAIN+VIDEO.mp4';
+        this.videoName = result.filename;
+      });
+    console.log(this.videoPath);
+    this.loadVideo();
+  }
+
+  loadVideo() {
     this.video = this.matVideo.getVideoTag();
     this.renderer.listen(this.video, 'ended', () => this.videoEnd());
     this.renderer.listen(this.video, 'timeupdate', () => this.updateTime());
@@ -51,9 +76,10 @@ export class AnnotateComponent implements OnInit {
 
   @HostListener('document:keypress', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
-    if (this.analysisStartTime && this.running && this.analysisTime <= this.testDuration) {
+    console.log(this.videoPath);
+    if (this.analysisStartTime && this.running && this.analysisTime <= this.duration) {
       const pressedKey = event.key.toUpperCase();
-      this.behaviors.some((item) => item.key === pressedKey && this.logBehavior(item.id));
+      this.behaviorsEvaluation.some((item) => item.key === pressedKey && this.logBehavior(item.id));
     }
   }
 
@@ -90,7 +116,7 @@ export class AnnotateComponent implements OnInit {
   }
 
   logBehavior(behaviorId) {
-    var actual = this.behaviors.find((item) => item.id === behaviorId);
+    var actual = this.behaviorsEvaluation.find((item) => item.id === behaviorId);
     actual.latency = this.analysisTime;
     this.log.push({
       behaviorId: behaviorId,

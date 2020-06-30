@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-lg-8 col-md-12 mat-video">
-    <mat-video #video [quality]="false" [keyboard]="false" src="/assets/Media1-3.MP4"></mat-video>
+    <mat-video #video [quality]="false" [keyboard]="false" [src]="this.videoPath"> </mat-video>
   </div>
   <div class="col-lg-4">
     <nb-card>
@@ -12,7 +12,7 @@
           status="danger"
           class="setting"
           (click)="clickButton()"
-          [disabled]="analysisTime < testDuration"
+          [disabled]="analysisTime < duration"
         >
           <nb-icon icon="stopwatch"></nb-icon>
         </button>
@@ -28,19 +28,19 @@
       </nb-card-header>
       <nb-card-body>
         <div class="analysis-info">
-          <b>{{ 'TESTS' | translate }}:</b> Forced Swimming Test
+          <b>{{ 'TEST' | translate }}:</b> {{ test ? test.name : '' }}
           <br />
-          <b>{{ 'TEST-DURATION' | translate }}:</b> 300
-          <br />
-          <b>{{ 'SUBJECT' | translate }}:</b> Subject 1
+          <b>{{ 'TEST-DURATION' | translate }}:</b> {{ test ? test.duration : '' }}
           <br />
           <b>{{ 'GROUP' | translate }}:</b> DZP
           <br />
-          <b>{{ 'VIDEO' | translate }}:</b> dzp_1.mp4
+          <b>{{ 'SUBJECT' | translate }}:</b> {{ subject ? subject.name : '' }}
+          <br />
+          <b>{{ 'VIDEO' | translate }}:</b> {{ videoName ? videoName : '' }}
           <div class="analysis-progress">
             <b>Progress: </b>
             <nb-progress-bar
-              [value]="analysisStartTime !== 0 ? (analysisTime * 100) / testDuration : 0"
+              [value]="analysisStartTime !== 0 ? (analysisTime * 100) / duration : 0"
               status="primary"
             ></nb-progress-bar>
           </div>
@@ -57,7 +57,7 @@
             <span>Freq</span>
             <span>Time</span>
           </nb-list-item>
-          <nb-list-item class="item" *ngFor="let item of behaviors">
+          <nb-list-item class="item" *ngFor="let item of behaviorsEvaluation">
             <span>
               <div class="md-chip">
                 {{ item.key }}

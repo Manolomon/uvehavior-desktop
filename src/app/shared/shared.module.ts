@@ -12,6 +12,7 @@ import { TestDialogComponent } from './components/dialogs/test-dialog/test-dialo
 import { GroupDialogComponent } from './components/dialogs/group-dialog/group-dialog.component';
 import { SubjectDialogComponent } from './components/dialogs/subject-dialog/subject-dialog.component';
 import { ConfirmationDialogComponent } from './components/dialogs/confirmation-dialog/confirmation-dialog.component';
+import { AnnotateDialogComponent } from './components/dialogs/annotate-dialog/annotate-dialog.component';
 import { SmartTableKeyInputComponent } from './components/dialogs/test-dialog/smart-table-key-input.component';
 
 @NgModule({
@@ -25,6 +26,7 @@ import { SmartTableKeyInputComponent } from './components/dialogs/test-dialog/sm
     GroupDialogComponent,
     SubjectDialogComponent,
     ConfirmationDialogComponent,
+    AnnotateDialogComponent,
     SmartTableKeyInputComponent,
   ],
   imports: [CommonModule, TranslateModule, FormsModule, ReactiveFormsModule, NebularModule],
