@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NbDialogRef } from '@nebular/theme';
 import { LocalDataSource } from 'ng2-smart-table';
@@ -11,7 +11,7 @@ import { SmartTableKeyInputComponent } from './smart-table-key-input.component';
   styleUrls: ['./test-dialog.component.scss'],
   entryComponents: [SmartTableKeyInputComponent],
 })
-export class TestDialogComponent {
+export class TestDialogComponent implements OnInit {
   settings = {
     add: {
       addButtonContent: '<i class="fas fa-plus fa-xs"></i>',

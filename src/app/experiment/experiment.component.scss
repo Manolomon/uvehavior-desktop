@@ -1,9 +1,92 @@
+@import '../../themes.scss';
+
+@import '~@nebular/theme/styles/globals';
+
+@include nb-install-component() {
+  nb-list {
+    background-color: nb-theme(menu-background-color);
+    margin-top: 0;
+    padding-top: 0;
+
+    nb-list-item {
+      cursor: nb-theme(menu-item-hover-cursor);
+
+      &:first-child {
+        border-top: none;
+      }
+
+      span {
+        vertical-align: middle;
+        color: nb-theme(menu-text-color);
+        border-radius: nb-theme(menu-item-border-radius);
+      }
+
+      span.active {
+        background-color: nb-theme(menu-item-active-background-color);
+        color: nb-theme(menu-item-active-text-color);
+
+        nb-icon {
+          padding-right: 0.5rem;
+          color: nb-theme(menu-item-icon-active-color);
+        }
+      }
+
+      span:hover {
+        background-color: nb-theme(menu-item-hover-background-color);
+        color: nb-theme(menu-item-hover-text-color);
+        cursor: nb-theme(menu-item-hover-cursor);
+
+        nb-icon {
+          color: nb-theme(menu-item-icon-hover-color);
+        }
+      }
+    }
+
+    nb-list-item:hover {
+      span {
+        background-color: nb-theme(menu-item-hover-background-color);
+        color: nb-theme(menu-item-hover-text-color);
+        cursor: nb-theme(menu-item-hover-cursor);
+
+        nb-icon {
+          color: nb-theme(menu-item-icon-hover-color);
+        }
+      }
+    }
+  }
+
+  nb-accordion {
+    padding: 0;
+    margin: 0;
+
+    box-shadow: none;
+    border-radius: none;
+  }
+}
+
 nb-card-body {
   overflow: visible;
   padding-top: 0;
 
   > * {
     margin-top: 1rem;
+  }
+}
+
+.group-subject {
+  &:first-child {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }
+}
+
+.group-title {
+  vertical-align: middle;
+
+  nb-icon {
+    padding-right: 0.5rem;
+    margin-right: 1rem;
   }
 }
 

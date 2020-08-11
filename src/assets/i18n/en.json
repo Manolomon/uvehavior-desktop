@@ -50,6 +50,11 @@
   "SETUP-ANALYSIS": "Setup Analysis",
   "SETUP-BEHAVIORS": "Setup Behavior",
   "SELECT-VIDEO": "Select Video",
+  "ANALYSIS-FINISHED": "Analysis Finished",
+  "EXIT": "Exit",
+  "NEW-ANALYSIS": "New analysis",
+  "DOWNLOAD": "Download",
+  "CLOSE": "Close",
   "TOOLTIP": {
     "EDIT": "Edit",
     "EXPORT-EXPERIMENT": "Export data",

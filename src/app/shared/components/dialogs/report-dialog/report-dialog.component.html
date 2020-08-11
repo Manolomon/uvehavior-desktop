@@ -1,0 +1,31 @@
+<nb-card>
+  <nb-card-header>{{ 'ANALYSIS-FINISHED' | translate }}</nb-card-header>
+  <nb-card-body>
+    <nb-list>
+      <nb-list-item class="header">
+        <span>Name</span>
+        <span>Key</span>
+        <span>Lat</span>
+        <span>Freq </span>
+        <span>Time</span>
+      </nb-list-item>
+      <nb-list-item class="item" *ngFor="let item of behaviorsEvaluated">
+        <span>{{ item.behavior.name }}</span>
+        <span>
+          <div class="md-chip">
+            {{ item.behavior.associatedKey }}
+          </div>
+        </span>
+        <span>{{ item.latency | number: '1.2-2' }}</span>
+        <span>{{ item.frequency | number: '1.0' }}</span>
+        <span>{{ item.totalTime | number: '1.2-2' }}</span>
+      </nb-list-item>
+    </nb-list>
+  </nb-card-body>
+  <nb-card-footer>
+    <button type="button" class="cancel" nbButton status="basic" (click)="exit()">{{ 'EXIT' | translate }}</button>
+    <button nbButton type="button" (click)="restart()" status="primary">
+      {{ 'NEW-ANALYSIS' | translate }}
+    </button>
+  </nb-card-footer>
+</nb-card>

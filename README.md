@@ -8,12 +8,17 @@
   <a href="https://lgtm.com/projects/g/Manolomon/uvehavior">
     <img alt="LGTM Grade" src="https://img.shields.io/lgtm/grade/javascript/github/Manolomon/uvehavior?logo=lgtm"/>
   </a>
+  <a href="https://travis-ci.org/github/Manolomon/uvehavior/builds">
+    <img alt="Travis (.org)" src="https://img.shields.io/travis/Manolomon/Uvehavior?logo=travis-ci&logoColor=white">
+  </a>
   <br>
   <a href="https://app.fossa.com/api/projects/git%2Bgithub.com%2FManolomon%2Fuvehavior.svg?type=shield">
     <img alt="undefined" src="https://app.fossa.com/api/projects/git%2Bgithub.com%2FManolomon%2Fuvehavior.svg?type=shield"/>
   </a>
   <img alt="Snyk Vulnerabilities for GitHub Repo" src="https://img.shields.io/snyk/vulnerabilities/github/Manolomon/uvehavior?color=4c45a9&logo=snyk">
   <img alt="undefined" src="https://img.shields.io/github/languages/code-size/Manolomon/uvehavior?logo=github"/>
+  </br>
+  <img alt="GitHub release (latest SemVer including pre-releases)" src="https://img.shields.io/github/v/release/Manolomon/Uvehavior?include_prereleases">
 </p>
 
 ## License

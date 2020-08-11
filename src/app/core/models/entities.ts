@@ -111,6 +111,9 @@ export class Evaluation extends BaseEntity {
   @CreateDateColumn()
   evaluationDate: Timestamp;
 
+  @Column()
+  finishingTime: number;
+
   @ManyToOne(() => Subject, (subject) => subject.evaluations, {
     onDelete: 'CASCADE',
   })

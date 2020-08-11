@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-lg-8 col-md-12 mat-video">
-    <mat-video #video [quality]="false" [keyboard]="false" [src]="this.videoPath"> </mat-video>
+    <mat-video #video [quality]="false" [keyboard]="false" [ngClass]="ngclass" [src]="src"> </mat-video>
   </div>
   <div class="col-lg-4">
     <nb-card>
@@ -11,8 +11,8 @@
           ghost
           status="danger"
           class="setting"
-          (click)="clickButton()"
-          [disabled]="analysisTime < duration"
+          (click)="finishAnalysis()"
+          [disabled]="analysisStartTime == undefined"
         >
           <nb-icon icon="stopwatch"></nb-icon>
         </button>
@@ -20,8 +20,8 @@
           nbButton
           status="primary"
           class="setting"
-          (click)="clickButton()"
-          [disabled]="analysisTime > 0 && analysisStartTime !== 0"
+          (click)="startAnalysis()"
+          [disabled]="analysisTime > 0 && analysisStartTime != undefined"
         >
           <nb-icon icon="clipboard-check"></nb-icon>
         </button>
@@ -32,7 +32,7 @@
           <br />
           <b>{{ 'TEST-DURATION' | translate }}:</b> {{ test ? test.duration : '' }}
           <br />
-          <b>{{ 'GROUP' | translate }}:</b> DZP
+          <b>{{ 'GROUP' | translate }}:</b> {{ groupName ? groupName : '' }}
           <br />
           <b>{{ 'SUBJECT' | translate }}:</b> {{ subject ? subject.name : '' }}
           <br />
@@ -40,7 +40,7 @@
           <div class="analysis-progress">
             <b>Progress: </b>
             <nb-progress-bar
-              [value]="analysisStartTime !== 0 ? (analysisTime * 100) / duration : 0"
+              [value]="analysisStartTime != undefined ? (analysisTime * 100) / duration : 0"
               status="primary"
             ></nb-progress-bar>
           </div>
@@ -60,11 +60,11 @@
           <nb-list-item class="item" *ngFor="let item of behaviorsEvaluation">
             <span>
               <div class="md-chip">
-                {{ item.key }}
+                {{ item.behavior.associatedKey }}
               </div>
             </span>
             <span>{{ item.latency | number: '1.2-2' }}</span>
-            <span>{{ item.frequency | number: '1.2-2' }}</span>
+            <span>{{ item.frequency | number: '1.0' }}</span>
             <span>{{ item.totalTime | number: '1.2-2' }}</span>
           </nb-list-item>
         </nb-list>

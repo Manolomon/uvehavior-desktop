@@ -22,9 +22,7 @@ export class HomeComponent implements OnInit {
     private menuService: NbMenuService,
     private dialogService: NbDialogService,
     private experimentService: ExperimentService
-  ) {
-    //this.addExperiment();
-  }
+  ) {}
 
   ngOnInit() {
     this.getExperiments();

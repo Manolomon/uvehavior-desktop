@@ -1,1 +1,29 @@
-<p>evaluations works!</p>
+<nb-card>
+  <nb-card-header>
+    Evaluations
+  </nb-card-header>
+  <nb-accordion *ngIf="subject != undefined">
+    <nb-accordion-item *ngFor="let evaluation of subject.evaluations">
+      <nb-accordion-item-header>
+        <span class="group-title"
+          ><nb-icon icon="clipboard-check"></nb-icon>{{ evaluation.evaluationDate | date: 'fullDate' }}</span
+        >
+      </nb-accordion-item-header>
+      <nb-accordion-item-body>
+        <div class="analysis-info">
+          <b>Analysis Time (in seconds):</b> {{ evaluation.finishingTime }}
+          <br />
+          <b>{{ 'VIDEO' | translate }}:</b> {{ evaluation.videoPath }}
+          <br />
+          <b>Behaviors Evaluated:</b>
+          <br />
+          <ul>
+            <li *ngFor="let item of evaluation.behaviorEvaluations">{{ item.behavior.name }}</li>
+          </ul>
+        </div>
+        <button nbButton status="basic" class="cancel" (click)="downloadLog(evaluation)">Download Log</button>
+        <button nbButton status="primary" (click)="plotEvaluation(evaluation)">Plot</button>
+      </nb-accordion-item-body>
+    </nb-accordion-item>
+  </nb-accordion>
+</nb-card>

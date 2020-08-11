@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { NbMenuItem, NbToastrService, NbMenuService, NbDialogService, NbComponentStatus } from '@nebular/theme';
+import { NbToastrService, NbDialogService, NbComponentStatus } from '@nebular/theme';
 import { DatabaseService } from '../core/services/database/database.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Experiment, Group } from '../core/models/entities';
 import { ExperimentDialogComponent } from '../shared/components/dialogs/experiment-dialog/experiment-dialog.component';
 import { TestDialogComponent } from '../shared/components/dialogs/test-dialog/test-dialog.component';
 import { GroupDialogComponent } from '../shared/components/dialogs/group-dialog/group-dialog.component';
-import { filter } from 'rxjs/operators';
 import { ConfirmationDialogComponent } from '../shared/components/dialogs/confirmation-dialog/confirmation-dialog.component';
 import { SubjectDialogComponent } from '../shared/components/dialogs/subject-dialog/subject-dialog.component';
 import { ExperimentService } from '../core/services/experiment.service';
+import { CSVExportService } from '../core/services/csv-export.service';
 
 @Component({
   selector: 'app-experiment',
@@ -23,40 +23,16 @@ export class ExperimentComponent implements OnInit {
   name: string;
   description: string;
 
-  tests: NbMenuItem[] = [];
-
-  subjects: NbMenuItem[] = [];
-
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private databaseService: DatabaseService,
     private toastrService: NbToastrService,
     private translate: TranslateService,
-    private menuService: NbMenuService,
     private dialogService: NbDialogService,
-    private experimentService: ExperimentService
-  ) {
-    this.menuService
-      .onItemClick()
-      .pipe(filter(({ tag }) => tag === 'subjects'))
-      .subscribe((event) => {
-        const selectedSubjectId = event.item.data;
-        this.showSubject(
-          this.current.groups
-            .find((group) => group.idGroup === selectedSubjectId.groupId)
-            .subjects.find((subject) => subject.idSubject === selectedSubjectId.id)
-        );
-      });
-
-    this.menuService
-      .onItemClick()
-      .pipe(filter(({ tag }) => tag === 'tests'))
-      .subscribe((event) => {
-        const selectedTestId = event.item.data.id;
-        this.editTest(this.current.tests.find((x) => x.idTest === selectedTestId));
-      });
-  }
+    private experimentService: ExperimentService,
+    private csvExport: CSVExportService
+  ) {}
 
   ngOnInit(): void {
     this.idExperiment = this.route.snapshot.params['id'];
@@ -71,36 +47,6 @@ export class ExperimentComponent implements OnInit {
         this.experimentService.currentExperiment = this.current;
         this.name = this.current.name;
         this.description = this.current.description;
-
-        this.tests = experiment.tests.map((element) => {
-          return {
-            title: element.name,
-            icon: 'flask',
-            data: {
-              id: element.idTest,
-            },
-          };
-        });
-        this.menuService.addItems(this.tests, 'tests');
-
-        this.subjects = experiment.groups.map((element) => {
-          return {
-            title: element.name,
-            icon: 'users',
-
-            children: element.subjects.map((subject) => {
-              return {
-                title: subject.name,
-                icon: 'user-circle',
-                data: {
-                  id: subject.idSubject,
-                  groupId: element.idGroup,
-                },
-              };
-            }),
-          };
-        });
-        this.menuService.addItems(this.subjects, 'subjects');
       })
       .catch((error) => {
         const title: string = this.translate.instant('ERROR');
@@ -136,6 +82,22 @@ export class ExperimentComponent implements OnInit {
 
         this.showToast('success', title, message);
       });
+  }
+
+  exportExperiment() {
+    this.databaseService.downloadExperiment(this.current.idExperiment).then((experiment) => {
+      this.csvExport.generateCSV(experiment, 'experiment', [
+        'group',
+        'subject',
+        'test',
+        'date',
+        'analysisTime',
+        'behavior',
+        'latency',
+        'frequency',
+        'totalTime',
+      ]);
+    });
   }
 
   showToast(status: NbComponentStatus, title, content) {
@@ -204,8 +166,6 @@ export class ExperimentComponent implements OnInit {
       .onClose.subscribe((newGroup) => newGroup && this.saveGroup(newGroup));
   }
 
-  addSubject() {}
-
   saveGroup(newGroup: Group) {
     newGroup.experiment = this.current;
     this.databaseService.connection
@@ -256,9 +216,9 @@ export class ExperimentComponent implements OnInit {
       .onClose.subscribe((evaluations) => {
         if (!evaluations.cancel) {
           if (evaluations.evaluations) {
-            this.router.navigate(['/evaluations']);
+            this.router.navigate([`evaluations/${subject.idSubject}`]);
           } else {
-            this.router.navigate(['/annotate']);
+            this.router.navigate(['annotate']);
           }
         }
       });

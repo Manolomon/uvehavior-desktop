@@ -23,7 +23,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NebularModule } from './nebular.module';
 
 import { AppComponent } from './app.component';
-
+import * as echarts from 'echarts';
+import { NgxEchartsModule } from 'ngx-echarts';
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -45,6 +46,9 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     AppRoutingModule,
     BrowserAnimationsModule,
     NebularModule,
+    NgxEchartsModule.forRoot({
+      echarts,
+    }),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

@@ -5,7 +5,9 @@ import { Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class HeaderService {
-  headerEvent: Subject<Event> = new Subject<Event>();
+  headerEvent: Subject<string> = new Subject<string>();
+
+  constructor() {}
 
   emitHeaderBind() {
     this.headerEvent.next();

@@ -1,0 +1,11 @@
+<nb-card>
+  <nb-card-header>Evaluation Timing</nb-card-header>
+  <nb-card-body>
+    <div class="chart">
+      <div echarts [options]="options" class="echart"></div>
+    </div>
+  </nb-card-body>
+  <nb-card-footer>
+    <button class="cancel" nbButton status="basic" (click)="cancel()">{{ 'CLOSE' | translate }}</button>
+  </nb-card-footer>
+</nb-card>

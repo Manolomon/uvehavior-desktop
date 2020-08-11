@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { NbDialogRef } from '@nebular/theme';
-import { Subject, Test, Group, Experiment, Behavior } from '../../../../core/models/entities';
+import { Experiment, Behavior } from '../../../../core/models/entities';
 import { ExperimentService } from '../../../../core/services/experiment.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { truncate } from 'fs';
 
 @Component({
   selector: 'app-annotate-dialog',
@@ -44,10 +43,12 @@ export class AnnotateDialogComponent {
   }
 
   startAnnotation() {
+    let selected = this.analysisForm.get('subject').value;
     this.ref.close({
-      subject: this.analysisForm.get('subject').value,
+      subject: selected.subject,
+      groupName: selected.groupName,
       test: this.analysisForm.get('test').value,
-      behavior: this.behaviorsForm.get('behaviors').value,
+      behaviors: this.behaviorsForm.get('behaviors').value,
       filePath: this.filePath,
       filename: this.filename,
     });
