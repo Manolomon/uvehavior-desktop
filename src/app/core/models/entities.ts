@@ -106,6 +106,9 @@ export class Evaluation extends BaseEntity {
   idEvaluation: number;
 
   @Column()
+  name: string | null;
+
+  @Column()
   videoPath: string;
 
   @CreateDateColumn()

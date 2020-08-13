@@ -1,0 +1,11 @@
+<!--- <button mat-icon-button (click)="toggleVideoPlayback()">
+  <mat-icon *ngIf="!play">play_arrow</mat-icon>
+  <mat-icon *ngIf="play">pause</mat-icon>
+</button>
+--->
+<button *ngIf="!play" (click)="toggleVideoPlayback()" shape="round" nbButton>
+  <nb-icon icon="play" class="icon-setting"></nb-icon>
+</button>
+<button *ngIf="play" (click)="toggleVideoPlayback()" shape="round" nbButton>
+  <nb-icon icon="pause" class="icon-setting"></nb-icon>
+</button>

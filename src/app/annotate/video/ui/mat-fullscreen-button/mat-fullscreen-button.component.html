@@ -1,0 +1,6 @@
+<button *ngIf="!fullscreen" [disabled]="!canFullscreen" (click)="toggleFullscreen()" shape="round" nbButton>
+  <nb-icon icon="expand" class="icon-setting"></nb-icon>
+</button>
+<button *ngIf="fullscreen" [disabled]="!canFullscreen" (click)="toggleFullscreen()" shape="round" nbButton>
+  <nb-icon icon="compress" class="icon-setting"></nb-icon>
+</button>

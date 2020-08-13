@@ -1,0 +1,36 @@
+<div #player class="videoplayer" [ngClass]="getOverlayClass('show-mouse', 'hide-mouse')">
+  <video
+    #video
+    class="video"
+    [attr.autoplay]="autoplay ? true : null"
+    [preload]="preload ? 'auto' : 'metadata'"
+    [attr.poster]="poster ? poster : null"
+    [attr.loop]="loop ? loop : null"
+    [attr.playsinline]="playsinline ? true : null"
+  >
+    <ng-content select="source"></ng-content>
+    <ng-content select="track"></ng-content>
+    This browser does not support HTML5 video.
+  </video>
+
+  <div class="controls" *ngIf="videoLoaded" [ngClass]="getOverlayClass('visible', 'hidden')">
+    <div class="menu">
+      <div class="left">
+        <mat-play-button (playChanged)="playing = $event" [video]="video" [keyboard]="keyboard"> </mat-play-button>
+        <mat-play-button (playChanged)="playing = $event" [video]="video" [keyboard]="keyboard"> </mat-play-button>
+
+        <mat-time-control [video]="video"></mat-time-control>
+      </div>
+
+      <div class="right">
+        <mat-fullscreen-button
+          *ngIf="fullscreen"
+          (fullscreenChanged)="isFullscreen = $event"
+          [player]="player"
+          [keyboard]="keyboard"
+        >
+        </mat-fullscreen-button>
+      </div>
+    </div>
+  </div>
+</div>

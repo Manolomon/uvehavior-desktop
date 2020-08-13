@@ -4,7 +4,7 @@ import { AnnotateComponent } from './annotate.component';
 import { NebularModule } from '../nebular.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatVideoModule } from 'mat-video';
+import { MatVideoModule } from './video/video.module';
 import { HeaderService } from '../core/services/header.service';
 import { CSVExportService } from '../core/services/csv-export.service';
 
