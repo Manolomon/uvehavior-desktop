@@ -11,7 +11,6 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import { ThemePalette } from '@angular/material/core';
 
 import { EventHandler } from './interfaces/event-handler.interface';
 import { EventService } from './services/event.service';
@@ -36,7 +35,6 @@ export class MatVideoComponent implements AfterViewInit, OnChanges, OnDestroy {
   @Input() showFrameByFrame = false;
   @Input() fps = 29.97;
   @Input() download = false;
-  @Input() color: ThemePalette = 'primary';
   @Input() spinner = 'spin';
   @Input() poster: string = null;
   @Input() keyboard = true;

@@ -109,7 +109,6 @@
     "@angular/animations": "9.1.11",
     "@angular/cdk": "9.2.4",
     "@angular/core": "9.1.11",
-    "@angular/material": "9.2.4",
     "@fortawesome/fontawesome-free": "5.13.1",
     "@nebular/theme": "5.1.0",
     "angular-resize-event": "1.2.2",
