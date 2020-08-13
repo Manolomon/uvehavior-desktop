@@ -53,16 +53,21 @@
         <nb-list>
           <nb-list-item class="header">
             <span>Key</span>
+            <span>Name</span>
             <span>Lat</span>
             <span>Freq</span>
             <span>Time</span>
           </nb-list-item>
           <nb-list-item class="item" *ngFor="let item of behaviorsEvaluation">
-            <span>
+            <span *ngIf="this.current == item">
               <div class="md-chip">
                 {{ item.behavior.associatedKey }}
               </div>
             </span>
+            <span *ngIf="this.current != item">
+              {{ item.behavior.associatedKey }}
+            </span>
+            <span>{{ item.behavior.name }}</span>
             <span>{{ item.latency | number: '1.2-2' }}</span>
             <span>{{ item.frequency | number: '1.0' }}</span>
             <span>{{ item.totalTime | number: '1.2-2' }}</span>

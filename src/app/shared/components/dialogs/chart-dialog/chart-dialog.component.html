@@ -2,7 +2,9 @@
   <nb-card-header>Evaluation Timing</nb-card-header>
   <nb-card-body>
     <div class="chart">
-      <div echarts [options]="options" class="echart"></div>
+      <div class="chart-container" (resized)="onResized($event)">
+        <div echarts [options]="options" class="echart"></div>
+      </div>
     </div>
   </nb-card-body>
   <nb-card-footer>

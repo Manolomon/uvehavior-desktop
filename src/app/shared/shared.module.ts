@@ -17,6 +17,7 @@ import { ReportDialogComponent } from './components/dialogs/report-dialog/report
 import { ChartDialogComponent } from './components/dialogs/chart-dialog/chart-dialog.component';
 import { SmartTableKeyInputComponent } from './components/dialogs/test-dialog/smart-table-key-input.component';
 import { NgxEchartsModule } from 'ngx-echarts';
+import { AngularResizedEventModule } from 'angular-resize-event';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,15 @@ import { NgxEchartsModule } from 'ngx-echarts';
     ChartDialogComponent,
     SmartTableKeyInputComponent,
   ],
-  imports: [CommonModule, TranslateModule, FormsModule, ReactiveFormsModule, NebularModule, NgxEchartsModule],
+  imports: [
+    CommonModule,
+    TranslateModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NebularModule,
+    NgxEchartsModule,
+    AngularResizedEventModule,
+  ],
   exports: [TranslateModule, WebviewDirective, FormsModule, FooterComponent, HeaderComponent],
 })
 export class SharedModule {}

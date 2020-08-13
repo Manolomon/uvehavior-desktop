@@ -58,6 +58,7 @@ export class EvaluationsComponent implements OnInit {
       console.log(log);
       this.dialogService
         .open(ChartDialogComponent, {
+          closeOnBackdropClick: false,
           context: {
             testDuration: evaluation.finishingTime,
             log: log,
