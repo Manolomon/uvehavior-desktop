@@ -13,11 +13,11 @@ import { EventHandler } from '../../interfaces/event-handler.interface';
 import { EventService } from '../../services/event.service';
 
 @Component({
-  selector: 'mat-play-button',
-  templateUrl: './mat-play-button.component.html',
-  styleUrls: ['./mat-play-button.component.scss'],
+  selector: 'play-button',
+  templateUrl: './play-button.component.html',
+  styleUrls: ['./play-button.component.scss'],
 })
-export class MatPlayButtonComponent implements AfterViewInit, OnDestroy {
+export class PlayButtonComponent implements AfterViewInit, OnDestroy {
   @Input() video: HTMLVideoElement;
 
   @Input() play = false;

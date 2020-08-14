@@ -35,7 +35,6 @@ export class AnnotateComponent implements OnInit {
   duration = 0;
   behaviors: Behavior[];
   src = './assets/videoPlaceholder.mp4';
-  ngclass = 'mat-video-responsive';
   videoName: string;
 
   evaluation: Evaluation;

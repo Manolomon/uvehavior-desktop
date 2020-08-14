@@ -16,11 +16,11 @@ import { EventHandler } from './interfaces/event-handler.interface';
 import { EventService } from './services/event.service';
 
 @Component({
-  selector: 'mat-video',
-  templateUrl: './video.component.html',
-  styleUrls: ['./video.component.scss', './styles/icons.scss'],
+  selector: 'video-player',
+  templateUrl: './video-player.component.html',
+  styleUrls: ['./video-player.component.scss', './styles/icons.scss'],
 })
-export class MatVideoComponent implements AfterViewInit, OnChanges, OnDestroy {
+export class VideoPlayerComponent implements AfterViewInit, OnChanges, OnDestroy {
   @ViewChild('player', { static: false }) private player: ElementRef;
   @ViewChild('video', { static: false }) private video: ElementRef;
 

@@ -12,7 +12,7 @@
             </nb-option-group>
           </nb-select>
 
-          <nb-select placeholder="Test" formControlName="test" fullWidth>
+          <nb-select placeholder="Test" formControlName="test" (selectedChange)="restartBehaviors()" fullWidth>
             <nb-option *ngFor="let test of currentExperiment.tests" [value]="test">{{ test.name }}</nb-option>
           </nb-select>
 
@@ -21,7 +21,7 @@
       </nb-step>
       <nb-step label="{{ 'SETUP-BEHAVIORS' | translate }}">
         <form id="behaviorsForm" novalidate [formGroup]="behaviorsForm">
-          <nb-select multiple placeholder="Behaviors" formControlName="behaviors" fullWidth>
+          <nb-select #behaviors multiple placeholder="Behaviors" formControlName="behaviors" fullWidth>
             <nb-option
               *ngFor="let behavior of this.analysisForm.get('test').value.behaviors"
               [value]="behavior"

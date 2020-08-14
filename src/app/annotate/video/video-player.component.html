@@ -16,20 +16,20 @@
   <div class="controls" *ngIf="videoLoaded" [ngClass]="getOverlayClass('visible', 'hidden')">
     <div class="menu">
       <div class="left">
-        <mat-play-button (playChanged)="playing = $event" [video]="video" [keyboard]="keyboard"> </mat-play-button>
-        <mat-play-button (playChanged)="playing = $event" [video]="video" [keyboard]="keyboard"> </mat-play-button>
+        <play-button (playChanged)="playing = $event" [video]="video" [keyboard]="keyboard"> </play-button>
+        <play-button (playChanged)="playing = $event" [video]="video" [keyboard]="keyboard"> </play-button>
 
-        <mat-time-control [video]="video"></mat-time-control>
+        <time-control [video]="video"></time-control>
       </div>
 
       <div class="right">
-        <mat-fullscreen-button
+        <fullscreen-button
           *ngIf="fullscreen"
           (fullscreenChanged)="isFullscreen = $event"
           [player]="player"
           [keyboard]="keyboard"
         >
-        </mat-fullscreen-button>
+        </fullscreen-button>
       </div>
     </div>
   </div>

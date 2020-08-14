@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
 import { NbDialogRef } from '@nebular/theme';
 import { Experiment, Behavior } from '../../../../core/models/entities';
@@ -17,6 +17,7 @@ export class AnnotateDialogComponent {
   selectedBehaviors: Behavior[];
   filename: string;
   filePath: string;
+  @ViewChild('behaviors') behaviors: any;
 
   constructor(
     protected ref: NbDialogRef<AnnotateDialogComponent>,
@@ -65,5 +66,8 @@ export class AnnotateDialogComponent {
       .value.some(
         (selected) => selected.associatedKey == behavior.associatedKey && selected.idBehavior != behavior.idBehavior
       );
+  }
+  restartBehaviors() {
+    this.behaviors.reset();
   }
 }

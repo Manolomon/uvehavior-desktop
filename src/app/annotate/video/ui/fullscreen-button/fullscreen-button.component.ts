@@ -4,11 +4,11 @@ import { EventService } from '../../services/event.service';
 import { FullscreenService } from '../../services/fullscreen.service';
 
 @Component({
-  selector: 'mat-fullscreen-button',
-  templateUrl: './mat-fullscreen-button.component.html',
-  styleUrls: ['./mat-fullscreen-button.component.scss'],
+  selector: 'fullscreen-button',
+  templateUrl: './fullscreen-button.component.html',
+  styleUrls: ['./fullscreen-button.component.scss'],
 })
-export class MatFullscreenButtonComponent implements OnInit {
+export class FullscreenButtonComponent implements OnInit {
   canFullscreen = false;
 
   @Input() player: HTMLVideoElement;
