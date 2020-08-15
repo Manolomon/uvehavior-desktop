@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { FullscreenControls } from '../interfaces/fullscreen-controls.interface';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class FullscreenService {
   private fnMap: string[][] = [
     // Object keys

@@ -12,6 +12,7 @@ import { FullscreenButtonComponent } from './ui/fullscreen-button/fullscreen-but
 import { PlayButtonComponent } from './ui/play-button/play-button.component';
 import { TimeControlComponent } from './ui/time-control/time-control.component';
 import { RestartButtonComponent } from './ui/restart-button/restart-button.component';
+import { AnalysisButtonComponent } from './ui/analysis-button/analysis-button.component';
 
 import { VideoPlayerComponent } from './video-player.component';
 
@@ -22,6 +23,7 @@ import { VideoPlayerComponent } from './video-player.component';
     PlayButtonComponent,
     FullscreenButtonComponent,
     RestartButtonComponent,
+    AnalysisButtonComponent,
     TimeControlComponent,
     VideoSourceDirective,
     VideoTrackDirective,

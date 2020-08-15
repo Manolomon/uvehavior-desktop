@@ -1,7 +1,9 @@
 import { Injectable, Renderer2 } from '@angular/core';
 import { EventHandler } from '../interfaces/event-handler.interface';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class EventService {
   constructor() {}
 

@@ -3,9 +3,9 @@
   <mat-icon *ngIf="play">pause</mat-icon>
 </button>
 --->
-<button *ngIf="!play" (click)="toggleVideoPlayback()" shape="round" nbButton>
+<button nbTooltip="Toggle Play" *ngIf="!play" (click)="toggleVideoPlayback()" shape="round" nbButton>
   <nb-icon icon="play" class="icon-setting"></nb-icon>
 </button>
-<button *ngIf="play" (click)="toggleVideoPlayback()" shape="round" nbButton>
+<button nbTooltip="Toggle Play" *ngIf="play" (click)="toggleVideoPlayback()" shape="round" nbButton>
   <nb-icon icon="pause" class="icon-setting"></nb-icon>
 </button>
