@@ -17,8 +17,7 @@
     <div class="menu">
       <div class="left">
         <play-button (playChanged)="playing = $event" [video]="video" [keyboard]="keyboard"> </play-button>
-        <play-button (playChanged)="playing = $event" [video]="video" [keyboard]="keyboard"> </play-button>
-
+        <restart-button (onRestart)="restart()"></restart-button>
         <time-control [video]="video"></time-control>
       </div>
 

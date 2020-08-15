@@ -209,4 +209,9 @@ export class VideoPlayerComponent implements AfterViewInit, OnChanges, OnDestroy
 
     this.video.nativeElement.muted = this.muted;
   }
+
+  restart() {
+    const video: HTMLVideoElement = this.getVideoTag();
+    video.currentTime = 0;
+  }
 }

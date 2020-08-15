@@ -65,20 +65,3 @@ nb-progress-bar {
     border-top: none;
   }
 }
-
-::ng-deep .progress,
-::ng-deep .volume-control {
-  display: none !important;
-}
-
-::ng-deep .playtime {
-  margin-left: 1rem !important;
-}
-
-::ng-deep .left {
-  margin-left: 0.3rem !important;
-}
-
-::ng-deep .right {
-  margin-right: 0.3rem !important;
-}
