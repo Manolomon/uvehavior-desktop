@@ -49,7 +49,15 @@ export class EvaluationsComponent implements OnInit {
 
   downloadLog(evaluation) {
     this.databaseService.downloadTimelog(evaluation.idEvaluation).then((log) => {
-      this.csvExport.generateCSV(log, 'behaviorLog', ['behavior', 'timeLog']);
+      let calculatedLog = log.map((element, index) => {
+        return {
+          behavior: element.behavior,
+          timeLog: element.timeLog,
+          duration: index < log.length - 1 ? log[index + 1].timeLog - element.timeLog : null,
+        };
+      });
+      console.log(calculatedLog);
+      this.csvExport.generateCSV(calculatedLog, 'behaviorLog', ['behavior', 'timeLog', 'duration']);
     });
   }
 
