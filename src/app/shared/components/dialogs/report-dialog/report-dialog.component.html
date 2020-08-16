@@ -1,26 +1,36 @@
 <nb-card>
   <nb-card-header>{{ 'ANALYSIS-FINISHED' | translate }}</nb-card-header>
   <nb-card-body>
-    <nb-list>
-      <nb-list-item class="header">
-        <span>Name</span>
-        <span>Key</span>
-        <span>Lat</span>
-        <span>Freq </span>
-        <span>Time</span>
-      </nb-list-item>
-      <nb-list-item class="item" *ngFor="let item of behaviorsEvaluated">
-        <span>{{ item.behavior.name }}</span>
-        <span>
-          <div class="md-chip">
-            {{ item.behavior.associatedKey }}
-          </div>
-        </span>
-        <span>{{ item.latency | number: '1.2-2' }}</span>
-        <span>{{ item.frequency | number: '1.0' }}</span>
-        <span>{{ item.totalTime | number: '1.2-2' }}</span>
-      </nb-list-item>
-    </nb-list>
+    <table style="width: 100%;">
+      <tr>
+        <th>Key</th>
+        <th>Name</th>
+        <th>Latency</th>
+        <th>Frequency</th>
+        <th>Time</th>
+      </tr>
+      <tr *ngFor="let item of behaviorsEvaluated">
+        <td>
+          <span>
+            <div class="md-chip">
+              {{ item.behavior.associatedKey }}
+            </div>
+          </span>
+        </td>
+        <td>
+          <span>{{ item.behavior.name }}</span>
+        </td>
+        <td>
+          <span>{{ item.latency | number: '1.2-2' }}</span>
+        </td>
+        <td>
+          <span>{{ item.frequency | number: '1.0' }}</span>
+        </td>
+        <td>
+          <span>{{ item.totalTime | number: '1.2-2' }}</span>
+        </td>
+      </tr>
+    </table>
   </nb-card-body>
   <nb-card-footer>
     <button type="button" class="cancel" nbButton status="basic" (click)="exit()">{{ 'EXIT' | translate }}</button>

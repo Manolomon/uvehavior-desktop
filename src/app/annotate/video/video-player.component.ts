@@ -25,24 +25,17 @@ export class VideoPlayerComponent implements AfterViewInit, OnChanges, OnDestroy
   @ViewChild('video', { static: false }) private video: ElementRef;
 
   @Input() src: string | MediaStream | MediaSource | Blob = null;
-  @Input() title: string = null;
-  @Input() autoplay = false;
-  @Input() preload = true;
-  @Input() loop = false;
-  @Input() quality = true;
   @Input() fullscreen = true;
-  @Input() playsinline = false;
-  @Input() showFrameByFrame = false;
-  @Input() fps = 29.97;
-  @Input() download = false;
-  @Input() spinner = 'spin';
-  @Input() poster: string = null;
   @Input() keyboard = true;
   @Input() overlay: boolean = null;
-  @Input() muted = false;
-  @Output() mutedChange = new EventEmitter<boolean>();
-
   @Output() timeChange = new EventEmitter<number>();
+
+  @Output() stop = new EventEmitter<boolean>();
+
+  @Input() analysisProgress = 0;
+  @Input() analysisTime: any;
+  @Input() analysisStartTime: any;
+  @Output() startAnalysis = new EventEmitter<boolean>();
 
   @Input()
   get time() {
@@ -92,12 +85,6 @@ export class VideoPlayerComponent implements AfterViewInit, OnChanges, OnDestroy
     this.events = [
       {
         element: this.video.nativeElement,
-        name: 'loadstart',
-        callback: (event) => (this.videoLoaded = false),
-        dispose: null,
-      },
-      {
-        element: this.video.nativeElement,
         name: 'loadedmetadata',
         callback: (event) => this.evLoadedMetadata(event),
         dispose: null,
@@ -106,12 +93,6 @@ export class VideoPlayerComponent implements AfterViewInit, OnChanges, OnDestroy
         element: this.video.nativeElement,
         name: 'error',
         callback: (event) => console.error('Unhandled Video Error', event),
-        dispose: null,
-      },
-      {
-        element: this.video.nativeElement,
-        name: 'contextmenu',
-        callback: (event) => event.preventDefault(),
         dispose: null,
       },
       {
@@ -206,8 +187,6 @@ export class VideoPlayerComponent implements AfterViewInit, OnChanges, OnDestroy
       this.srcObjectURL = URL.createObjectURL(src);
       this.video.nativeElement.src = this.srcObjectURL;
     }
-
-    this.video.nativeElement.muted = this.muted;
   }
 
   restart() {

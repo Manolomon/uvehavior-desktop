@@ -13,6 +13,8 @@ import { PlayButtonComponent } from './ui/play-button/play-button.component';
 import { TimeControlComponent } from './ui/time-control/time-control.component';
 import { RestartButtonComponent } from './ui/restart-button/restart-button.component';
 import { AnalysisButtonComponent } from './ui/analysis-button/analysis-button.component';
+import { StopButtonComponent } from './ui/stop-button/stop-button.component';
+import { ProgressBarComponent } from './ui/progress-bar/progress-bar.component';
 
 import { VideoPlayerComponent } from './video-player.component';
 
@@ -24,7 +26,9 @@ import { VideoPlayerComponent } from './video-player.component';
     FullscreenButtonComponent,
     RestartButtonComponent,
     AnalysisButtonComponent,
+    StopButtonComponent,
     TimeControlComponent,
+    ProgressBarComponent,
     VideoSourceDirective,
     VideoTrackDirective,
   ],

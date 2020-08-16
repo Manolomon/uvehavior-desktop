@@ -1,30 +1,20 @@
 <div class="row">
   <div class="col-lg-8 col-md-12 video-player">
-    <video-player #video [quality]="false" [keyboard]="false" [src]="src"></video-player>
+    <video-player
+      #video
+      [keyboard]="false"
+      [src]="src"
+      [analysisStartTime]="analysisStartTime"
+      [analysisTime]="analysisTime"
+      [analysisProgress]="analysisStartTime != undefined ? (analysisTime * 100) / duration : 0"
+      (startAnalysis)="startAnalysis()"
+      (stop)="finishAnalysis()"
+    ></video-player>
   </div>
   <div class="col-lg-4">
     <nb-card>
       <nb-card-header>
         {{ 'ANALYSIS' | translate }}
-        <button
-          nbButton
-          ghost
-          status="danger"
-          class="setting"
-          (click)="finishAnalysis()"
-          [disabled]="analysisStartTime == undefined"
-        >
-          <nb-icon icon="stopwatch"></nb-icon>
-        </button>
-        <button
-          nbButton
-          status="primary"
-          class="setting"
-          (click)="startAnalysis()"
-          [disabled]="analysisTime > 0 && analysisStartTime != undefined"
-        >
-          <nb-icon icon="clipboard-check"></nb-icon>
-        </button>
       </nb-card-header>
       <nb-card-body>
         <div class="analysis-info">
@@ -37,42 +27,45 @@
           <b>{{ 'SUBJECT' | translate }}:</b> {{ subject ? subject.name : '' }}
           <br />
           <b>{{ 'VIDEO' | translate }}:</b> {{ videoName ? videoName : '' }}
-          <div class="analysis-progress">
-            <b>Progress: </b>
-            <nb-progress-bar
-              [value]="analysisStartTime != undefined ? (analysisTime * 100) / duration : 0"
-              status="primary"
-            ></nb-progress-bar>
-          </div>
         </div>
       </nb-card-body>
     </nb-card>
     <nb-card>
       <nb-card-header>{{ 'LOG' | translate }}</nb-card-header>
       <nb-card-body>
-        <nb-list>
-          <nb-list-item class="header">
-            <span>Key</span>
-            <span>Name</span>
-            <span>Lat</span>
-            <span>Freq</span>
-            <span>Time</span>
-          </nb-list-item>
-          <nb-list-item class="item" *ngFor="let item of behaviorsEvaluation">
-            <span *ngIf="this.current == item">
-              <div class="md-chip">
+        <table style="width: 100%;">
+          <tr>
+            <th>Key</th>
+            <th>Name</th>
+            <th>Latency</th>
+            <th>Frequency</th>
+            <th>Time</th>
+          </tr>
+          <tr *ngFor="let item of behaviorsEvaluation">
+            <td>
+              <span *ngIf="this.current == item">
+                <div class="md-chip">
+                  {{ item.behavior.associatedKey }}
+                </div>
+              </span>
+              <span *ngIf="this.current != item">
                 {{ item.behavior.associatedKey }}
-              </div>
-            </span>
-            <span *ngIf="this.current != item">
-              {{ item.behavior.associatedKey }}
-            </span>
-            <span>{{ item.behavior.name }}</span>
-            <span>{{ item.latency | number: '1.2-2' }}</span>
-            <span>{{ item.frequency | number: '1.0' }}</span>
-            <span>{{ item.totalTime | number: '1.2-2' }}</span>
-          </nb-list-item>
-        </nb-list>
+              </span>
+            </td>
+            <td>
+              <span>{{ item.behavior.name }}</span>
+            </td>
+            <td>
+              <span>{{ item.latency | number: '1.2-2' }}</span>
+            </td>
+            <td>
+              <span>{{ item.frequency | number: '1.0' }}</span>
+            </td>
+            <td>
+              <span>{{ item.totalTime | number: '1.2-2' }}</span>
+            </td>
+          </tr>
+        </table>
       </nb-card-body>
     </nb-card>
   </div>

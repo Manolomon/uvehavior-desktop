@@ -6,5 +6,5 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./analysis-button.component.scss'],
 })
 export class AnalysisButtonComponent {
-  @Output() onRestart = new EventEmitter<boolean>();
+  @Output() startAnalysis = new EventEmitter<boolean>();
 }

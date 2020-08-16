@@ -14,11 +14,20 @@
   </video>
 
   <div class="controls" *ngIf="videoLoaded" [ngClass]="getOverlayClass('visible', 'hidden')">
+    <div class="progress">
+      <progress-bar [analysisProgress]="analysisProgress"></progress-bar>
+    </div>
     <div class="menu">
       <div class="left">
         <play-button (playChanged)="playing = $event" [video]="video" [keyboard]="keyboard"> </play-button>
-        <restart-button (onRestart)="restart()"></restart-button>
-        <analysis-button></analysis-button>
+        <restart-button *ngIf="!(analysisTime > 0 && analysisStartTime != undefined)" (restart)="restart()">
+        </restart-button>
+        <analysis-button
+          *ngIf="!(analysisTime > 0 && analysisStartTime != undefined)"
+          (startAnalysis)="startAnalysis.emit()"
+        >
+        </analysis-button>
+        <stop-button *ngIf="analysisStartTime != undefined" (stop)="stop.emit()"></stop-button>
         <time-control [video]="video"></time-control>
       </div>
 

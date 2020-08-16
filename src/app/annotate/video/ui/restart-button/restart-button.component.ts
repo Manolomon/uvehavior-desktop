@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
 
 @Component({
   selector: 'restart-button',
@@ -6,9 +6,6 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./restart-button.component.scss'],
 })
 export class RestartButtonComponent {
-  @Output() onRestart = new EventEmitter<boolean>();
-
-  restart() {
-    this.onRestart.emit(true);
-  }
+  @Input() analysisStarted = false;
+  @Output() restart = new EventEmitter<boolean>();
 }
