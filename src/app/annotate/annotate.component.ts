@@ -9,6 +9,7 @@ import { Subject, Test, Behavior, BehaviorEvaluation, Evaluation, Annotation } f
 import * as path from 'path';
 import { DatabaseService } from '../core/services/database/database.service';
 import { ReportDialogComponent } from '../shared/components/dialogs/report-dialog/report-dialog.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-annotate',
@@ -49,13 +50,15 @@ export class AnnotateComponent implements OnInit {
     private dialogService: NbDialogService,
     private location: Location,
     private databaseService: DatabaseService,
-    private toastrService: NbToastrService
+    private toastrService: NbToastrService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
     this.headerSubscription = this.headerService.headerEvent.subscribe(() => {
       this.exitEvaluation();
     });
+    this.selectedSubjectId = Number(this.route.snapshot.params['id']);
   }
   ngOnDestroy() {
     this.headerSubscription.unsubscribe();
@@ -67,6 +70,9 @@ export class AnnotateComponent implements OnInit {
       .open(AnnotateDialogComponent, {
         closeOnBackdropClick: false,
         closeOnEsc: false,
+        context: {
+          currentSubject: this.selectedSubjectId ? this.selectedSubjectId : undefined,
+        },
       })
       .onClose.subscribe((result) => {
         if (result) {

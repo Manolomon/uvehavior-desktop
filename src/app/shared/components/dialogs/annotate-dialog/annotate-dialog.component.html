@@ -4,7 +4,7 @@
     <nb-stepper #stepper linear>
       <nb-step [stepControl]="analysisForm" label="{{ 'SETUP-ANALYSIS' | translate }}">
         <form id="analysisForm" novalidate [formGroup]="analysisForm">
-          <nb-select #subject placeholder="Subject" formControlName="subject" [selected]="19" fullWidth>
+          <nb-select #subject placeholder="Subject" formControlName="subject" fullWidth>
             <nb-option-group *ngFor="let group of currentExperiment.groups" title="{{ group.name }}">
               <nb-option *ngFor="let subject of group.subjects" [value]="subject.idSubject">{{
                 subject.name

@@ -218,7 +218,7 @@ export class ExperimentComponent implements OnInit {
           if (evaluations.evaluations) {
             this.router.navigate([`evaluations/${subject.idSubject}`]);
           } else {
-            this.router.navigate(['annotate']);
+            this.router.navigate([`annotate/${subject.idSubject}`]);
           }
         }
       });

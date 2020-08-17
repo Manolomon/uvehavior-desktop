@@ -8,6 +8,10 @@ const routes: Routes = [
     path: 'annotate',
     component: AnnotateComponent,
   },
+  {
+    path: 'annotate/:id',
+    component: AnnotateComponent,
+  },
 ];
 
 @NgModule({

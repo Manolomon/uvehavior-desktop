@@ -6,7 +6,6 @@ import { Injectable } from '@angular/core';
 export class CSVExportService {
   generateCSV(data, filename = 'data', columns) {
     let csvData = this.ConvertToCSV(data, columns);
-    console.log(csvData);
     let blob = new Blob(['\ufeff' + csvData], { type: 'text/csv;charset=utf-8;' });
     let dwldLink = document.createElement('a');
     let url = URL.createObjectURL(blob);

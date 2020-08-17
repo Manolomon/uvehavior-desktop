@@ -1,4 +1,4 @@
-import { Component, ViewChild, AfterContentChecked } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { NbDialogRef } from '@nebular/theme';
 import { Experiment, Behavior } from '../../../../core/models/entities';
@@ -10,11 +10,12 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   templateUrl: './annotate-dialog.component.html',
   styleUrls: ['./annotate-dialog.component.scss'],
 })
-export class AnnotateDialogComponent implements AfterContentChecked {
+export class AnnotateDialogComponent implements OnInit {
   currentExperiment: Experiment;
   analysisForm: FormGroup;
   behaviorsForm: FormGroup;
   selectedBehaviors: Behavior[];
+  currentSubject: number;
   filename: string;
   filePath: string;
   @ViewChild('behaviors') behaviors: any;
@@ -36,8 +37,10 @@ export class AnnotateDialogComponent implements AfterContentChecked {
     this.currentExperiment = this.experimentService.currentExperiment;
   }
 
-  ngAfterContentChecked(): void {
-    this.analysisForm.controls.subject.setValue(19);
+  ngOnInit(): void {
+    if (this.currentSubject != undefined) {
+      this.analysisForm.controls.subject.setValue(this.currentSubject);
+    }
   }
 
   cancel() {
@@ -47,9 +50,13 @@ export class AnnotateDialogComponent implements AfterContentChecked {
 
   startAnnotation() {
     let selected = this.analysisForm.get('subject').value;
+    let selectedGroup = this.currentExperiment.groups.find((group) =>
+      group.subjects.find((subject) => subject.idSubject == selected)
+    );
+    let subject = selectedGroup.subjects.find((subject) => subject.idSubject == selected);
     this.ref.close({
-      subject: selected.subject,
-      groupName: selected.groupName,
+      subject: subject,
+      groupName: selectedGroup.name,
       test: this.analysisForm.get('test').value,
       behaviors: this.behaviorsForm.get('behaviors').value,
       filePath: this.filePath,

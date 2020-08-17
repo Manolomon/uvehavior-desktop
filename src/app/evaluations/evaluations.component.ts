@@ -34,7 +34,6 @@ export class EvaluationsComponent implements OnInit {
       .getSubjectEvaluations(this.idSubject)
       .then((subject) => {
         this.subject = subject;
-        console.log(subject);
       })
       .catch((error) => {
         const title: string = this.translate.instant('ERROR');
@@ -56,14 +55,12 @@ export class EvaluationsComponent implements OnInit {
           duration: index < log.length - 1 ? log[index + 1].timeLog - element.timeLog : null,
         };
       });
-      console.log(calculatedLog);
       this.csvExport.generateCSV(calculatedLog, 'behaviorLog', ['behavior', 'timeLog', 'duration']);
     });
   }
 
   plotEvaluation(evaluation) {
     this.databaseService.downloadTimelog(evaluation.idEvaluation).then((log) => {
-      console.log(log);
       this.dialogService
         .open(ChartDialogComponent, {
           closeOnBackdropClick: false,
@@ -72,7 +69,7 @@ export class EvaluationsComponent implements OnInit {
             log: log,
           },
         })
-        .onClose.subscribe(() => console.log('F'));
+        .onClose.subscribe();
     });
   }
 }
