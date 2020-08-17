@@ -21,6 +21,7 @@
     <a *ngIf="router.url === '/home'" class="logo">{{ 'TITLE' | translate }}</a>
     <a *ngIf="router.url.split('/')[1] === 'experiment'" class="logo">{{ 'EXPERIMENT' | translate }}</a>
     <a *ngIf="router.url.split('/')[1] === 'annotate'" class="logo">{{ 'ANALYSIS' | translate }}</a>
+    <a *ngIf="router.url.split('/')[1] === 'evaluations'" class="logo">{{ 'EVALUATIONS' | translate }}</a>
   </div>
 </div>
 

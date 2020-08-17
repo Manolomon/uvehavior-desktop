@@ -3,13 +3,13 @@ import { HeaderService } from '../core/services/header.service';
 import { TranslateService } from '@ngx-translate/core';
 import { NbDialogService, NbComponentStatus, NbToastrService } from '@nebular/theme';
 import { ConfirmationDialogComponent } from '../shared/components/dialogs/confirmation-dialog/confirmation-dialog.component';
-import { Location } from '@angular/common';
 import { AnnotateDialogComponent } from '../shared/components/dialogs/annotate-dialog/annotate-dialog.component';
 import { Subject, Test, Behavior, BehaviorEvaluation, Evaluation, Annotation } from '../core/models/entities';
 import * as path from 'path';
 import { DatabaseService } from '../core/services/database/database.service';
 import { ReportDialogComponent } from '../shared/components/dialogs/report-dialog/report-dialog.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ExperimentService } from '../core/services/experiment.service';
 
 @Component({
   selector: 'app-annotate',
@@ -48,10 +48,11 @@ export class AnnotateComponent implements OnInit {
     public headerService: HeaderService,
     private translate: TranslateService,
     private dialogService: NbDialogService,
-    private location: Location,
+    private router: Router,
     private databaseService: DatabaseService,
     private toastrService: NbToastrService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private experimentService: ExperimentService
   ) {}
 
   ngOnInit() {
@@ -151,7 +152,10 @@ export class AnnotateComponent implements OnInit {
           body: body,
         },
       })
-      .onClose.subscribe((result) => result && this.location.back());
+      .onClose.subscribe(
+        (result) =>
+          result && this.router.navigate([`experiment/${this.experimentService.currentExperiment.idExperiment}`])
+      );
   }
 
   finishAnalysis() {
@@ -196,15 +200,15 @@ export class AnnotateComponent implements OnInit {
       })
       .onClose.subscribe((result) => {
         if (result.exit) {
-          this.location.back();
+          this.router.navigate([`experiment/${this.experimentService.currentExperiment.idExperiment}`]);
         }
         if (result.restart) {
-          this.restart();
+          this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+            this.router.navigate(['/annotate']);
+          });
         }
       });
   }
-
-  restart() {}
 
   //#region Player Controls
 

@@ -1,9 +1,9 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
 import { NbDialogRef } from '@nebular/theme';
 import { Experiment, Behavior } from '../../../../core/models/entities';
 import { ExperimentService } from '../../../../core/services/experiment.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-annotate-dialog',
@@ -23,7 +23,7 @@ export class AnnotateDialogComponent implements OnInit {
   constructor(
     protected ref: NbDialogRef<AnnotateDialogComponent>,
     private experimentService: ExperimentService,
-    private location: Location
+    private router: Router
   ) {
     this.analysisForm = new FormGroup({
       subject: new FormControl('', [Validators.required]),
@@ -44,7 +44,7 @@ export class AnnotateDialogComponent implements OnInit {
   }
 
   cancel() {
-    this.location.back();
+    this.router.navigate([`experiment/${this.currentExperiment.idExperiment}`]);
     this.ref.close();
   }
 

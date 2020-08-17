@@ -6,6 +6,7 @@ import { NbDialogService, NbComponentStatus, NbToastrService } from '@nebular/th
 import { TranslateService } from '@ngx-translate/core';
 import { CSVExportService } from '../core/services/csv-export.service';
 import { ChartDialogComponent } from '../shared/components/dialogs/chart-dialog/chart-dialog.component';
+import { HeaderService } from '../core/services/header.service';
 @Component({
   selector: 'app-evaluations',
   templateUrl: './evaluations.component.html',

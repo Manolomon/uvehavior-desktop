@@ -38,6 +38,10 @@ export class HeaderComponent implements OnInit {
   }
 
   back() {
-    this._location.back();
+    if (this.router.url.split('/')[1] === 'experiment') {
+      this.router.navigate(['/home']);
+    } else {
+      this._location.back();
+    }
   }
 }
