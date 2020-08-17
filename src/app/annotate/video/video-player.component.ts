@@ -18,7 +18,7 @@ import { EventService } from './services/event.service';
 @Component({
   selector: 'video-player',
   templateUrl: './video-player.component.html',
-  styleUrls: ['./video-player.component.scss', './styles/icons.scss'],
+  styleUrls: ['./video-player.component.scss'],
 })
 export class VideoPlayerComponent implements AfterViewInit, OnChanges, OnDestroy {
   @ViewChild('player', { static: false }) private player: ElementRef;

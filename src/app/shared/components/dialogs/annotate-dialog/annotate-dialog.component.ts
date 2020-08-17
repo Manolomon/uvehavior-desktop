@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, AfterContentChecked } from '@angular/core';
 import { Location } from '@angular/common';
 import { NbDialogRef } from '@nebular/theme';
 import { Experiment, Behavior } from '../../../../core/models/entities';
@@ -10,7 +10,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   templateUrl: './annotate-dialog.component.html',
   styleUrls: ['./annotate-dialog.component.scss'],
 })
-export class AnnotateDialogComponent {
+export class AnnotateDialogComponent implements AfterContentChecked {
   currentExperiment: Experiment;
   analysisForm: FormGroup;
   behaviorsForm: FormGroup;
@@ -36,7 +36,9 @@ export class AnnotateDialogComponent {
     this.currentExperiment = this.experimentService.currentExperiment;
   }
 
-  ngOnInit() {}
+  ngAfterContentChecked(): void {
+    this.analysisForm.controls.subject.setValue(19);
+  }
 
   cancel() {
     this.location.back();
@@ -67,6 +69,7 @@ export class AnnotateDialogComponent {
         (selected) => selected.associatedKey == behavior.associatedKey && selected.idBehavior != behavior.idBehavior
       );
   }
+
   restartBehaviors() {
     this.behaviors.reset();
   }
