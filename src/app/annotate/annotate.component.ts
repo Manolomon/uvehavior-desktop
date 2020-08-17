@@ -10,6 +10,7 @@ import { DatabaseService } from '../core/services/database/database.service';
 import { ReportDialogComponent } from '../shared/components/dialogs/report-dialog/report-dialog.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ExperimentService } from '../core/services/experiment.service';
+import { ElectronService } from '../core/services';
 
 @Component({
   selector: 'app-annotate',
@@ -52,7 +53,8 @@ export class AnnotateComponent implements OnInit {
     private databaseService: DatabaseService,
     private toastrService: NbToastrService,
     private route: ActivatedRoute,
-    private experimentService: ExperimentService
+    private experimentService: ExperimentService,
+    private electronService: ElectronService
   ) {}
 
   ngOnInit() {
@@ -60,9 +62,11 @@ export class AnnotateComponent implements OnInit {
       this.exitEvaluation();
     });
     this.selectedSubjectId = Number(this.route.snapshot.params['id']);
+    this.electronService.toggleMediaPlayback(false);
   }
   ngOnDestroy() {
     this.headerSubscription.unsubscribe();
+    this.electronService.toggleMediaPlayback(true);
   }
 
   ngAfterViewInit(): void {

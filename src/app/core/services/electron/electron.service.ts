@@ -31,4 +31,8 @@ export class ElectronService {
       this.fs = window.require('fs');
     }
   }
+
+  toggleMediaPlayback(status: boolean) {
+    remote.getCurrentWindow().webContents.audioMuted = status;
+  }
 }
