@@ -1,5 +1,6 @@
 <div class="header-container">
   <div class="logo-container">
+    <img *ngIf="router.url === '/home'" src="assets/img/icon.png" class="uvehavior-icon" />
     <button
       nbButton
       ghost
@@ -18,7 +19,7 @@
     >
       <nb-icon icon="times"></nb-icon>
     </button>
-    <a *ngIf="router.url === '/home'" class="logo">{{ 'TITLE' | translate }}</a>
+    <a *ngIf="router.url === '/home'" class="logo uvehavior">UVehavior</a>
     <a *ngIf="router.url.split('/')[1] === 'experiment'" class="logo">{{ 'EXPERIMENT' | translate }}</a>
     <a *ngIf="router.url.split('/')[1] === 'annotate'" class="logo">{{ 'ANALYSIS' | translate }}</a>
     <a *ngIf="router.url.split('/')[1] === 'evaluations'" class="logo">{{ 'EVALUATIONS' | translate }}</a>

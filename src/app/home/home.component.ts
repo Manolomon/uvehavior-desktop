@@ -15,6 +15,25 @@ import { ExperimentService } from '../core/services/experiment.service';
 export class HomeComponent implements OnInit {
   experiments: NbMenuItem[] = [];
 
+  imageObject: Array<object> = [
+    {
+      image: 'assets/img/rat_1.png',
+      thumbImage: 'assets/img/rat_1.png',
+    },
+    {
+      image: 'assets/img/rat_2.png',
+      thumbImage: 'assets/img/rat_2.png',
+    },
+    {
+      image: 'assets/img/rat_3.png',
+      thumbImage: 'assets/img/rat_3.png',
+    },
+    {
+      image: 'assets/img/rat_4.png',
+      thumbImage: 'assets/img/rat_4.png',
+    },
+  ];
+
   constructor(
     private databaseService: DatabaseService,
     private toastrService: NbToastrService,

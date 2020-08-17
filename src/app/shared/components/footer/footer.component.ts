@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
     <span>
       {{ 'FOOTER' | translate }}
       <b>
-        <a href="https://github.com/Manolomon/uvehavior/issues" target="_blank">
+        <a href="https://github.com/Manolomon/uvehavior-desktop" target="_blank">
           <i class="fab fa-github repository"></i>
         </a>
       </b>
