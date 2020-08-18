@@ -140,9 +140,6 @@ function createWindow(): BrowserWindow {
   const electronScreen = screen;
   const size = electronScreen.getPrimaryDisplay().workAreaSize;
 
-  const menu = Menu.buildFromTemplate(process.platform === 'darwin' ? macTemplate : template);
-  Menu.setApplicationMenu(menu);
-
   // Create the browser window.
   win = new BrowserWindow({
     center: true,
@@ -163,6 +160,9 @@ function createWindow(): BrowserWindow {
     });
     win.loadURL('http://localhost:4200');
   } else {
+    const menu = Menu.buildFromTemplate(process.platform === 'darwin' ? macTemplate : template);
+    Menu.setApplicationMenu(menu);
+
     win.loadURL(
       url.format({
         pathname: path.join(__dirname, 'dist/index.html'),
@@ -184,6 +184,14 @@ function createWindow(): BrowserWindow {
     win = null;
   });
 
+  globalShortcut.register('MediaNextTrack', () => {
+    return false;
+  });
+
+  globalShortcut.register('MediaPreviousTrack', () => {
+    return false;
+  });
+
   // Open external links with the default system-browser
   win.webContents.on('new-window', function (e, url) {
     e.preventDefault();
@@ -197,17 +205,7 @@ try {
   // This method will be called when Electron has finished
   // initialization and is ready to create browser windows.
   // Some APIs can only be used after this event occurs.
-  app.on('ready', () => {
-    createWindow;
-
-    globalShortcut.register('MediaNextTrack', () => {
-      return false;
-    });
-
-    globalShortcut.register('MediaPreviousTrack', () => {
-      return false;
-    });
-  });
+  app.on('ready', createWindow);
 
   // Quit when all windows are closed.
   app.on('window-all-closed', () => {

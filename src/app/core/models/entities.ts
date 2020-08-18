@@ -105,7 +105,7 @@ export class Evaluation extends BaseEntity {
   @PrimaryGeneratedColumn()
   idEvaluation: number;
 
-  @Column()
+  @Column({ nullable: true })
   name: string | null;
 
   @Column()

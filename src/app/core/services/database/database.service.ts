@@ -25,9 +25,8 @@ export class DatabaseService {
       type: 'sqlite',
       database: Settings.dbPath,
       entities: [Experiment, Test, Group, Subject, Evaluation, Behavior, BehaviorEvaluation, Annotation],
-      synchronize: false,
+      synchronize: true,
       logging: 'all',
-      migrations: ['./migration/AddEvaluationNameColumn.ts'],
     };
     this.connection = createConnection(this.options);
   }

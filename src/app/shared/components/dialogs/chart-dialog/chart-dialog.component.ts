@@ -15,50 +15,29 @@ export class ChartDialogComponent implements AfterViewInit, OnDestroy {
   log: [];
 
   testDuration: number;
-  log3 = [
-    { behavior: 'Crossing', timeLog: 7.553719 },
-    { behavior: 'Crossing', timeLog: 19.558308999999998 },
-    { behavior: 'Crossing', timeLog: 26.053289 },
-    { behavior: 'Crossing', timeLog: 31.052343 },
-    { behavior: 'Crossing', timeLog: 34.555317 },
-    { behavior: 'Crossing', timeLog: 39.052301 },
-    { behavior: 'Crossing', timeLog: 44.553246 },
-    { behavior: 'Crossing', timeLog: 53.79879 },
-    { behavior: 'Crossing', timeLog: 62.552328 },
-    { behavior: 'Crossing', timeLog: 75.301415 },
-  ];
-
-  log2 = [
-    { behavior: 'Grooming', timeLog: 3.1608280000000004 },
-    { behavior: 'Rearing', timeLog: 5.169927 },
-    { behavior: 'Grooming', timeLog: 9.417213 },
-    { behavior: 'Rearing', timeLog: 13.913773000000003 },
-    { behavior: 'Grooming', timeLog: 19.164028000000002 },
-    { behavior: 'Rearing', timeLog: 25.197604000000002 },
-    { behavior: 'Grooming', timeLog: 25.448387 },
-    { behavior: 'Rearing', timeLog: 29.454347000000002 },
-    { behavior: 'Grooming', timeLog: 30.195471 },
-    { behavior: 'Rearing', timeLog: 42.704515 },
-    { behavior: 'Grooming', timeLog: 44.450976 },
-    { behavior: 'Rearing', timeLog: 55.703181 },
-    { behavior: 'Grooming', timeLog: 57.450291 },
-    { behavior: 'Rearing', timeLog: 67.44981899999999 },
-    { behavior: 'Grooming', timeLog: 69.948509 },
-    { behavior: 'Rearing', timeLog: 71.20359599999999 },
-    { behavior: 'Grooming', timeLog: 74.946291 },
-    { behavior: 'Rearing', timeLog: 80.483496 },
-    { behavior: 'Rearing', timeLog: 80.986377 },
-    { behavior: 'Grooming', timeLog: 81.237078 },
-    { behavior: 'Rearing', timeLog: 81.738671 },
-    { behavior: 'Rearing', timeLog: 82.482143 },
-    { behavior: 'Grooming', timeLog: 82.982163 },
-    { behavior: 'Rearing', timeLog: 83.73658499999999 },
-    { behavior: 'Grooming', timeLog: 84.240307 },
-  ];
 
   constructor(protected ref: NbDialogRef<ChartDialogComponent>, private theme: NbThemeService) {}
 
   ngAfterViewInit() {
+    let series = [];
+    let dataset = [];
+
+    this.log.forEach((element: any, index) => {
+      series.push({
+        name: element.evaluation,
+        type: 'line',
+        step: 'start',
+        datasetIndex: index,
+        encode: {
+          x: 'timeLog',
+          y: 'behavior',
+        },
+      });
+      dataset.push({
+        source: element.log,
+      });
+    });
+
     this.themeSubscription = this.theme.getJsTheme().subscribe((config) => {
       const colors: any = config.variables;
       this.echarts = {
@@ -105,7 +84,12 @@ export class ChartDialogComponent implements AfterViewInit, OnDestroy {
           type: 'value',
           name: 'Time',
           nameLocation: 'start',
-          max: 90,
+          max: Math.max.apply(
+            Math,
+            this.log.map(function (log: any) {
+              return log.testDuration;
+            })
+          ),
           axisTick: {
             alignWithLabel: true,
           },
@@ -146,36 +130,8 @@ export class ChartDialogComponent implements AfterViewInit, OnDestroy {
           bottom: '3%',
           containLabel: true,
         },
-        series: [
-          {
-            name: 'Evaluation1',
-            type: 'line',
-            step: 'start',
-            datasetIndex: 0,
-            encode: {
-              x: 'timeLog',
-              y: 'behavior',
-            },
-          },
-          {
-            name: 'Evaluation2',
-            type: 'line',
-            step: 'start',
-            datasetIndex: 1,
-            encode: {
-              x: 'timeLog',
-              y: 'behavior',
-            },
-          },
-        ],
-        dataset: [
-          {
-            source: this.log3,
-          },
-          {
-            source: this.log2,
-          },
-        ],
+        series: series,
+        dataset: dataset,
       };
     });
   }

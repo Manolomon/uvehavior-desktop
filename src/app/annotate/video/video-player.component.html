@@ -2,11 +2,11 @@
   <video
     #video
     class="video"
-    [attr.autoplay]="autoplay ? true : null"
-    [preload]="preload ? 'auto' : 'metadata'"
-    [attr.poster]="poster ? poster : null"
-    [attr.loop]="loop ? loop : null"
-    [attr.playsinline]="playsinline ? true : null"
+    [attr.autoplay]="null"
+    [preload]="'metadata'"
+    [attr.poster]="null"
+    [attr.loop]="null"
+    [attr.playsinline]="null"
   >
     <ng-content select="source"></ng-content>
     <ng-content select="track"></ng-content>
