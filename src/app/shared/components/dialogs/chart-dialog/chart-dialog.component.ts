@@ -146,8 +146,6 @@ export class ChartDialogComponent implements AfterViewInit, OnDestroy {
   }
 
   onResized(event: ResizedEvent) {
-    this.echarts.resize;
+    this.echarts.resize();
   }
-
-  submitGroup() {}
 }

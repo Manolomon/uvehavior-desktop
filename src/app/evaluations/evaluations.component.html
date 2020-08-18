@@ -23,7 +23,7 @@
             {{ evaluation.name ? evaluation.name : (evaluation.evaluationDate | date: 'fullDate') }}
           </span>
         </span>
-        <button nbButton ghost shape="round" nbTooltip="Edit" class="edit" (click)="editName(evaluation)">
+        <button nbButton ghost shape="round" nbTooltip="Edit Name" class="edit" (click)="editName(evaluation)">
           <nb-icon icon="pen-alt"></nb-icon>
         </button>
       </nb-accordion-item-header>

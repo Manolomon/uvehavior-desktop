@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Evaluation, Experiment, Test } from '../core/models/entities';
+import { Evaluation, Test } from '../core/models/entities';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DatabaseService } from '../core/services/database/database.service';
 import { NbDialogService, NbComponentStatus, NbToastrService } from '@nebular/theme';
@@ -67,20 +67,6 @@ export class EvaluationsComponent implements OnInit {
         this.showToast('danger', title, message);
       });
   }
-
-  /*getExperimentEvaluations2() {
-    this.databaseService.getExperimentEvaluations(3).then((experiment) => {
-      let hola = experiment.groups.reduce(
-        (prev, group) =>
-          prev.concat({
-            groupName: group.name,
-            subject: group.subjects,
-          }),
-        []
-      );
-      console.log(hola);
-    });
-  }*/
 
   showToast(status: NbComponentStatus, title, content) {
     this.toastrService.show(content, title, { status });
@@ -160,10 +146,17 @@ export class EvaluationsComponent implements OnInit {
       .open(NameEvaluationDialogComponent, {
         closeOnBackdropClick: false,
       })
-      .onClose.subscribe((result) => {
-        evaluation.name = result;
+      .onClose.subscribe((name) => name && this.saveName(evaluation, name));
+  }
 
-        evaluation.save().then(() => this.getSubjectEvaluations());
-      });
+  saveName(evaluation: Evaluation, name: string) {
+    evaluation.name = name;
+    evaluation.save().then(() => {
+      if (this.router.url.split('/')[1] === 'evaluations') {
+        this.getSubjectEvaluations();
+      } else {
+        this.getExperimentEvaluations();
+      }
+    });
   }
 }
