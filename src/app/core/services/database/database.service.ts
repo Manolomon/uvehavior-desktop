@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Connection, ConnectionOptions, createConnection } from 'typeorm';
+import { Connection, ConnectionOptions, createConnection, SelectQueryBuilder } from 'typeorm';
 import { Settings } from './settings';
 import {
   Experiment,
@@ -64,6 +64,25 @@ export class DatabaseService {
           evaluations: 'subject.evaluations',
           behaviorEvaluations: 'evaluations.behaviorEvaluations',
           behavior: 'behaviorEvaluations.behavior',
+          test: 'behavior.test',
+        },
+      },
+    });
+  }
+  async getExperimentEvaluations(idExperiment) {
+    return (await this.connection).getRepository(Evaluation).find({
+      //relations: ['subject', 'subject.group', 'behaviorEvaluations', 'behaviorEvaluations.behavior'],
+      where: (qb: SelectQueryBuilder<Subject>) => {
+        qb.where({}).andWhere('group.experiment.idExperiment = :idExperiment', { idExperiment: idExperiment }); // Filter related field
+      },
+      join: {
+        alias: 'evaluation',
+        leftJoinAndSelect: {
+          subject: 'evaluation.subject',
+          group: 'subject.group',
+          behaviorEvaluations: 'evaluation.behaviorEvaluations',
+          behavior: 'behaviorEvaluations.behavior',
+          test: 'behavior.test',
         },
       },
     });

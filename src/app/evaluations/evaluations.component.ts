@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Subject, Evaluation } from '../core/models/entities';
-import { ActivatedRoute } from '@angular/router';
+import { Evaluation, Experiment, Test } from '../core/models/entities';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DatabaseService } from '../core/services/database/database.service';
 import { NbDialogService, NbComponentStatus, NbToastrService } from '@nebular/theme';
 import { TranslateService } from '@ngx-translate/core';
@@ -15,8 +15,10 @@ import { NameEvaluationDialogComponent } from '../shared/components/dialogs/name
 })
 export class EvaluationsComponent implements OnInit {
   idSubject: number;
-  subject: Subject;
+  idExperiment: number;
   selectedEvaluations = [];
+  evaluations: Evaluation[];
+  tests: Test[];
 
   constructor(
     private route: ActivatedRoute,
@@ -24,19 +26,25 @@ export class EvaluationsComponent implements OnInit {
     private translate: TranslateService,
     private toastrService: NbToastrService,
     private csvExport: CSVExportService,
-    private dialogService: NbDialogService
+    private dialogService: NbDialogService,
+    public router: Router
   ) {}
 
   ngOnInit(): void {
-    this.idSubject = this.route.snapshot.params['id'];
-    this.getSubjectEvaluations();
+    if (this.router.url.split('/')[1] === 'evaluations') {
+      this.idSubject = this.route.snapshot.params['id'];
+      this.getSubjectEvaluations();
+    } else {
+      this.idExperiment = this.route.snapshot.params['idExperiment'];
+      this.getExperimentEvaluations();
+    }
   }
 
   getSubjectEvaluations() {
     this.databaseService
       .getSubjectEvaluations(this.idSubject)
       .then((subject) => {
-        this.subject = subject;
+        this.evaluations = subject.evaluations;
       })
       .catch((error) => {
         const title: string = this.translate.instant('ERROR');
@@ -45,6 +53,35 @@ export class EvaluationsComponent implements OnInit {
         this.showToast('danger', title, message);
       });
   }
+
+  getExperimentEvaluations() {
+    this.databaseService
+      .getExperimentEvaluations(this.idExperiment)
+      .then((evaluations) => {
+        this.evaluations = evaluations;
+      })
+      .catch((error) => {
+        const title: string = this.translate.instant('ERROR');
+        const message: string = this.translate.instant('DATABASE-ERROR');
+
+        this.showToast('danger', title, message);
+      });
+  }
+
+  /*getExperimentEvaluations2() {
+    this.databaseService.getExperimentEvaluations(3).then((experiment) => {
+      let hola = experiment.groups.reduce(
+        (prev, group) =>
+          prev.concat({
+            groupName: group.name,
+            subject: group.subjects,
+          }),
+        []
+      );
+      console.log(hola);
+    });
+  }*/
+
   showToast(status: NbComponentStatus, title, content) {
     this.toastrService.show(content, title, { status });
   }
@@ -113,12 +150,9 @@ export class EvaluationsComponent implements OnInit {
       .onClose.subscribe();
   }
 
-  selectEvaluation(event, index) {
-    if (event) {
-      this.selectedEvaluations.push(this.subject.evaluations[index]);
-    } else {
-      this.selectedEvaluations.splice(index, 1);
-    }
+  selectEvaluation(evaluation) {
+    const index = this.selectedEvaluations.indexOf(evaluation);
+    index < 0 ? this.selectedEvaluations.push(evaluation) : this.selectedEvaluations.splice(index, 1);
   }
 
   editName(evaluation: Evaluation) {

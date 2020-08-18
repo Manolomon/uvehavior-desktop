@@ -24,6 +24,9 @@
         >
           <nb-icon icon="table"></nb-icon>
         </button>
+        <button nbButton ghost class="setting" nbTooltip="Charts and Evaluations" (click)="chartsAndEvaluations()">
+          <nb-icon icon="chart-line"></nb-icon>
+        </button>
       </nb-card-header>
       <nb-card-body>
         <input formControlName="name" fullWidth nbInput disabled value="{{ this.name }}" />

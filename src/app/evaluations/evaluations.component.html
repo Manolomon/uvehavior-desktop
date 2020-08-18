@@ -1,6 +1,7 @@
 <nb-card>
   <nb-card-header>
-    Evaluations
+    <span *ngIf="this.router.url.split('/')[1] === 'evaluations'">Subject Evaluations</span>
+    <span *ngIf="this.router.url.split('/')[1] === 'experiment-evaluations'">Experiment Evaluations</span>
     <button
       class="plot"
       nbButton
@@ -13,11 +14,11 @@
       <nb-icon icon="chart-line"></nb-icon>
     </button>
   </nb-card-header>
-  <nb-accordion *ngIf="subject != undefined">
-    <nb-accordion-item *ngFor="let evaluation of subject.evaluations; let i = index" class="list-item-on-hover">
+  <nb-accordion *ngIf="evaluations != undefined">
+    <nb-accordion-item *ngFor="let evaluation of evaluations" class="list-item-on-hover">
       <nb-accordion-item-header>
         <span>
-          <nb-checkbox status="basic" (checkedChange)="selectEvaluation($event, i)"></nb-checkbox>
+          <nb-checkbox status="basic" (checkedChange)="selectEvaluation(evaluation)"></nb-checkbox>
           <span class="evaluation-title">
             {{ evaluation.name ? evaluation.name : (evaluation.evaluationDate | date: 'fullDate') }}
           </span>
@@ -28,14 +29,15 @@
       </nb-accordion-item-header>
       <nb-accordion-item-body>
         <div class="analysis-info">
-          <b>Date:</b> {{ evaluation.evaluationDate | date: 'fullDate' }}
-          <br />
-          <b>Analysis Time (in seconds):</b> {{ evaluation.finishingTime }}
-          <br />
-          <b>{{ 'VIDEO' | translate }}:</b> {{ evaluation.videoPath }}
-          <br />
-          <b>Behaviors Evaluated:</b>
-          <br />
+          <p *ngIf="idExperiment"><b>Subject:</b> {{ evaluation.subject.name }}</p>
+          <p *ngIf="idExperiment"><b>Group:</b> {{ evaluation.subject.group.name }}</p>
+          <p *ngIf="evaluation.name"><b>Date:</b> {{ evaluation.evaluationDate | date: 'fullDate' }}</p>
+          <p><b>Analysis Time (in seconds):</b> {{ evaluation.finishingTime }}</p>
+          <p>
+            <b>{{ 'VIDEO' | translate }}:</b> {{ evaluation.videoPath }}
+          </p>
+          <p><b>Test:</b> {{ evaluation.behaviorEvaluations[0].behavior.test.name }}</p>
+          <p><b>Behaviors Evaluated:</b></p>
           <ul>
             <li *ngFor="let item of evaluation.behaviorEvaluations">{{ item.behavior.name }}</li>
           </ul>

@@ -84,9 +84,8 @@ export class ChartDialogComponent implements AfterViewInit, OnDestroy {
           type: 'value',
           name: 'Time',
           nameLocation: 'start',
-          max: Math.max.apply(
-            Math,
-            this.log.map(function (log: any) {
+          max: Math.max(
+            ...this.log.map(function (log: any) {
               return log.testDuration;
             })
           ),

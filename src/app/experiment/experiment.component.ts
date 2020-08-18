@@ -140,6 +140,10 @@ export class ExperimentComponent implements OnInit {
       .onClose.subscribe((newTest) => newTest && this.saveTest(newTest));
   }
 
+  chartsAndEvaluations() {
+    this.router.navigate([`experiment-evaluations/${this.idExperiment}`]);
+  }
+
   saveTest(test) {
     test.experiment = this.current;
     this.databaseService.connection
