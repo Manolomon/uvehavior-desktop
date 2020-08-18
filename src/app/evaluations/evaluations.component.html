@@ -1,13 +1,25 @@
 <nb-card>
   <nb-card-header>
     Evaluations
+    <button
+      class="plot"
+      nbButton
+      status="primary"
+      shape="round"
+      *ngIf="selectedEvaluations.length > 0"
+      nbTooltip="Plot Together"
+      (click)="getMultipleLogs()"
+    >
+      <nb-icon icon="chart-line"></nb-icon>
+    </button>
   </nb-card-header>
   <nb-accordion *ngIf="subject != undefined">
-    <nb-accordion-item *ngFor="let evaluation of subject.evaluations">
+    <nb-accordion-item *ngFor="let evaluation of subject.evaluations; let i = index">
       <nb-accordion-item-header>
-        <span class="group-title"
-          ><nb-icon icon="clipboard-check"></nb-icon>{{ evaluation.evaluationDate | date: 'fullDate' }}</span
-        >
+        <span>
+          <nb-checkbox status="basic" (checkedChange)="selectEvaluation($event, i)"></nb-checkbox>
+          <span class="evaluation-title">{{ evaluation.evaluationDate | date: 'fullDate' }}</span>
+        </span>
       </nb-accordion-item-header>
       <nb-accordion-item-body>
         <div class="analysis-info">

@@ -15,6 +15,7 @@ import { ChartDialogComponent } from '../shared/components/dialogs/chart-dialog/
 export class EvaluationsComponent implements OnInit {
   idSubject: number;
   subject: Subject;
+  selectedEvaluations = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -64,26 +65,28 @@ export class EvaluationsComponent implements OnInit {
   }
 
   plotEvaluation(evaluation) {
-    /*this.databaseService.downloadTimelog(evaluation.idEvaluation).then((log) => {
-
+    this.databaseService.downloadTimelog(evaluation.idEvaluation).then((log) => {
       this.dialogService
         .open(ChartDialogComponent, {
           closeOnBackdropClick: false,
           context: {
-            testDuration: evaluation.finishingTime,
-            log: [log],
+            log: [
+              {
+                evaluation: evaluation.name ? evaluation.name : 'Evaluation',
+                testDuration: evaluation.finishingTime,
+                log: log,
+              },
+            ],
           },
         })
         .onClose.subscribe();
     });
-    */
-    this.getMultipleLogs(this.subject.evaluations);
   }
 
-  getMultipleLogs(selectedEvaluations: Evaluation[]) {
+  getMultipleLogs() {
     let promises = [];
 
-    selectedEvaluations.map((evaluation, index) => {
+    this.selectedEvaluations.map((evaluation, index) => {
       promises.push(
         this.databaseService.downloadTimelog(evaluation.idEvaluation).then(function (result) {
           return {
@@ -107,5 +110,13 @@ export class EvaluationsComponent implements OnInit {
         },
       })
       .onClose.subscribe();
+  }
+
+  selectEvaluation(event, index) {
+    if (event) {
+      this.selectedEvaluations.push(this.subject.evaluations[index]);
+    } else {
+      this.selectedEvaluations.splice(index, 1);
+    }
   }
 }

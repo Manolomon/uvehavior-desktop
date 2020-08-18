@@ -12,7 +12,7 @@ export class ChartDialogComponent implements AfterViewInit, OnDestroy {
   options: any = {};
   themeSubscription: any;
   echarts: any;
-  log: [];
+  log = [];
 
   testDuration: number;
 
