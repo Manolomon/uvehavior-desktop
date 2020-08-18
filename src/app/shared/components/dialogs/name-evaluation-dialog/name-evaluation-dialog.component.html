@@ -1,0 +1,13 @@
+<nb-card>
+  <nb-card-header>Name Evaluation</nb-card-header>
+  <nb-card-body>
+    <input #name [(ngModel)]="evaluationName" fullWidth nbInput placeholder="Evaluation Name" />
+    <span>Note: This would be this evaluation's name displayed in every chart.</span>
+  </nb-card-body>
+  <nb-card-footer>
+    <button class="cancel" nbButton status="basic" (click)="cancel()">{{ 'CANCEL' | translate }}</button>
+    <button nbButton (click)="submitName()" status="primary" [disabled]="name.value.trim().length == 0">
+      Save
+    </button>
+  </nb-card-footer>
+</nb-card>

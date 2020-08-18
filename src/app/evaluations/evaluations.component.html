@@ -14,15 +14,22 @@
     </button>
   </nb-card-header>
   <nb-accordion *ngIf="subject != undefined">
-    <nb-accordion-item *ngFor="let evaluation of subject.evaluations; let i = index">
+    <nb-accordion-item *ngFor="let evaluation of subject.evaluations; let i = index" class="list-item-on-hover">
       <nb-accordion-item-header>
         <span>
           <nb-checkbox status="basic" (checkedChange)="selectEvaluation($event, i)"></nb-checkbox>
-          <span class="evaluation-title">{{ evaluation.evaluationDate | date: 'fullDate' }}</span>
+          <span class="evaluation-title">
+            {{ evaluation.name ? evaluation.name : (evaluation.evaluationDate | date: 'fullDate') }}
+          </span>
         </span>
+        <button nbButton ghost shape="round" nbTooltip="Edit" class="edit" (click)="editName(evaluation)">
+          <nb-icon icon="pen-alt"></nb-icon>
+        </button>
       </nb-accordion-item-header>
       <nb-accordion-item-body>
         <div class="analysis-info">
+          <b>Date:</b> {{ evaluation.evaluationDate | date: 'fullDate' }}
+          <br />
           <b>Analysis Time (in seconds):</b> {{ evaluation.finishingTime }}
           <br />
           <b>{{ 'VIDEO' | translate }}:</b> {{ evaluation.videoPath }}

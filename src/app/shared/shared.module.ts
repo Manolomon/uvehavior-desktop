@@ -16,6 +16,7 @@ import { AnnotateDialogComponent } from './components/dialogs/annotate-dialog/an
 import { ReportDialogComponent } from './components/dialogs/report-dialog/report-dialog.component';
 import { ChartDialogComponent } from './components/dialogs/chart-dialog/chart-dialog.component';
 import { SmartTableKeyInputComponent } from './components/dialogs/test-dialog/smart-table-key-input.component';
+import { NameEvaluationDialogComponent } from './components/dialogs/name-evaluation-dialog/name-evaluation-dialog.component';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { AngularResizedEventModule } from 'angular-resize-event';
 
@@ -33,6 +34,7 @@ import { AngularResizedEventModule } from 'angular-resize-event';
     AnnotateDialogComponent,
     ReportDialogComponent,
     ChartDialogComponent,
+    NameEvaluationDialogComponent,
     SmartTableKeyInputComponent,
   ],
   imports: [

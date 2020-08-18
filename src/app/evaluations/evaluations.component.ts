@@ -6,6 +6,7 @@ import { NbDialogService, NbComponentStatus, NbToastrService } from '@nebular/th
 import { TranslateService } from '@ngx-translate/core';
 import { CSVExportService } from '../core/services/csv-export.service';
 import { ChartDialogComponent } from '../shared/components/dialogs/chart-dialog/chart-dialog.component';
+import { NameEvaluationDialogComponent } from '../shared/components/dialogs/name-evaluation-dialog/name-evaluation-dialog.component';
 
 @Component({
   selector: 'app-evaluations',
@@ -118,5 +119,17 @@ export class EvaluationsComponent implements OnInit {
     } else {
       this.selectedEvaluations.splice(index, 1);
     }
+  }
+
+  editName(evaluation: Evaluation) {
+    this.dialogService
+      .open(NameEvaluationDialogComponent, {
+        closeOnBackdropClick: false,
+      })
+      .onClose.subscribe((result) => {
+        evaluation.name = result;
+
+        evaluation.save().then(() => this.getSubjectEvaluations());
+      });
   }
 }

@@ -9,10 +9,21 @@
 .evaluation-title {
   vertical-align: text-bottom !important;
   margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 .plot {
   float: right;
+}
+
+.edit {
+  float: right;
+  padding: 0.5rem !important;
+  display: none;
+}
+
+.list-item-on-hover:hover .edit {
+  display: block;
 }
 
 nb-icon {
