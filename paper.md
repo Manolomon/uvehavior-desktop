@@ -16,10 +16,10 @@ authors:
   - name: Héctor-Gabriel Acosta-Mesa
     orcid: 0000-0002-0935-7642
     affiliation: 3
- - name: Isidro Vargas-Moreno
+  - name: Isidro Vargas-Moreno
     orcid: 0000-0001-6774-9444
     affiliation: 2
- - name: Socorro Herrera-Meza
+  - name: Socorro Herrera-Meza
     orcid: 0000-0003-0838-470X
     affiliation: 4
 affiliations:
@@ -33,7 +33,6 @@ affiliations:
    index: 4
 date: 18 August 2020
 bibliography: paper.bib
-
 ---
 
 # Summary
