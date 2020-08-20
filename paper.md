@@ -36,38 +36,19 @@ bibliography: paper.bib
 ---
 
 # Summary
+In this regard, we introduce UVehavior, and open-source tool that allows researchers to manage, conduct, and compare behavioral observations tests.
 
-According with Dugatkin (2020) [@Dugatkin:2020] Behavior is the coordinated responses of whole living organisms to internal and/or external stimuli, considering behavior as expression of activity of the nervous system. 
-Neuroethology is the branch of neuroscience in charge of finding out which organic components, especially neurophysiological types, are involved in the display of behaviors [@Bassler:1984], reason why it is interested in the analysis of changes in the frequency, function and intensity of a certain behavior, which can be modified by different treatments, manipulations or the experience of individuals. For ethological study it is important to identify specific behaviors where they will be measured: latency, frequency and duration [@Inesta:2011].
+# Experimental Design
 
-On the other hand, before beginning a study on behavior, it is necessary to consider whether the design of the experiment is adequate to allow causal and logical explanations, orienting the investigation towards the adequate data interpretation. Experimental design consider the study subject, conditions of the environment and the control of the variables studied [@Kirk:2012]. In ethology, behavior was typically categorized by trained observers taking advantage of their experience and intuition to identify relevant elements, however Tinbergen’s definition leaves open the discussion of how behavior should be measured and represented [@Brown:2018]. UVeheavior allow...
+According to Dugatkin (2020) [@Dugatkin:2020] Behavior is the coordinated responses of whole living organisms to internal and/or external stimuli, considering behavior as an expression of the activity of the nervous system. 
+Neuroethology is the branch of neuroscience in charge of finding out which organic components, especially neurophysiological types, are involved in the display of behaviors [@Bassler:1984], the reason why it is interested in the analysis of changes in the frequency, function, and intensity of a certain behavior, which can be modified by different treatments, manipulations or the experience of individuals. For the ethological study, it is important to identify specific behaviors where they will be measured: latency, frequency, and duration [@Inesta:2011].
 
+# Behavioral Observation
 
-# Statement of need 
+![Annotation main view. .\label{fig:behavior_chart}](annotation.png)
 
-`Gala` is an Astropy-affiliated Python package for galactic dynamics. Python
-enables wrapping low-level languages (e.g., C) for speed without losing
-flexibility or ease-of-use in the user-interface. The API for `Gala` was
-designed to provide a class-based and user-friendly interface to fast (C or
-Cython-optimized) implementations of common operations such as gravitational
-potential and force evaluation, orbit integration, dynamical transformations,
-and chaos indicators for nonlinear dynamics. `Gala` also relies heavily on and
-interfaces well with the implementations of physical units and astronomical
-coordinate systems in the `Astropy` package (`astropy.units` and
-`astropy.coordinates`).
+On the other hand, before beginning a study on behavior, it is necessary to consider whether the design of the experiment is adequate to allow causal and logical explanations, orienting the investigation towards the adequate data interpretation. The experimental design considers the study subject, conditions of the environment and the control of the variables studied [@Kirk:2012]. In ethology, the behavior was typically categorized by trained observers taking advantage of their experience and intuition to identify relevant elements, however, Tinbergen’s definition leaves open the discussion of how behavior should be measured and represented [@Brown:2018]. 
 
-`Gala` was designed to be used by both astronomical researchers and by
-students in courses on gravitational dynamics or astronomy. It has already been
-used in a number of scientific publications  and has also been
-used in graduate courses on Galactic dynamics to, e.g., provide interactive
-visualizations of textbook material. The combination of speed,
-design, and support for Astropy functionality in `Gala` will enable exciting
-scientific explorations of forthcoming data releases from the *Gaia* mission by students and experts alike.
-
-
-# Acknowledgements
-
-We acknowledge contributions from Brigitta Sipocz, Syrtis Major, and Semyeong
-Oh, and support from Kathryn Johnston during the genesis of this project.
+![Example of the Transitional Behavior Chart generated from an evaluation.\label{fig:behavior_chart}](behavior_chart.png)
 
 # References
