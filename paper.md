@@ -54,7 +54,7 @@ As part of the planning stage, the researcher defines and distributes the groups
 In ethology, the behavior was typically categorized by trained observers taking advantage of their experience and intuition to identify relevant elements, however, Tinbergen’s definition leaves open the discussion of how behavior should be measured and represented [@Brown:2018].
 While conducting the experiment, every subject is recorded during each defined test, where the occurrence of a specific behavior must be logged.
 
-![Annotation main view. The left .\label{fig:annotation}](annotation.png)
+![Annotation main view. The left side of the window shows the playing video and controls, while the right side displays the evaluation's data and the behaviors' log.\label{fig:annotation}](annotation.png)
 
 UVehavior assists in this core activity by featuring a suite where the researcher can evaluate their subjects, tests, and behaviors to observe, in one of these test recordings. 
 The desktop-tool, plays the test video, while the observer analyzes the behavior of the subject. Therefore, every time the subject performs a specific behavior, the researcher logs it by pressing one key previously bound to a behavior. 
