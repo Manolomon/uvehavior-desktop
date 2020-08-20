@@ -36,7 +36,9 @@ bibliography: paper.bib
 ---
 
 # Summary
-In this regard, we introduce UVehavior, and open-source tool that allows researchers to manage, conduct, and compare behavioral observations tests.
+
+Understanding behavior is a relevant task, detecting patterns in how living organisms interact and respond to different stimuli means an area of interest capable of influencing complementary activities in psychology, nutrition, and pharmacology. Conducting research in behavioral science is, however, a high-dimensional problem that involves several activities, from the conceptualization and planning of the study to the analysis of the collected results.
+In this regard, we introduce UVehavior, and open-source tool that allows researchers to manage, conduct, and compare behavioral observations experiments.
 
 # Experimental Design
 
@@ -45,7 +47,7 @@ Neuroethology is the branch of neuroscience in charge of finding out which organ
 
 # Behavioral Observation
 
-![Annotation main view. .\label{fig:behavior_chart}](annotation.png)
+![Annotation main view. The left .\label{fig:behavior_chart}](annotation.png)
 
 On the other hand, before beginning a study on behavior, it is necessary to consider whether the design of the experiment is adequate to allow causal and logical explanations, orienting the investigation towards the adequate data interpretation. The experimental design considers the study subject, conditions of the environment and the control of the variables studied [@Kirk:2012]. In ethology, the behavior was typically categorized by trained observers taking advantage of their experience and intuition to identify relevant elements, however, Tinbergen’s definition leaves open the discussion of how behavior should be measured and represented [@Brown:2018]. 
 
