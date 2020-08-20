@@ -1,5 +1,5 @@
 ---
-title: 'UVehavior: An Annotation Tool for Behavioral Observation'
+title: 'UVehavior: An Annotation Desktop-Tool for Behavioral Observation'
 tags:
   - Behavioral Science
   - Neuroethology
@@ -40,16 +40,28 @@ bibliography: paper.bib
 Understanding behavior is a relevant task, detecting patterns in how living organisms interact and respond to different stimuli means an area of interest capable of influencing complementary activities in psychology, nutrition, and pharmacology. Conducting research in behavioral science is, however, a high-dimensional problem that involves several activities, from the conceptualization and planning of the study to the analysis of the collected results.
 In this regard, we introduce UVehavior, and open-source tool that allows researchers to manage, conduct, and compare behavioral observations experiments.
 
-# Experimental Design
+# Neuroethological Research
 
-According to Dugatkin (2020) [@Dugatkin:2020] Behavior is the coordinated responses of whole living organisms to internal and/or external stimuli, considering behavior as an expression of the activity of the nervous system. 
-Neuroethology is the branch of neuroscience in charge of finding out which organic components, especially neurophysiological types, are involved in the display of behaviors [@Bassler:1984], the reason why it is interested in the analysis of changes in the frequency, function, and intensity of a certain behavior, which can be modified by different treatments, manipulations or the experience of individuals. For the ethological study, it is important to identify specific behaviors where they will be measured: latency, frequency, and duration [@Inesta:2011].
+According to @Dugatkin:2020 behavior is the coordinated responses of whole living organisms to internal and/or external stimuli, considering behavior as an expression of the activity of the nervous system. 
+Neuroethology is the branch of neuroscience in charge of finding out which organic components, especially neurophysiological types, are involved in the display of behaviors [@Bassler:1984], the reason why it is interested in the analysis of changes in the frequency, function, and intensity of a certain behavior, which can be modified by different treatments, manipulations or the experience of individuals. 
+
+On the other hand, before beginning a study on behavior, it is necessary to consider whether the design of the experiment is adequate to allow causal and logical explanations, orienting the investigation towards the adequate data interpretation. The experimental design considers the study subject, conditions of the environment and the control of the variables studied [@Kirk:2012].
+
+As part of the planning stage, the researcher defines and distributes the groups in which the subjects of study are going to be evaluated. Is by their belonging group that the individuals are subjected to a treatment, for further analysis of the effects in their behavior [@Kirk:2012]. UVehavior allows the researcher to keep track of their subjects, and distribute them by groups, as well as managing the tests to be conducted. In this regard, every test involves a specific amount of time, and a variety of behaviors to be analyzed.
 
 # Behavioral Observation
 
 ![Annotation main view. The left .\label{fig:behavior_chart}](annotation.png)
 
-On the other hand, before beginning a study on behavior, it is necessary to consider whether the design of the experiment is adequate to allow causal and logical explanations, orienting the investigation towards the adequate data interpretation. The experimental design considers the study subject, conditions of the environment and the control of the variables studied [@Kirk:2012]. In ethology, the behavior was typically categorized by trained observers taking advantage of their experience and intuition to identify relevant elements, however, Tinbergen’s definition leaves open the discussion of how behavior should be measured and represented [@Brown:2018]. 
+In ethology, the behavior was typically categorized by trained observers taking advantage of their experience and intuition to identify relevant elements, however, Tinbergen’s definition leaves open the discussion of how behavior should be measured and represented [@Brown:2018].
+Every test
+In order to evaluate the behaviors shown by a subject during a test, 
+
+For the ethological study, it is important to identify specific behaviors where they will be measured: latency, frequency, and duration [@Inesta:2011].
+
+# Analysis of the Results
+
+And an additional feature of UVehavior is the ability to display a timing-diagram-like [@Seidl:2015] chart of the behaviors exhibited by a subject during a test. This visualization shows a series of state changes throughout a test, where every behavior evaluated is listed on the vertical axis and the horizontal axis represents the chronological order. \autoref{fig:behavior_chart} shows an example of this chart, generated from an evaluated subject.
 
 ![Example of the Transitional Behavior Chart generated from an evaluation.\label{fig:behavior_chart}](behavior_chart.png)
 
