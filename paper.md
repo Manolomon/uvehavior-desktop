@@ -51,13 +51,14 @@ As part of the planning stage, the researcher defines and distributes the groups
 
 # Behavioral Observation
 
-![Annotation main view. The left .\label{fig:behavior_chart}](annotation.png)
-
 In ethology, the behavior was typically categorized by trained observers taking advantage of their experience and intuition to identify relevant elements, however, Tinbergen’s definition leaves open the discussion of how behavior should be measured and represented [@Brown:2018].
-Every test
-In order to evaluate the behaviors shown by a subject during a test, 
+While conducting the experiment, every subject is recorded during each defined test, where the occurrence of a specific behavior must be logged.
 
-For the ethological study, it is important to identify specific behaviors where they will be measured: latency, frequency, and duration [@Inesta:2011].
+![Annotation main view. The left .\label{fig:annotation}](annotation.png)
+
+UVehavior assists in this core activity by featuring a suite where the researcher can evaluate their subjects, tests, and behaviors to observe, in one of these test recordings. 
+The desktop-tool, plays the test video, while the observer analyzes the behavior of the subject. Therefore, every time the subject performs a specific behavior, the researcher logs it by pressing one key previously bound to a behavior. 
+Besides keeping a record of the behavior logging, UVehavior displays three calculated variables: `latency`, `frequency`, and `duration`. For the ethological study, these measures are important for describing behaviors [@Inesta:2011]. \autoref{fig:annotation} shows the annotation activity of a Locomotor Activity Test performed by a Wistar rat [@Fernandez-Demeneghi:2019].
 
 # Analysis of the Results
 
