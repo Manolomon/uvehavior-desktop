@@ -66,4 +66,6 @@ And an additional feature of UVehavior is the ability to display a timing-diagra
 
 ![Example of the Transitional Behavior Chart generated from an evaluation.\label{fig:behavior_chart}](behavior_chart.png)
 
+UVehavior comes from a preliminary version developed  _ex profeso_  to conduct the tests' logging for the study by @Fernandez-Demeneghi:2019. However, further additions to the system are planned to turn UVehavior into a set of several tools for the analysis of behavioral observation data.
+
 # References
