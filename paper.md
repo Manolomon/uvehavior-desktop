@@ -1,5 +1,5 @@
 ---
-title: 'UVehavior: An Annotation System for Behavioral Observation'
+title: 'UVehavior: An Annotation Tool for Behavioral Observation'
 tags:
   - Behavioral Science
   - Neuroethology
