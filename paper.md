@@ -9,7 +9,7 @@ tags:
 authors:
   - name: J. Manuel Pérez-Verdejo
     orcid: 0000-0002-3398-2632
-    affiliation: "1, 2"
+    affiliation: 1
   - name: Héctor-Gabriel Acosta-Mesa
     orcid: 0000-0002-0935-7642
     affiliation: 2
