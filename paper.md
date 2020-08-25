@@ -50,7 +50,7 @@ Neuroethology is an important area of neurosciences involved in the study of the
 
 On the other hand, before beginning a study on behavior, it is necessary to consider whether the design of the experiment is adequate to allow causal and logical explanations, orienting the investigation towards the adequate data interpretation. The experimental design considers the study subject, conditions of the environment and the control of the variables studied [@Kirk:2012].
 
-As part of the planning stage, the researcher defines and distributes the groups in which the subjects of study are going to be evaluated. Is by their belonging group that the individuals are subjected to a treatment, for further analysis of the effects in their behavior [@Kirk:2012]. UVehavior allows the researcher to keep track of their subjects, and distribute them by groups, as well as managing the tests to be conducted. In this regard, every test involves a specific amount of time, and a variety of behaviors to be analyzed.
+As part of the planning stage, the researcher defines and distributes the groups in which the subjects of study are going to be evaluated. Is by their belonging group that the individuals are subjected to a treatment, for further analysis of the effects on their behavior [@Kirk:2012]. UVehavior allows the researcher to keep track of their subjects, and distribute them by groups, as well as managing the tests to be conducted. In this regard, every test involves a specific amount of time, and a variety of behaviors to be analyzed.
 
 # Behavioral Observation
 
@@ -61,7 +61,7 @@ While conducting the experiment, every subject is recorded during each defined t
 
 UVehavior assists in this core activity by featuring a suite where the researcher can evaluate their subjects, tests, and behaviors to observe, in one of these test recordings. 
 The desktop-tool, plays the test video, while the observer analyzes the behavior of the subject. Therefore, every time the subject performs a specific behavior, the researcher logs it by pressing one key previously bound to a behavior. 
-Besides keeping a record of the behavior logging, UVehavior displays three calculated variables: `latency`, `frequency`, and `duration`. For the ethological study, these measures are important for describing behaviors [@Inesta:2011]. \autoref{fig:annotation} shows the annotation activity of a Locomotor Activity Test performed by a Wistar rat [@Fernandez-Demeneghi:2019].
+Besides keeping a record of the behavior logging, UVehavior displays three calculated variables: `latency`, `frequency`, and `duration`. For the ethological study, these measures are important for describing behaviors [@Inesta:2011]. \autoref{fig:annotation} shows the latency, frequency and time spent in grooming and rearing behavior displayed by a Wistar rat subjected to the locomotor activity test  [@Fernandez-Demeneghi:2019].
 
 # Analysis of the Results
 
