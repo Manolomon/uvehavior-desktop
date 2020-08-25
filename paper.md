@@ -10,26 +10,29 @@ authors:
   - name: J. Manuel Pérez-Verdejo
     orcid: 0000-0002-3398-2632
     affiliation: "1, 2"
-  - name: Rafael Fernández-Demeneghi
-    orcid: 0000-0002-7540-6537
-    affiliation: 2
   - name: Héctor-Gabriel Acosta-Mesa
     orcid: 0000-0002-0935-7642
     affiliation: 3
-  - name: Isidro Vargas-Moreno
-    orcid: 0000-0001-6774-9444
-    affiliation: 2
   - name: Socorro Herrera-Meza
     orcid: 0000-0003-0838-470X
     affiliation: 4
+  - name: Rafael Fernández-Demeneghi
+    orcid: 0000-0002-7540-6537
+    affiliation: 2
+  - name: Isidro Vargas-Moreno
+    orcid: 0000-0001-6774-9444
+    affiliation: 2
+  - name: Juan Francisco Rodríguez-Landa
+    orcid: 0000-0001-5837-103X
+    affiliation: 2
 affiliations:
- - name: School of Statistics and Informatics, University of Veracruz, Xalapa, Mexico
+ - name: School of Statistics and Informatics, Universidad Veracruzana, Xalapa, Mexico
    index: 1
- - name: Institute of Neuroethology, University of Veracruz, Xalapa, Mexico
+ - name: Institute of Neuroethology, Universidad Veracruzana, Xalapa, Mexico
    index: 2
- - name: Artificial Intelligence Research Center, University of Veracruz, Xalapa, Mexico
+ - name: Artificial Intelligence Research Center, Universidad Veracruzana, Xalapa, Mexico
    index: 3
- - name: Institute of Psychological Research, University of Veracruz, Xalapa, Mexico
+ - name: Institute of Psychological Research, Universidad Veracruzana, Xalapa, Mexico
    index: 4
 date: 18 August 2020
 bibliography: paper.bib
@@ -37,13 +40,13 @@ bibliography: paper.bib
 
 # Summary
 
-Understanding behavior is a relevant task, detecting patterns in how living organisms interact and respond to different stimuli means an area of interest capable of influencing complementary activities in psychology, nutrition, and pharmacology. Conducting research in behavioral science is, however, a high-dimensional problem that involves several activities, from the conceptualization and planning of the study to the analysis of the collected results.
-In this regard, we introduce UVehavior, and open-source tool that allows researchers to manage, conduct, and compare behavioral observations experiments.
+Understanding behavior is a relevant task, detecting patterns in how living organisms interact and respond to different stimuli means an area of interest capable of influencing complementary activities in psychology, nutrition, and pharmacology. Research in behavioral science is, however, a high-dimensional problem that involves several activities, from the conceptualization and planning of the study to the analysis of the collected results. Currently, there are several automated software to behavioral analysis, however, they are expensive and limited to the analysis of particular behaviors that only the human eye can identify.
+In this regard, we introduce UVehavior, and open-source tool that allows researchers to manage, conduct, and compare behavioral observations in several animals and even the human being.
 
 # Neuroethological Research
 
 According to @Dugatkin:2020 behavior is the coordinated responses of whole living organisms to internal and/or external stimuli, considering behavior as an expression of the activity of the nervous system. 
-Neuroethology is the branch of neuroscience in charge of finding out which organic components, especially neurophysiological types, are involved in the display of behaviors [@Bassler:1984], the reason why it is interested in the analysis of changes in the frequency, function, and intensity of a certain behavior, which can be modified by different treatments, manipulations or the experience of individuals. 
+Neuroethology is an important area of neurosciences involved in the study of the neurobiological, neurochemical, and neurophysiological bases underlying behavior [@Bassler:1984]. Therefore, this science is interested in the quantification of the behavioral changes through the measure of frequency, latency and time duration of specific behavior under normal or altered states induced by drugs, experimental manipulations, or the experience of the individual.
 
 On the other hand, before beginning a study on behavior, it is necessary to consider whether the design of the experiment is adequate to allow causal and logical explanations, orienting the investigation towards the adequate data interpretation. The experimental design considers the study subject, conditions of the environment and the control of the variables studied [@Kirk:2012].
 
@@ -62,9 +65,9 @@ Besides keeping a record of the behavior logging, UVehavior displays three calcu
 
 # Analysis of the Results
 
-And an additional feature of UVehavior is the ability to display a timing-diagram-like [@Seidl:2015] chart of the behaviors exhibited by a subject during a test. This visualization shows a series of state changes throughout a test, where every behavior evaluated is listed on the vertical axis and the horizontal axis represents the chronological order. \autoref{fig:behavior_chart} shows an example of this chart, generated from an evaluated subject.
+An additional feature of UVehavior is the ability to display a timing-diagram-like [@Seidl:2015] chart of the behaviors exhibited by a subject during a test. This visualization shows a series of state changes throughout a test, where every behavior evaluated is listed on the vertical axis, whereas the horizontal one represents the chronological order. \autoref{fig:behavior_chart} shows an example of this chart, generated from an evaluated subject.
 
-![Example of the Transitional Behavior Chart generated from an evaluation.\label{fig:behavior_chart}](behavior_chart.png)
+![Example of the Timing Diagram generated from an evaluation.\label{fig:behavior_chart}](behavior_chart.png)
 
 UVehavior comes from a preliminary version developed  _ex profeso_  to conduct the tests' logging for the study by @Fernandez-Demeneghi:2019. However, further additions to the system are planned to turn UVehavior into a set of several tools for the analysis of behavioral observation data.
 
