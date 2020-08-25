@@ -12,28 +12,30 @@ authors:
     affiliation: "1, 2"
   - name: Héctor-Gabriel Acosta-Mesa
     orcid: 0000-0002-0935-7642
-    affiliation: 3
+    affiliation: 2
   - name: Socorro Herrera-Meza
     orcid: 0000-0003-0838-470X
-    affiliation: 4
+    affiliation: 3
   - name: Rafael Fernández-Demeneghi
     orcid: 0000-0002-7540-6537
-    affiliation: 2
+    affiliation: 4
   - name: Isidro Vargas-Moreno
     orcid: 0000-0001-6774-9444
-    affiliation: 2
+    affiliation: 4
   - name: Juan Francisco Rodríguez-Landa
     orcid: 0000-0001-5837-103X
-    affiliation: 2
+    affiliation: 5
 affiliations:
  - name: School of Statistics and Informatics, Universidad Veracruzana, Xalapa, Mexico
    index: 1
- - name: Institute of Neuroethology, Universidad Veracruzana, Xalapa, Mexico
-   index: 2
  - name: Artificial Intelligence Research Center, Universidad Veracruzana, Xalapa, Mexico
-   index: 3
+   index: 2
  - name: Institute of Psychological Research, Universidad Veracruzana, Xalapa, Mexico
+   index: 3
+ - name: Doctoral Program in Neuroethology, Institute of Neuroethology, Universidad Veracruzana, Xalapa, Mexico
    index: 4
+ - name: Institute of Neuroethology, Universidad Veracruzana, Xalapa, Mexico
+   index: 5
 date: 18 August 2020
 bibliography: paper.bib
 ---
