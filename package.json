@@ -107,7 +107,7 @@
   },
   "dependencies": {
     "@akveo/ng2-completer": "9.0.1",
-    "@angular/animations": "9.1.11",
+    "@angular/animations": "9.1.12",
     "@angular/cdk": "9.2.4",
     "@fortawesome/fontawesome-free": "5.13.1",
     "@nebular/theme": "5.1.0",
