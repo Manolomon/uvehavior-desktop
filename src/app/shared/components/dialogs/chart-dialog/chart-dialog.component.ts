@@ -55,7 +55,7 @@ export class ChartDialogComponent implements AfterViewInit, OnDestroy {
         backgroundColor: this.echarts.bg,
         color: [colors.primary, colors.warning, colors.success, colors.danger, colors.info],
         title: {
-          text: 'Transitional Behavior Chart',
+          text: 'Timing Diagram',
           textStyle: {
             color: this.echarts.textColor,
           },
@@ -146,6 +146,6 @@ export class ChartDialogComponent implements AfterViewInit, OnDestroy {
   }
 
   onResized(event: ResizedEvent) {
-    this.echarts.resize();
+    this.echarts.resize;
   }
 }

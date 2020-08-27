@@ -193,21 +193,19 @@ export class ExperimentComponent implements OnInit {
           currentTest: test,
         },
       })
-      .onClose.subscribe(
-        (editedTest) =>
-          editedTest &&
+      .onClose.subscribe((editedTest) => {
+        if (editedTest) {
           this.databaseService.connection
             .then(() => editedTest.save())
-            .then(() => {
-              this.getExperiment();
-            })
             .then(() => {
               const title: string = this.translate.instant('SUCCESS');
               const message: string = this.translate.instant('EXPERIMENT-SAVED');
 
               this.showToast('success', title, message);
-            })
-      );
+            });
+        }
+        this.getExperiment();
+      });
   }
 
   showSubject(subject) {

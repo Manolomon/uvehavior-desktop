@@ -60,5 +60,8 @@
     >
       {{ 'SUBMIT' | translate }}
     </button>
+    <button *ngIf="editMode" class="delete" nbButton status="danger" ghost (click)="clickDeleteTest()">
+      <nb-icon icon="trash"></nb-icon>
+    </button>
   </nb-card-footer>
 </nb-card>

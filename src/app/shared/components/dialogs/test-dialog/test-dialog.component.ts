@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { NbDialogRef } from '@nebular/theme';
+import { NbDialogRef, NbDialogService } from '@nebular/theme';
 import { LocalDataSource } from 'ng2-smart-table';
-import { Test } from '../../../../core/models/entities';
+import { Test, Behavior } from '../../../../core/models/entities';
 import { SmartTableKeyInputComponent } from './smart-table-key-input.component';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+import { DatabaseService } from '../../../../core/services/database/database.service';
 
 @Component({
   selector: 'app-test-dialog',
@@ -56,7 +58,11 @@ export class TestDialogComponent implements OnInit {
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(protected ref: NbDialogRef<TestDialogComponent>) {
+  constructor(
+    protected ref: NbDialogRef<TestDialogComponent>,
+    private dialogService: NbDialogService,
+    private databaseService: DatabaseService
+  ) {
     this.testForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(2)]),
       description: new FormControl('', [Validators.maxLength(2500)]),
@@ -106,7 +112,24 @@ export class TestDialogComponent implements OnInit {
   }
 
   onDeleteConfirm(event): void {
-    event.confirm.resolve();
+    if (this.editMode) {
+      let behavior = this.currentTest.behaviors.find((behavior) => behavior.idBehavior == event.data.id);
+      this.dialogService
+        .open(ConfirmationDialogComponent, {
+          context: {
+            title: 'Delete Behavior',
+            body: 'This action would affect every evaluation made on this behavior',
+          },
+        })
+        .onClose.subscribe((result) => {
+          if (result) {
+            this.deleteBehavior(behavior);
+            event.confirm.resolve();
+          }
+        });
+    } else {
+      event.confirm.resolve();
+    }
   }
 
   onCreateConfirm(event): void {
@@ -123,5 +146,31 @@ export class TestDialogComponent implements OnInit {
     } else {
       event.confirm.reject();
     }
+  }
+
+  deleteBehavior(behavior: Behavior) {
+    this.databaseService.deleteBehaviorRecords(behavior);
+  }
+
+  clickDeleteTest() {
+    this.dialogService
+      .open(ConfirmationDialogComponent, {
+        context: {
+          title: 'Delete Test',
+          body: 'This action would affect every evaluation made on this test',
+        },
+      })
+      .onClose.subscribe((result) => {
+        if (result) {
+          this.deleteTest();
+        }
+      });
+  }
+
+  deleteTest() {
+    this.databaseService.connection.then(() => {
+      this.currentTest.behaviors.map((behavior) => this.deleteBehavior(behavior));
+      this.currentTest.remove().then(() => this.cancel());
+    });
   }
 }

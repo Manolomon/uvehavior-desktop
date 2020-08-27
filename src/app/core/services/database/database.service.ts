@@ -48,6 +48,23 @@ export class DatabaseService {
     });
   }
 
+  async deleteBehaviorRecords(behavior: Behavior) {
+    return (await this.connection)
+      .getRepository(Behavior)
+      .findOne({
+        relations: ['behaviorEvaluations', 'behaviorEvaluations.evaluation'],
+        where: {
+          idBehavior: behavior.idBehavior,
+        },
+      })
+      .then((beh) => {
+        beh.behaviorEvaluations.map((bh) => {
+          bh.evaluation.remove();
+        });
+        behavior.remove();
+      });
+  }
+
   async saveEvaluation(evaluation: Evaluation) {
     return (await this.connection).getRepository(Evaluation).save(evaluation);
   }
