@@ -116,7 +116,7 @@
     "echarts": "4.8.0",
     "hammerjs": "2.0.8",
     "ng2-smart-table": "1.6.0",
-    "ngx-echarts": "5.0.0",
+    "ngx-echarts": "5.1.2",
     "sqlite3": "4.2.0",
     "typeorm": "0.2.25"
   }
