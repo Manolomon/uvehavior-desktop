@@ -112,7 +112,7 @@
     "@fortawesome/fontawesome-free": "5.13.1",
     "@nebular/theme": "5.1.0",
     "angular-resize-event": "1.2.2",
-    "bootstrap": "4.5.0",
+    "bootstrap": "4.5.2",
     "echarts": "4.8.0",
     "hammerjs": "2.0.8",
     "ng2-smart-table": "1.6.0",
