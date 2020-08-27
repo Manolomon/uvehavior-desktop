@@ -12,4 +12,15 @@
     vertical-align: middle;
     font-size: 1.5rem;
   }
+
+  .contact {
+    color: #1475bc;
+    float: right;
+  }
+
+  .email {
+    color: nb-theme(text-basic-color);
+    float: right;
+    user-select: all !important;
+  }
 }

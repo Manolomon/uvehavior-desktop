@@ -1,7 +1,17 @@
 <div class="header-container">
   <div class="logo-container">
-    <img *ngIf="router.url === '/home' && !themeSwitch" src="assets/img/logo_light.svg" class="uvehavior-icon" />
-    <img *ngIf="router.url === '/home' && themeSwitch" src="assets/img/logo_dark.svg" class="uvehavior-icon" />
+    <img
+      draggable="false"
+      *ngIf="router.url === '/home' && !themeSwitch"
+      src="assets/img/logo_light.svg"
+      class="uvehavior-icon"
+    />
+    <img
+      draggable="false"
+      *ngIf="router.url === '/home' && themeSwitch"
+      src="assets/img/logo_dark.svg"
+      class="uvehavior-icon"
+    />
     <button
       nbButton
       ghost
