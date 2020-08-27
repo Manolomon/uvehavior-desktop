@@ -1,11 +1,6 @@
 @import '~@nebular/theme/styles/global/breakpoints';
 @import '../../../../themes.scss';
 
-@font-face {
-  font-family: Josefina;
-  src: url(assets/fonts/JosefinSans-SemiBold.ttf);
-}
-
 @include nb-install-component() {
   display: flex;
   justify-content: space-between;
@@ -50,7 +45,6 @@
     }
 
     .uvehavior-icon {
-      max-width: 2.5rem;
       max-height: 2.5rem;
     }
 

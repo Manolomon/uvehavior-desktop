@@ -9,10 +9,9 @@ import { SharedModule } from '../shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NebularModule } from '../nebular.module';
-import { NgImageSliderModule } from 'ng-image-slider';
 
 @NgModule({
   declarations: [HomeComponent],
-  imports: [CommonModule, SharedModule, HomeRoutingModule, BrowserAnimationsModule, NebularModule, NgImageSliderModule],
+  imports: [CommonModule, SharedModule, HomeRoutingModule, BrowserAnimationsModule, NebularModule],
 })
 export class HomeModule {}
