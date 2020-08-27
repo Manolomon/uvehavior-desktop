@@ -22,7 +22,7 @@ authors:
   - name: Isidro Vargas-Moreno
     orcid: 0000-0001-6774-9444
     affiliation: 4
-  - name: Juan Francisco Rodríguez-Landa
+  - name: Juan-Francisco Rodríguez-Landa
     orcid: 0000-0001-5837-103X
     affiliation: 5
 affiliations:
