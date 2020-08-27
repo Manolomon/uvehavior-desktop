@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { NbDialogRef } from '@nebular/theme';
+import { NbDialogRef, NbDialogService } from '@nebular/theme';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Subject, Group } from '../../../../core/models/entities';
+import { DatabaseService } from '../../../../core/services/database/database.service';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-group-dialog',
@@ -40,15 +42,17 @@ export class GroupDialogComponent {
   };
 
   groupForm: FormGroup;
+  currentGroup: Group;
 
-  name: string;
-  description: string;
   editMode: boolean;
-  subjects: Subject[];
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(protected ref: NbDialogRef<GroupDialogComponent>) {
+  constructor(
+    protected ref: NbDialogRef<GroupDialogComponent>,
+    private dialogService: NbDialogService,
+    private databaseService: DatabaseService
+  ) {
     this.groupForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(2)]),
       description: new FormControl('', [Validators.maxLength(2500)]),
@@ -57,8 +61,14 @@ export class GroupDialogComponent {
 
   ngOnInit() {
     if (this.editMode) {
-      this.groupForm.get('name').setValue(this.name);
-      this.groupForm.get('description').setValue(this.description);
+      this.groupForm.get('name').setValue(this.currentGroup.name);
+      this.groupForm.get('description').setValue(this.currentGroup.description);
+      this.currentGroup.subjects.map((element) => {
+        this.source.add({
+          id: element.idSubject,
+          subjectName: element.name,
+        });
+      });
     }
   }
 
@@ -67,19 +77,22 @@ export class GroupDialogComponent {
   }
 
   submitGroup() {
-    const newGroup = new Group();
+    if (!this.editMode) {
+      this.currentGroup = new Group();
+    }
 
-    newGroup.name = this.groupForm.get('name').value;
-    newGroup.description = this.groupForm.get('description').value;
+    this.currentGroup.name = this.groupForm.get('name').value;
+    this.currentGroup.description = this.groupForm.get('description').value;
     this.source.getAll().then((subjects) => {
-      newGroup.subjects = subjects.map((element) => {
+      this.currentGroup.subjects = subjects.map((element) => {
         return {
           name: element.subjectName,
+          idSubject: element.id,
         };
       });
     });
 
-    this.ref.close(newGroup);
+    this.ref.close(this.currentGroup);
   }
 
   onCreateConfirm(event): void {
@@ -99,6 +112,35 @@ export class GroupDialogComponent {
   }
 
   onDeleteConfirm(event): void {
-    event.confirm.resolve();
+    if (this.editMode) {
+      let subject = this.currentGroup.subjects.find((subject) => subject.idSubject == event.data.id);
+      this.dialogService
+        .open(ConfirmationDialogComponent, {
+          context: {
+            title: 'Delete Subject',
+            body: 'This action would affect every evaluation made on this subject',
+          },
+        })
+        .onClose.subscribe((result) => {
+          if (result) {
+            this.deleteSubject(subject);
+            event.confirm.resolve();
+          }
+        });
+    } else {
+      event.confirm.resolve();
+    }
+  }
+
+  deleteSubject(subject: Subject) {
+    this.databaseService.connection.then(() => {
+      subject.remove();
+    });
+  }
+
+  clickDeleteGroup() {
+    this.databaseService.connection.then(() => {
+      this.currentGroup.remove().then(() => this.cancel());
+    });
   }
 }

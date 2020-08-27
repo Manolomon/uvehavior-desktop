@@ -10,7 +10,7 @@
           nbTooltip="{{ 'TOOLTIP.DELETE-EXPERIMENT' | translate }}"
           (click)="clickDeleteExperiment()"
         >
-          <nb-icon icon="trash-alt"></nb-icon>
+          <nb-icon icon="trash"></nb-icon>
         </button>
         <button nbButton ghost class="setting" (click)="editExperiment()" nbTooltip="{{ 'TOOLTIP.EDIT' | translate }}">
           <nb-icon icon="pen"></nb-icon>
@@ -55,9 +55,6 @@
     <nb-card>
       <nb-card-header>
         {{ 'GROUPS' | translate }}
-        <button nbButton ghost class="setting" nbTooltip="{{ 'TOOLTIP.EDIT-GROUPS' | translate }}">
-          <nb-icon icon="pen"></nb-icon>
-        </button>
         <button nbButton ghost class="setting" (click)="addGroup()" nbTooltip="{{ 'TOOLTIP.ADD-GROUP' | translate }}">
           <nb-icon icon="plus"></nb-icon>
         </button>
@@ -65,9 +62,12 @@
       <nb-card-body>
         <!--<nb-menu tag="subjects" [items]="subjects" autoCollapse="true"></nb-menu>-->
         <nb-accordion *ngIf="current != undefined">
-          <nb-accordion-item *ngFor="let group of current.groups">
+          <nb-accordion-item *ngFor="let group of current.groups" class="list-item-on-hover">
             <nb-accordion-item-header>
               <span class="group-title"><nb-icon icon="users"></nb-icon>{{ group.name }}</span>
+              <button nbButton ghost shape="round" nbTooltip="Edit Group" class="edit" (click)="editGroup(group)">
+                <nb-icon icon="pen-alt"></nb-icon>
+              </button>
             </nb-accordion-item-header>
             <nb-accordion-item-body>
               <nb-list>

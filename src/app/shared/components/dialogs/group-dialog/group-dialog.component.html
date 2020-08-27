@@ -41,5 +41,8 @@
     <button nbButton (click)="submitGroup()" status="primary" [disabled]="!groupForm.valid || source.count() === 0">
       {{ 'SUBMIT' | translate }}
     </button>
+    <button *ngIf="editMode" class="delete" nbButton status="danger" ghost (click)="clickDeleteGroup()">
+      <nb-icon icon="trash"></nb-icon>
+    </button>
   </nb-card-footer>
 </nb-card>

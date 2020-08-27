@@ -44,6 +44,9 @@
         </div>
         <button nbButton status="basic" class="cancel" (click)="downloadLog(evaluation)">Download Log</button>
         <button nbButton status="primary" (click)="plotEvaluation(evaluation)">Plot</button>
+        <button class="plot" nbButton status="danger" ghost (click)="clickDeleteEvaluation(evaluation)">
+          <nb-icon icon="trash"></nb-icon>
+        </button>
       </nb-accordion-item-body>
     </nb-accordion-item>
   </nb-accordion>

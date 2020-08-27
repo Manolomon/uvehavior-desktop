@@ -146,14 +146,12 @@ export class AnnotateComponent implements OnInit {
 
   exitEvaluation() {
     this.setVideoPlayback(false);
-    const title: string = this.translate.instant('DELETE-EXPERIMENT');
-    const body: string = this.translate.instant('DELETE-EXPERIMENT-CONFIRMATION');
 
     this.dialogService
       .open(ConfirmationDialogComponent, {
         context: {
-          title: title,
-          body: body,
+          title: 'Exit Evaluation',
+          body: 'The evaluation is not finished, and would not be saved',
         },
       })
       .onClose.subscribe(

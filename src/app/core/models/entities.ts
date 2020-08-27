@@ -78,7 +78,7 @@ export class Group extends BaseEntity {
   @JoinColumn()
   experiment: Experiment;
 
-  @OneToMany(() => Subject, (subject) => subject.group, { cascade: ['insert', 'recover'] })
+  @OneToMany(() => Subject, (subject) => subject.group, { cascade: true })
   subjects: Subject[];
 }
 

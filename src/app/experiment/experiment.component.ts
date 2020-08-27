@@ -185,6 +185,31 @@ export class ExperimentComponent implements OnInit {
       });
   }
 
+  editGroup(group) {
+    this.dialogService
+      .open(GroupDialogComponent, {
+        context: {
+          editMode: true,
+          currentGroup: group,
+        },
+      })
+      .onClose.subscribe((editedGroup) => {
+        if (editedGroup) {
+          this.databaseService.connection
+            .then(() => editedGroup.save())
+            .then(() => {
+              const title: string = this.translate.instant('SUCCESS');
+              const message: string = this.translate.instant('EXPERIMENT-SAVED');
+
+              this.showToast('success', title, message);
+            })
+            .then(() => this.getExperiment());
+        } else {
+          this.getExperiment();
+        }
+      });
+  }
+
   editTest(test) {
     this.dialogService
       .open(TestDialogComponent, {
@@ -202,9 +227,11 @@ export class ExperimentComponent implements OnInit {
               const message: string = this.translate.instant('EXPERIMENT-SAVED');
 
               this.showToast('success', title, message);
-            });
+            })
+            .then(() => this.getExperiment());
+        } else {
+          this.getExperiment();
         }
-        this.getExperiment();
       });
   }
 

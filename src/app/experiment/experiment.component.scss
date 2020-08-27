@@ -97,3 +97,13 @@ textarea {
 .setting {
   float: right;
 }
+
+.edit {
+  float: right;
+  padding: 0.5rem !important;
+  display: none;
+}
+
+.list-item-on-hover:hover .edit {
+  display: block;
+}

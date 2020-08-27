@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { CSVExportService } from '../core/services/csv-export.service';
 import { ChartDialogComponent } from '../shared/components/dialogs/chart-dialog/chart-dialog.component';
 import { NameEvaluationDialogComponent } from '../shared/components/dialogs/name-evaluation-dialog/name-evaluation-dialog.component';
+import { ConfirmationDialogComponent } from '../shared/components/dialogs/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-evaluations',
@@ -31,6 +32,10 @@ export class EvaluationsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.fetchData();
+  }
+
+  fetchData() {
     if (this.router.url.split('/')[1] === 'evaluations') {
       this.idSubject = this.route.snapshot.params['id'];
       this.getSubjectEvaluations();
@@ -158,5 +163,22 @@ export class EvaluationsComponent implements OnInit {
         this.getExperimentEvaluations();
       }
     });
+  }
+
+  clickDeleteEvaluation(evaluation: Evaluation) {
+    this.dialogService
+      .open(ConfirmationDialogComponent, {
+        context: {
+          title: 'Delete Evaluation',
+          body: 'This would delete the record of this evaluation',
+        },
+      })
+      .onClose.subscribe((result) => {
+        if (result) {
+          this.databaseService.connection.then(() => {
+            evaluation.remove().then(() => this.fetchData());
+          });
+        }
+      });
   }
 }

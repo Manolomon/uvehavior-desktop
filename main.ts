@@ -28,13 +28,7 @@ const template: Electron.MenuItemConstructorOptions[] = [
   // { role: 'viewMenu' }
   {
     label: 'View',
-    submenu: [
-      { role: 'resetZoom' },
-      { role: 'zoomIn' },
-      { role: 'zoomOut' },
-      { type: 'separator' },
-      { role: 'togglefullscreen' },
-    ],
+    submenu: [{ role: 'zoomIn' }, { role: 'zoomOut' }, { type: 'separator' }, { role: 'togglefullscreen' }],
   },
   // { role: 'windowMenu' }
   {
