@@ -45,7 +45,7 @@ bibliography: paper.bib
 Understanding behavior is a relevant task, detecting patterns in how living organisms interact and respond to different stimuli means an area of interest capable of influencing complementary activities in psychology, nutrition, and pharmacology. Research in behavioral science is, however, a high-dimensional problem that involves several activities, from the conceptualization and planning of the study to the analysis of the collected results. Currently, there are several automated software to behavioral analysis, however, they are expensive and limited to the analysis of particular behaviors that only the human eye can identify.
 In this regard, we introduce UVehavior, and open-source tool that allows researchers to manage, conduct, and compare behavioral observations in several animals and even the human being.
 
-# Neuroethological Research
+# Statement of Need
 
 According to @Dugatkin:2020 behavior is the coordinated responses of whole living organisms to internal and/or external stimuli, considering behavior as an expression of the activity of the nervous system.
 Neuroethology is an important area of neurosciences involved in the study of the neurobiological, neurochemical, and neurophysiological bases underlying behavior [@Bassler:1984]. Therefore, this science is interested in the quantification of the behavioral changes through the measure of frequency, latency and time duration of specific behavior under normal or altered states induced by drugs, experimental manipulations, or the experience of the individual.
