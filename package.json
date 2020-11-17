@@ -118,6 +118,6 @@
     "ng2-smart-table": "1.6.0",
     "ngx-echarts": "5.0.0",
     "sqlite3": "4.2.0",
-    "typeorm": "0.2.25"
+    "typeorm": "0.2.27"
   }
 }
