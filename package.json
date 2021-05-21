@@ -110,7 +110,7 @@
     "@angular/animations": "9.1.11",
     "@angular/cdk": "9.2.4",
     "@fortawesome/fontawesome-free": "5.13.1",
-    "@nebular/theme": "5.1.0",
+    "@nebular/theme": "6.2.2",
     "angular-resize-event": "1.2.2",
     "bootstrap": "4.5.0",
     "echarts": "4.8.0",
