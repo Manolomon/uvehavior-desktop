@@ -2,6 +2,9 @@ import { app, BrowserWindow, screen, Menu, globalShortcut } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
 
+// Initialize remote module
+require('@electron/remote/main').initialize();
+
 let win: BrowserWindow = null;
 
 const template: Electron.MenuItemConstructorOptions[] = [
@@ -144,7 +147,8 @@ function createWindow(): BrowserWindow {
     webPreferences: {
       nodeIntegration: true,
       allowRunningInsecureContent: false,
-      webSecurity: true,
+      webSecurity: false,
+      enableRemoteModule: true
     },
   });
 

@@ -1,6 +1,6 @@
 import * as path from 'path';
-import { remote } from 'electron';
 import { AppConfig } from '../../../../environments/environment';
+import * as remote from '@electron/remote';
 
 export class Settings {
   public static dbFolder: string;
@@ -17,6 +17,7 @@ export class Settings {
     if (AppConfig.production) {
       this.dataSubFolder = '/';
       Settings.appPath = remote.app.getPath('userData');
+      console.log(Settings.appPath)
     } else {
       // return folder where app is running
       this.dataSubFolder = 'dist/assets/data';
