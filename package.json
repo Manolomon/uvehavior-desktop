@@ -108,7 +108,7 @@
     "@electron/remote": "1.0.4",
     "@fortawesome/fontawesome-free": "5.15.3",
     "@nebular/theme": "6.2.2",
-    "angular-resize-event": "2.0.1",
+    "angular-resize-event": "2.1.0",
     "bootstrap": "5.0.1",
     "echarts": "5.1.1",
     "hammerjs": "2.0.8",
