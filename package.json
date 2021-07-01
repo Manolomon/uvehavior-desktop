@@ -110,7 +110,7 @@
     "@nebular/theme": "6.2.2",
     "angular-resize-event": "2.0.1",
     "bootstrap": "5.0.1",
-    "echarts": "5.1.1",
+    "echarts": "5.1.2",
     "hammerjs": "2.0.8",
     "ng2-completer": "9.0.1",
     "ng2-smart-table": "1.7.2",
