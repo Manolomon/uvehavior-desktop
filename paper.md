@@ -42,7 +42,7 @@ bibliography: paper.bib
 
 # Summary
 
-Understanding behavior is a relevant task, detecting patterns in how living organisms interact and respond to different physical and emotional stimuli is an essential tool in several areas of the science, including ethology, psychology, nutrition, and pharmacology, among others. Particularly, the study of behavior in pharmacology is a high-dimensional topic that involves several activities, from the conceptualization and planning of the study, the identification and selection of specific behaviors to the analysis of the collected data. Currently, there are several automated software tools to analyze behavioral patterns that permit identify emotional, affective and motor changes associated with physiological, psychological, or pharmacological manipulations; however, they are expensive and limited to the analysis of particular behaviors that only the human eye can identify. In this regard, we introduce UVehavior, and open-source tool that allows researchers to manage, conduct, and compare behavioral observations in several animals and even human beings; which represent a free tool for researchers interested in the experimental analysis of behavior.
+Understanding behavior is a relevant task, detecting patterns in how living organisms interact and respond to different physical and emotional stimuli is an essential tool in several areas of the science, including ethology, psychology, nutrition, and pharmacology, among others. Particularly, the study of behavior in pharmacology is a high-dimensional topic that involves several activities, from the conceptualization and planning of the study, the identification and selection of specific behaviors to the analysis of the collected data. Currently, there are several automated software tools to analyze behavioral patterns that permit identify emotional, affective and motor changes associated with physiological, psychological, or pharmacological manipulations; however, they are expensive and limited to the analysis of particular behaviors that only the human eye can identify. In this regard, we introduce UVehavior, an open-source tool that allows researchers to manage, conduct, and compare behavioral observations in several animals and even human beings; which represent a free tool for researchers interested in the experimental analysis of behavior.
 
 # Statement of Need
 
@@ -68,7 +68,7 @@ Besides keeping a record of the behavior logging, UVehavior displays three calcu
 
 # Analysis of the Results
 
-An additional feature of UVehavior is the ability to display a timing-diagram-like [@Seidl:2015] chart of the behaviors exhibited by a subject during a test. This visualization shows a series of state changes throughout a test, where every behavior evaluated is listed on the vertical axis, whereas the horizontal one represents the chronological order. \autoref{fig:behavior_chart} shows an example of this chart, generated from an evaluated subject.
+An additional feature of UVehavior is the ability to display a timing-diagram-like [@Seidl:2015] chart of the behaviors exhibited by a subject during a test. This visualization shows a series of state changes throughout a test, where every behavior evaluated is listed on the vertical axis, whereas the horizontal one represents time. \autoref{fig:behavior_chart} shows an example of this chart, generated from an evaluated subject.
 
 ![Example of the Timing Diagram generated from an evaluation.\label{fig:behavior_chart}](src/assets/img/behavior_chart.png)
 
