@@ -116,7 +116,7 @@
     "ng2-smart-table": "1.7.2",
     "ngx-echarts": "6.0.1",
     "resize-observer-polyfill": "1.5.1",
-    "sqlite3": "5.0.2",
-    "typeorm": "0.2.32"
+    "sqlite3": "5.0.3",
+    "typeorm": "0.2.39"
   }
 }
